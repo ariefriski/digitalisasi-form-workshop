@@ -21,7 +21,137 @@
         <!-- Page JS Code -->
         <script src="<?=base_url() . 'assets/js/pages/be_tables_datatables.min.js'?>"></script>
 
-        <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN -->
+        <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN --><script>
+            $(document).on('click','#reject',function(){
+                $("#reason1").append (`
+                <div class="form-group row" id="reason">
+                <label class="col-12" for="example-textarea-input">*Masukan Alasan Jika Reject</label>
+                    <div class="col-12">
+                        <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..."></textarea>
+                    </div>
+                </div>
+                `);
+            });
+            $(document).on('click','#accept',function(){
+                $("#reason").remove(); 
+            });
+            $(document).on('click','#subcount',function(){
+                $("#plan2").remove(); 
+            });
+            $(document).on('click',"#inhouse",function(){
+                $("#plan1").append(`
+                <div id="plan2">
+                                        <div class="form-group row" id="plan">
+                                            
+                                            <label class="col-12" for="routing_plan">Routing Plan</label>
+                                            <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_1" name="routing_item_1">
+                                                    <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="WELDING">Welding</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_2" name="routing_item_2">
+                                                    <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="WELDING">Welding</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_3" name="routing_item_3">
+                                                    <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="WELDING">Welding</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_4" name="routing_item_4">
+                                                    <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="WELDING">Welding</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_5" name="routing_item_5">
+                                                    <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="WELDING">Welding</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_6" name="routing_item_6">
+                                                    <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="WELDING">Welding</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        </div>
+                `);
+            });
+
+</script>
+
         
     </body>
+
 </html>

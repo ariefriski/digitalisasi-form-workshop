@@ -142,41 +142,67 @@
                              <div class="block">
                                 <div class="block-content">
                                     <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
-                                    <div class="form-group row">
+                                    <div class="form-group row" >
                                             <label class="col-8" for="example-text-input">Order Response</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_order_response" >
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="accept" >
                                                 <span class="css-control-indicator"></span> Accept
                                             </label>
                                             
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_order_response">
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="reject">
                                                 <span class="css-control-indicator"></span> Reject
                                             </label>
                                         </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-12" for="example-textarea-input">*Masukan Alasan Jika Reject</label>
-                                            <div class="col-12">
-                                                <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..."></textarea>
-                                            </div>
+                                        <div  id="reason1">
+                                            
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Process Order</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_process_order" >
+                                                <input type="radio" class="css-control-input" name="response_order" id="inhouse" >
                                                 <span class="css-control-indicator"></span> Inhouse
                                             </label>
                                             
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_process_order">
+                                                <input type="radio" class="css-control-input" name="response_order" id="subcount">
                                                 <span class="css-control-indicator"></span> Subcount
                                             </label>
                                         </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div id="plan1">
+                                        
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+</div>
+</div>
+<script>
+            $(document).on('click','#reject',function(){
+                $("#reason1").append (`
+                <div class="form-group row" id="reason">
+                <label class="col-12" for="example-textarea-input">*Masukan Alasan Jika Reject</label>
+                    <div class="col-12">
+                        <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..."></textarea>
+                    </div>
+                </div>
+                `);
+            });
+            $(document).on('click','#accept',function(){
+                $("#reason").remove(); 
+            });
+            $(document).on('click','#subcount',function(){
+                $("#plan2").remove(); 
+            });
+            $(document).on('click',"#inhouse",function(){
+                $("#plan1").append(`
+                <div id="plan2">
+                                        <div class="form-group row" id="plan">
+                                            
                                             <label class="col-12" for="routing_plan">Routing Plan</label>
                                             <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_1" name="routing_item_1">
@@ -279,12 +305,11 @@
                                             <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-</div>
-</div>
+                                        </div>
+                `);
+            });
 
+</script>
 
  
  
