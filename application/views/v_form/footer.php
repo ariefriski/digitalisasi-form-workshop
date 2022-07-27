@@ -56,20 +56,25 @@
             $('#rawradio').click(function(){
              if (($('#r_block').is(':checked'))||($('#r_cylinder').is(':checked'))||($('#r_fabrikasi').is(':checked'))) {
                 $("#dimensi").empty().append(`
+                <div class="form-group row" id="dimensi2">
                 <label class="col-12" for="example-text-input">Dimensi Produk</label>
                                             <br><br>
                                             <div class="col-md-2">P
-                                                <input type="text" class="form-control" id="panjang" name="panjang" placeholder="Masukan Jumlah">
+                                                <input type="number" class="form-control" id="panjang" name="panjang" placeholder="mm">
                                             </div>
                                             <div class="col-md-2">L
-                                                <input type="text" class="form-control" id="lebar" name="lebar" placeholder="Masukan Jumlah">
+                                                <input type="number" class="form-control" id="lebar" name="lebar" placeholder="mm">
                                             </div>
                                             <div class="col-md-2">T
-                                                <input type="text" class="form-control" id="tinggi" name="tinggi" placeholder="Masukan Jumlah">
+                                                <input type="number" class="form-control" id="tinggi" name="tinggi" placeholder="mm">
                                             </div>
-                `)
+                </div>
+                `);
              }
             });
+            $(document).on('click','#cancel_raw',function(){
+                $("#dimensi2").remove();
+            })
 
             $(document).on('click',"#inhouse",function(){
                 $("#plan1").empty().append(`

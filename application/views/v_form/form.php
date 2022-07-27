@@ -96,11 +96,17 @@
                                                     <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="fabrikasi">
                                                     <label class="custom-control-label" for="r_fabrikasi">Fabrikasi</label>
                                                 </div>
+                                                <button type="button" class="btn btn-sm btn-circle btn-alt-danger mr-5 mb-5" id="cancel_raw">
+                                    <i class="fa fa-times"></i>
+                                </button>
                                             </div>
-                                        </div>
-                                        <div class="form-group row" id="dimensi">
                                             
                                         </div>
+                                        
+                                        <div id="dimensi">
+                                            
+                                        </div>
+                                        
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Material</label>
                                             <div class="col-md-5">
