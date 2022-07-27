@@ -17,11 +17,12 @@
         <!-- Page JS Plugins -->
         <script src="<?=base_url() . 'assets/js/plugins/datatables/jquery.dataTables.min.js'?>"></script>
         <script src="<?=base_url() . 'assets/js/plugins/datatables/dataTables.bootstrap4.min.js'?>"></script>
-
+        <script src="<?=base_url() .'assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js'?>"></script>
         <!-- Page JS Code -->
         <script src="<?=base_url() . 'assets/js/pages/be_tables_datatables.min.js'?>"></script>
 
-        <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN --><script>
+        <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN -->
+        <script>
             $(document).on('click','#reject',function(){
                 $("#reason1").empty().append (`
                 <div class="form-group row" id="reason">
@@ -212,7 +213,7 @@
                 `);
             });
 
-            
+
 </script>
 
         
