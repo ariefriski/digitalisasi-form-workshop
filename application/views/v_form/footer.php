@@ -74,6 +74,7 @@
             });
             $(document).on('click','#cancel_raw',function(){
                 $("#dimensi2").remove();
+                $("input[type=radio][name=raw_type]").prop('checked', false);
             })
 
             $(document).on('click',"#inhouse",function(){
