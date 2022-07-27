@@ -85,14 +85,18 @@
                                             <label class="col-12" for="routing_plan">Routing Plan</label>
                                             <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_1" name="routing_item_1">
-                                                    <option value="0">Please select</option>
+                                                <option value="0">Please select</option>
                                                     <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
-                                                    <option value="GRINDING">Grinding</option>
                                                     <option value="BUBUT">Bubut</option>
-                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
                                                     <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
                                                     <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -104,12 +108,16 @@
                                                 <select class="form-control" id="routing_plan_2" name="routing_item_2">
                                                     <option value="0">Please select</option>
                                                     <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
-                                                    <option value="GRINDING">Grinding</option>
                                                     <option value="BUBUT">Bubut</option>
-                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
                                                     <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
                                                     <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -119,14 +127,18 @@
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_3" name="routing_item_3">
-                                                    <option value="0">Please select</option>
+                                                <option value="0">Please select</option>
                                                     <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
-                                                    <option value="GRINDING">Grinding</option>
                                                     <option value="BUBUT">Bubut</option>
-                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
                                                     <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
                                                     <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -136,14 +148,18 @@
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_4" name="routing_item_4">
-                                                    <option value="0">Please select</option>
+                                                <option value="0">Please select</option>
                                                     <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
-                                                    <option value="GRINDING">Grinding</option>
                                                     <option value="BUBUT">Bubut</option>
-                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
                                                     <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
                                                     <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -153,14 +169,18 @@
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_5" name="routing_item_5">
-                                                    <option value="0">Please select</option>
+                                                <option value="0">Please select</option>
                                                     <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
-                                                    <option value="GRINDING">Grinding</option>
                                                     <option value="BUBUT">Bubut</option>
-                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
                                                     <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
                                                     <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -170,14 +190,18 @@
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_6" name="routing_item_6">
-                                                    <option value="0">Please select</option>
+                                                <option value="0">Please select</option>
                                                     <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
-                                                    <option value="GRINDING">Grinding</option>
                                                     <option value="BUBUT">Bubut</option>
-                                                    <option value="MANUAL_DRILL">Manual Drill</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
                                                     <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
                                                     <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
