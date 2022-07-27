@@ -23,23 +23,56 @@
 
         <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN --><script>
             $(document).on('click','#reject',function(){
-                $("#reason1").append (`
+                $("#reason1").empty().append (`
                 <div class="form-group row" id="reason">
-                <label class="col-12" for="example-textarea-input">*Masukan Alasan Jika Reject</label>
+                <label class="col-12" for="example-textarea-input">*Masukan Alasan Reject</label>
                     <div class="col-12">
                         <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..."></textarea>
                     </div>
                 </div>
                 `);
             });
+
+
             $(document).on('click','#accept',function(){
                 $("#reason").remove(); 
             });
             $(document).on('click','#subcount',function(){
                 $("#plan2").remove(); 
+                
+
+            
+                
             });
+
+            // $(document).on('click','#r_block',function(){
+            //     alert("adada");
+            // });
+
+
+            // if($('#r_block').is(':checked')){
+            //     alert("ADADA");
+            // }
+            $('#rawradio').click(function(){
+             if (($('#r_block').is(':checked'))||($('#r_cylinder').is(':checked'))||($('#r_fabrikasi').is(':checked'))) {
+                $("#dimensi").empty().append(`
+                <label class="col-12" for="example-text-input">Dimensi Produk</label>
+                                            <br><br>
+                                            <div class="col-md-2">P
+                                                <input type="text" class="form-control" id="panjang" name="panjang" placeholder="Masukan Jumlah">
+                                            </div>
+                                            <div class="col-md-2">L
+                                                <input type="text" class="form-control" id="lebar" name="lebar" placeholder="Masukan Jumlah">
+                                            </div>
+                                            <div class="col-md-2">T
+                                                <input type="text" class="form-control" id="tinggi" name="tinggi" placeholder="Masukan Jumlah">
+                                            </div>
+                `)
+             }
+            });
+
             $(document).on('click',"#inhouse",function(){
-                $("#plan1").append(`
+                $("#plan1").empty().append(`
                 <div id="plan2">
                                         <div class="form-group row" id="plan">
                                             
@@ -149,6 +182,7 @@
                 `);
             });
 
+            
 </script>
 
         
