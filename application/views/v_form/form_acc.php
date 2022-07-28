@@ -11,29 +11,29 @@
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Nomor Order">
+        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Nomor Order" disabled>
         <div class="form-text text-muted">di isi oleh admin PE</div>                      
     </div>
 </div>
 </div>
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-6">
                             <div class="block-header block-header-default">
                                     <h3 class="block-title" style="text-align: center;">1. FORM PERMINTAAN (di isi oleh user)</h3> 
                             </div>
                             <!-- Default Elements -->
                             <div class="block">
                                 <div class="block-content">
-                                    <form action="" method="post" enctype="multipart/form-data" onsubmit="return false;">
+                                    <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
                                     <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nomor NPK</label>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nomor_npk" name="nomor_npk" placeholder="NPK">
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="nomor_npk" name="nomor_npk" placeholder="NPK"  disabled >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-disabled-input">Nama/Departemen</label>
-                                            <div class="col-md-4">
+                                            <div class="col-md-9">
                                                 <input type="text" class="form-control" id="department" name="department" placeholder="Arief/Departemen A" disabled="">
                                             </div>
                                         </div>
@@ -69,15 +69,15 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nama Part</label>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nama_part" name="nama_part" placeholder="Masukan nama part">
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="nama_part" name="nama_part" placeholder="Masukan nama part" disabled>
                                                 
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Jumlah</label>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah">
+                                            <div class="col-md-9">
+                                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah" disabled>
                                                 
                                             </div>
                                         </div>
@@ -96,9 +96,7 @@
                                                     <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="fabrikasi">
                                                     <label class="custom-control-label" for="r_fabrikasi">Fabrikasi</label>
                                                 </div>
-                                                <button type="button" class="btn btn-sm btn-circle btn-alt-danger mr-5 mb-5" id="cancel_raw">
-                                    <i class="fa fa-times"></i>
-                                </button>
+                                         
                                             </div>
                                             
                                         </div>
@@ -108,29 +106,58 @@
                                         </div>
                                         
                                         <div class="form-group row">
-                                            <label class="col-8" for="example-text-input">Material</label>
+                                            <label class="col-8" for="example-text-input" >Material</label>
                                             <div class="col-md-5">
-                                                <input type="text" class="form-control" id="material" name="material" placeholder="Material">
+                                                <input type="text" class="form-control" id="material" name="material" placeholder="Material" disabled>
                                             </div>                                          
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-8" for="example-text-input">Upload Gambar Keterangan</label>
-                                            <div class="col-md-5">
-                                            <input type="file" id="upload_gambar" name="upload_gambar" multiple="">
-                                            </div>
+                                            <label class="col-8" for="example-text-input">Gambar Keterangan</label>
                                             
                                         </div>
+                                        <div class="col-md-1 col-lg-4 col-xl-3 animated fadeIn">
+                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'assets/media/photos/photo17@2x.jpg'?>">
+                                <img class="img-fluid" src="<?=base_url() .'assets/media/photos/photo17.jpg'?>" alt="">
+                            </a>
+                        </div> 
                                         <br><br>
-                                        <div class="form-group row">
-                                        <a href="<?php echo base_url(); ?>form/form/response" class="btn btn-secondary" id="">
-                                            <i class="si si-check"></i>&nbsp;Submit
-                                        </a>
+                                        
                                     </form>
                                 </div>
                             </div>
                             <!-- END Default Elements -->
  </div>
- 
+ <div class="col-md-6"> 
+ <div class="block-header block-header-default">
+<h3 class="block-title" style="text-align: center;">2. Response PIC Workshop</h3> 
+</div>
+                             <div class="block">
+                                <div class="block-content">
+                                    <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
+                                    <div class="form-group row" >
+                                            <label class="col-8" for="example-text-input">Order Response</label>
+                                            <div class="col-6">
+                                            <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="accept" >
+                                                <span class="css-control-indicator"></span> Accept
+                                            </label>
+                                            
+                                            <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="reject">
+                                                <span class="css-control-indicator"></span> Reject
+                                            </label>
+                                        </div>
+                                        </div>
+                                        <div  id="reason1">
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                        <a type="button" href="<?php echo base_url(); ?>kadept/dashboard" class="btn btn-success min-width-125">Kirim</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+</div>
 </div>
 
  

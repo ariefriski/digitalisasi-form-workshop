@@ -18,14 +18,14 @@ class Dashboard extends CI_Controller {
 	{
 		// $data['count1'] = count($this->m_checksheet->getSumRowsChecksheet());
 		// $data['count'] = count($this->m_response->getSumRowsResponse());
-		$this->load->view('v_user/header');
-		$this->load->view('v_user/dashboardUser');
-		$this->load->view('v_user/footer');
+		$this->load->view('v_kadept/header');
+		$this->load->view('v_kadept/dashboardKadept');
+		$this->load->view('v_kadept/footer');
 	}
 
-	public function createForm(){
+	public function acceptForm(){
 		$this->load->view('v_form/header');
-		$this->load->view('v_form/form_customer');
+		$this->load->view('v_form/form_acc');
 		$this->load->view('v_form/footer');
 	}
 	

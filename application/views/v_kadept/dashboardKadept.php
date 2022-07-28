@@ -1,18 +1,12 @@
 <div class="content">
                     <!-- Default Table Style -->
-                    <h2 class="content-heading">Dashboard User.</h2>
+                    <h2 class="content-heading">Dashboard Kadept</h2>
 
                     <!-- Table -->
                     <div class="block">
                         <div class="block-header block-header-default">
                             <h3 class="block-title">List Form Order</h3>
-                            <div class="block-options">
-                                <div class="block-options-item">
-                                <a href="<?php echo base_url(); ?>user/dashboard/createForm" type="button" class="btn btn-success mr-5 mb-5">
-                                    <i class="fa fa-plus mr-5"></i>Add Order
-                                </a>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="block-content">
                             <table class="table table-vcenter">
@@ -44,10 +38,7 @@
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete">
-                                                    <i class="fa fa-times"></i>
+                                                    <i class="fa fa-hand-pointer-o"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -67,12 +58,10 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                                    <i class="fa fa-pencil"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                                                <a type="button" href="<?php echo base_url(); ?>kadept/dashboard/acceptForm" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
+                                                    <i  class="fa fa-hand-pointer-o"></i>
+                                                </a>
+                                                
                                             </div>
                                         </td>
                                     </tr>
@@ -92,11 +81,9 @@
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                                    <i class="fa fa-pencil"></i>
+                                                    <i class="fa fa-hand-pointer-o"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Delete">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                                            
                                             </div>
                                         </td>
                                     </tr>

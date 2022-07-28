@@ -20,9 +20,7 @@ class Form extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('v_form/header');
-		$this->load->view('v_form/form');
-		$this->load->view('v_form/footer');
+		
 	}
 	
 	public function response()
