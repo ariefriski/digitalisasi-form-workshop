@@ -135,7 +135,7 @@
                                 <div class="block-content">
                                     <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
                                     <div class="form-group row" >
-                                            <label class="col-8" for="example-text-input">Order Response</label>
+                                            <label class="col-8" for="example-text-input">Kadept Approval Department X</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
                                                 <input type="radio" class="css-control-input" name="r_order_response" id="accept" >
