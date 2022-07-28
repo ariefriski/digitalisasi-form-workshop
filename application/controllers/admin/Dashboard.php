@@ -31,4 +31,10 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_form/form_response');
 		$this->load->view('v_form/footer');
 	}
+	public function test()
+	{
+		$this->load->view('v_form/header');
+		$this->load->view('v_form/form_perhitungan');
+		$this->load->view('v_form/footer');
+	}
 }

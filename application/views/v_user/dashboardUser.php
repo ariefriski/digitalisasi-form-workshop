@@ -23,7 +23,8 @@
                                         <th>Tanggal</th>
                                         <th>Jam</th>
                                         <th class="d-none d-sm-table-cell" style="width: 15%;">Kategori</th>
-                                        <th>Status</th>
+                                        <th>Status Laporan</th>
+                                        <th>Status Pengerjaan</th>
                                         <th class="text-center" style="width: 100px;">Actions</th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,7 @@
                                         <i class="fa fa-cog fa-spin"></i> Menunggu
                                     </button>
                                         </td>
+                                        <td>Belum dikerjakan</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
@@ -65,6 +67,7 @@
                                         <i class="fa fa-check text-success mr-5"></i> Diterima
                                     </button>
                                         </td>
+                                        <td>Selesai Dikerjakan</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
@@ -88,6 +91,9 @@
                                         <button type="button" class="js-swal-error btn btn-alt-secondary">
                                         <i class="fa fa-times text-danger mr-5"></i> Ditolak
                                     </button>
+                                        </td>
+                                        <td>
+                                            Sedang dikerjakan
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
