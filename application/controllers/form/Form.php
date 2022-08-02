@@ -20,13 +20,13 @@ class Form extends CI_Controller {
 	 */
 	public function index()
 	{
-		
+		$this->load->view('v_form/imageupload_form');
 	}
 	
-	public function response()
+	public function upload()
 	{
-		$this->load->view('v_form/header');
-		$this->load->view('v_form/form_response');
-		$this->load->view('v_form/footer');
+
+		$this->load->view('v_form/upload');
+
 	}
 }

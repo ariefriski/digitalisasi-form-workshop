@@ -6,7 +6,8 @@ class Dashboard extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('m_order');
-
+		$this->load->helper('url', 'form');
+		$this->load->library('upload');
     }
 
 	public function index()
@@ -22,7 +23,19 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_form/form_customer');
 		$this->load->view('v_form/footer');
 	}
+
 	public function createOrder(){
+		$config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 2000;
+ 
+ 
+        $this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		$this->upload->do_upload('userfile');
+		
+		
+
 		$id_customer =1;
 		$id_department = 1;
 		$order_type = $this->input->post('r_jenispekerjaan');
@@ -37,6 +50,11 @@ class Dashboard extends CI_Controller {
 		$status_laporan = 'Menunggu Approve';
 		$status_pengerjaan = 'Belum dikerjakan';
 		$approve = 'No';
+		$image = $this->upload->data('file_name');
+
+		
+
+		
 		$data =array(
 			'id_customer'=>$id_customer,
 			'id_department' =>$id_department,
@@ -53,13 +71,39 @@ class Dashboard extends CI_Controller {
 			'status_pengerjaan'=>$status_pengerjaan,
 			'jam'=>date('H:i',strtotime('now')),
 			'tanggal' => date('d-m-Y',strtotime('now')),
-			'approve' =>$approve
+			'approve' =>$approve,
+			'attachment' => $image
 			
 		);
 
 		$this->m_order->addOrder($data);
 		redirect(site_url('user/dashboard/'));
 	}
+
+	public function upload() 
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 2000;
+ 
+ 
+        $this->load->library('upload', $config);
+		$this->upload->initialize($config);
+        if (!$this->upload->do_upload('profile_pic')) 
+        {
+            $error = array('error' => $this->upload->display_errors());
+ 
+            $this->load->view('v_form/imageupload_form', $error);
+        } 
+        else 
+        {
+            $data = array('image_metadata' => $this->upload->data());
+ 
+            $this->load->view('v_form/imageupload_success', $data);
+        }
+		
+		
+    }
 
 	public function updateOrder()
 	{
@@ -167,7 +211,10 @@ class Dashboard extends CI_Controller {
 		
 	}
 
-	
+	public function processAddImage()
+	{
+		
+	}	
 
 }
 

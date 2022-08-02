@@ -126,13 +126,12 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Gambar Keterangan</label>
-                                            
                                         </div>
-                                        <div class="col-md-1 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'assets/media/photos/photo17@2x.jpg'?>">
-                                <img class="img-fluid" src="<?=base_url() .'assets/media/photos/photo17.jpg'?>" alt="">
-                            </a>
-                        </div> 
+                                        <div class="col-md-6 col-lg-4 col-xl-6 animated fadeIn">
+                                        <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'uploads/'.$a['attachment']?>">
+                                                <img class="img-fluid" src="<?=base_url() .'uploads/'.$a['attachment']?>" alt="pict"  >
+                                            </a>
+                                        </div>
                                         <br><br>
                                         <?php }?>
                                     

@@ -131,13 +131,12 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Gambar Keterangan</label>
-                                            
                                         </div>
-                                        <div class="col-md-1 col-lg-4 col-xl-3 animated fadeIn">
-                            <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'assets/media/photos/photo17@2x.jpg'?>">
-                                <img class="img-fluid" src="<?=base_url() .'assets/media/photos/photo17.jpg'?>" alt="">
-                            </a>
-                        </div> 
+                                        <div class="col-md-6 col-lg-4 col-xl-6 animated fadeIn">
+                                        <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'uploads/'.$ar['attachment']?>">
+                                                <img class="img-fluid" src="<?=base_url() .'uploads/'.$ar['attachment']?>" alt="pict"  >
+                                            </a>
+                                        </div>
                                         <br><br>
                                 <?php }?>
                                     </form>
@@ -159,12 +158,12 @@
                                             <label class="col-8" for="example-text-input">Kadept Approval Department X</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($ar['status_laporan']=='accept') echo 'checked'?> disabled>
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($ar['approve']=='accept') echo 'checked'?> disabled>
                                                 <span class="css-control-indicator"></span> Accept
                                             </label>
                                             
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($ar['status_laporan']=='reject') echo 'checked'?> disabled>
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($ar['approve']=='reject') echo 'checked'?> disabled>
                                                 <span class="css-control-indicator"></span> Reject
                                             </label>
                                         </div>
@@ -181,6 +180,7 @@
                                         </div>
                                             <?php } ?>    
                                         </div>
+                                        <?php if($ar['approve']=='accept') {?>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Process Order</label>
                                             <div class="col-6">
@@ -195,12 +195,15 @@
                                             </label>
                                         </div>
                                         </div>
+                                        <?php } else {?>
+                                            <?php echo 'Request Di Tolak'?>
+                                        <?php } ?>
                                         <div id="plan1">
                                         
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-8">
-                                                <button type="submit" class="btn btn-alt-primary"> <a href="<?php echo base_url(); ?>admin/dashboard">Submit</a> </button>
+                                                <button type="submit" class="btn btn-alt-primary"> Sumbit </button>
                                             </div>
                                         </div>
                                 </form>

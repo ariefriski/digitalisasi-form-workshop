@@ -24,7 +24,7 @@
                             <!-- Default Elements -->
                             <div class="block">
                                 <div class="block-content">
-                                    <form action="<?php echo base_url()?>user/dashboard/createOrder" method="post" >
+                                    <form action="<?php echo base_url()?>user/dashboard/createOrder" method="post" enctype="multipart/form-data">
                                     <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nomor NPK</label>
                                             <div class="col-md-4">
@@ -116,12 +116,13 @@
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Upload Gambar Keterangan</label>
                                             <div class="col-md-5">
-                                            <input type="file" id="upload_gambar" name="upload_gambar" multiple="">
+                                                <input type="file" name="userfile" size="20">    
                                             </div>
                                             
                                         </div>
                                         <br><br>
                                         <div class="form-group row">
+                                        
                                         <button class="btn btn-success" id="">
                                             <i class="si si-check"></i>&nbsp;Submit
                                         </button>
@@ -132,6 +133,10 @@
  </div>
  
 </div>
+
+<script>
+    
+</script>
 
  
  

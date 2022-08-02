@@ -153,10 +153,11 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Upload Gambar Keterangan</label>
-                                            <!-- <div class="col-md-5">
-                                            <input type="file" id="upload_gambar" name="upload_gambar" multiple="">
-                                            </div> -->
-                                            
+                                        </div>
+                                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
+                                        <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'uploads/'.$r['attachment']?>">
+                                                <img class="img-fluid" src="<?=base_url() .'uploads/'.$r['attachment']?>" alt="pict" >
+                                            </a>
                                         </div>
                                         <br><br>
                                         <div class="form-group row">
