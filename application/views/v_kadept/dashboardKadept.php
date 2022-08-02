@@ -9,7 +9,7 @@
                             
                         </div>
                         <div class="block-content">
-                            <table class="table table-vcenter">
+                            <table id="table-dashboard" class="table table-vcenter" >
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 50px;">#</th>
@@ -22,50 +22,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th class="text-center" scope="row">1</th>
-                                        <td>Mould Cos</td>
-                                        <td>07/07/2020</td>
-                                        <td>08:30</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-danger">Urgent</span>
-                                        </td>
-                                        <td>
-                                        <button type="button" class="js-swal-warning btn btn-alt-secondary">
-                                        <i class="fa fa-cog fa-spin"></i> Menunggu
-                                    </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                                    <i class="fa fa-hand-pointer-o"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-center" scope="row">2</th>
-                                        <td>Water Leveling Charging</td>
-                                        <td>07/07/2020</td>
-                                        <td>08:30</td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-warning">Biasa</span>
-                                        </td>
-                                        <td>
-                                        <button type="button" class="js-swal-success btn btn-alt-secondary">
-                                        <i class="fa fa-check text-success mr-5"></i> Diterima
-                                    </button>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <a type="button" href="<?php echo base_url(); ?>kadept/dashboard/acceptForm" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-                                                    <i  class="fa fa-hand-pointer-o"></i>
-                                                </a>
-                                                
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th class="text-center" scope="row">3</th>
                                         <td>Fire Hidrant</td>
                                         <td>07/07/2020</td>
@@ -86,7 +43,7 @@
                                             
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

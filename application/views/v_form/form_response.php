@@ -11,7 +11,7 @@
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Nomor Order" >
+        <input type="text" class="form-control" id="no_order" name="no_order" placeholder="Nomor Order" >
         <div class="form-text text-muted">di isi oleh admin PE</div>                      
     </div>
 </div>
@@ -23,6 +23,9 @@
                             </div>
                             <!-- Default Elements -->
                             <div class="block">
+                            <?php 
+                                foreach($accept_response as $ar) { 
+                            ?>
                                 <div class="block-content">
                                     <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
                                     <div class="form-group row">
@@ -37,19 +40,19 @@
                                                 <input type="text" class="form-control" id="department" name="department" placeholder="Arief/Departemen A" disabled="">
                                             </div>
                                         </div>
-                                    <div class="form-group row">
+                                        <div class="form-group row">
                                             <label class="col-12">Jenis Pekerjaan</label>
                                             <div class="col-12">
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_part_baru" value="Part Baru">
+                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_part_baru" value="Part Baru" <?php if($ar['order_type']=='Part Baru') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_part_baru">Part Baru</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_repair" value="Repair">
+                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_repair" value="Repair" <?php if($ar['order_type']=='Repair') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_repair">Repair</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_modifikasi" value="Modifikasi">
+                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_modifikasi" value="Modifikasi" <?php if($ar['order_type']=='Modifikasi') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_modifikasi">Modifikasi</label>
                                                 </div>
                                             </div>
@@ -58,26 +61,26 @@
                                             <label class="col-12">Respon yang di inginkan</label>
                                             <div class="col-12">
                                                 <div class="custom-control custom-radio custom-control-inline mb-5">
-                                                    <input class="custom-control-input" type="radio" name="respon" id="r_urgent" value="urgent">
+                                                    <input class="custom-control-input" type="radio" name="kategori" id="r_urgent" value="urgent" <?php if($ar['kategori']=='urgent') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_urgent">Mendesak (Ugent)*</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline mb-5">
-                                                    <input class="custom-control-input" type="radio" name="respon" id="r_biasa" value="biasa">
+                                                    <input class="custom-control-input" type="radio" name="kategori" id="r_biasa" value="biasa" <?php if($ar['kategori']=='biasa') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_biasa">Biasa</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nama Part</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="nama_part" name="nama_part" placeholder="Masukan nama part" disabled>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" id="nama_part" name="nama_part" value="<?php echo $ar['nama_part'];?>" disabled>
                                                 
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Jumlah</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah" disabled>
+                                            <div class="col-md-4">
+                                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah" value="<?php echo $ar['jumlah'];?>" disabled>
                                                 
                                             </div>
                                         </div>
@@ -85,30 +88,45 @@
                                             <label class="col-12">Raw type</label>
                                             <div class="col-12" id="rawradio">
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="block">
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="block" <?php if($ar['raw_type']=='block') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_block">Block</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="cylinder">
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="cylinder" <?php if($ar['raw_type']=='cylinder') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_cylinder">Cylinder</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="fabrikasi">
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="fabrikasi" <?php if($ar['raw_type']=='fabrikasi') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_fabrikasi">Fabrikasi</label>
                                                 </div>
-                                         
+                                               
                                             </div>
+                                            
                                             
                                         </div>
                                         
                                         <div id="dimensi">
-                                            
+                                            <?php if($ar['raw_type'] != NULL){ ?>
+                                                <div class="form-group row" id="dimensi2">
+                                                <label class="col-12" for="example-text-input">Dimensi Produk</label>
+                                            <br><br>
+                                            <div class="col-md-2">P
+                                                <input type="number" class="form-control" id="panjang" name="panjang" value="<?php echo $ar['panjang'];?>" disabled>
+                                            </div>
+                                            <div class="col-md-2">L
+                                                <input type="number" class="form-control" id="lebar" name="lebar" value="<?php echo $ar['panjang'];?>" disabled >
+                                            </div>
+                                            <div class="col-md-2">T
+                                                <input type="number" class="form-control" id="tinggi" name="tinggi" value="<?php echo $ar['panjang'];?>" disabled>
+                                            </div>
+                                        </div>
+                                            <?php } ?>
                                         </div>
                                         
                                         <div class="form-group row">
-                                            <label class="col-8" for="example-text-input" >Material</label>
+                                            <label class="col-8" for="example-text-input">Material</label>
                                             <div class="col-md-5">
-                                                <input type="text" class="form-control" id="material" name="material" placeholder="Material" disabled>
+                                                <input type="text" class="form-control" id="material" name="material" placeholder="Material" value="<?php echo $ar['material'];?>" disabled>
                                             </div>                                          
                                         </div>
                                         <div class="form-group row">
@@ -121,7 +139,7 @@
                             </a>
                         </div> 
                                         <br><br>
-                                        
+                                <?php }?>
                                     </form>
                                 </div>
                             </div>
@@ -133,23 +151,35 @@
 </div>
                              <div class="block">
                                 <div class="block-content">
+                                <?php 
+                                foreach($accept_response as $ar) { 
+                                ?>
                                     <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
                                     <div class="form-group row" >
                                             <label class="col-8" for="example-text-input">Kadept Approval Department X</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_order_response" id="accept" >
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($ar['status_laporan']=='accept') echo 'checked'?> disabled>
                                                 <span class="css-control-indicator"></span> Accept
                                             </label>
                                             
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="r_order_response" id="reject">
+                                                <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($ar['status_laporan']=='reject') echo 'checked'?> disabled>
                                                 <span class="css-control-indicator"></span> Reject
                                             </label>
                                         </div>
                                         </div>
                                         <div  id="reason1">
-                                            
+                                        <?php if($ar['alasan'] != NULL){ ?>
+                                        <div class="form-group row" id="reason">
+                                            <label class="col-12" for="example-textarea-input">*Alasan Reject</label>
+                                        <div class="col-12">
+                                            <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..." disabled>
+                                            <?php echo $ar['alasan'];?>
+                                            </textarea>
+                                        </div>
+                                        </div>
+                                            <?php } ?>    
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Process Order</label>
@@ -173,9 +203,13 @@
                                                 <button type="submit" class="btn btn-alt-primary"> <a href="<?php echo base_url(); ?>admin/dashboard">Submit</a> </button>
                                             </div>
                                         </div>
-                                    </form>
+                                </form>
                                 </div>
+                                <?php 
+                              } 
+                            ?>
                             </div>
+                            
 </div>
 </div>
 

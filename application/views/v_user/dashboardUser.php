@@ -15,34 +15,59 @@
                             </div>
                         </div>
                         <div class="block-content">
-                            <table class="table table-vcenter">
+                            <table id="table-dashboard" class="table table-vcenter">
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 50px;">#</th>
-                                        <th>Nama Part</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 15%;">Nama Part</th>
                                         <th>Tanggal</th>
                                         <th>Jam</th>
-                                        <th class="d-none d-sm-table-cell" style="width: 15%;">Kategori</th>
-                                        <th>Status Laporan</th>
-                                        <th>Status Pengerjaan</th>
-                                        <th class="text-center" style="width: 100px;">Actions</th>
+                                        <th class="d-none d-sm-table-cell" style="width: 10%;">Kategori</th>
+                                        <th >Status Laporan</th>
+                                        <th >Status Pengerjaan</th>
+                                        <th class="text-center" style="width: 18%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- END Table -->
+
+                    <!-- Striped Table -->
+
+
+                    <!-- Hover Table -->
+                  
+                    <!-- END Hover Table -->
+
+                    <!-- Bordered Table -->
+                   
+                    <!-- END Contextual Table -->
+                    <!-- END Default Table Style -->
+</div>
+                                    <!-- <?php 
+                                    $no = 1;
+                                    foreach($list as $l){
+                                    ?>
                                     <tr>
-                                        <th class="text-center" scope="row">1</th>
-                                        <td>Mould Cos</td>
-                                        <td>07/07/2020</td>
-                                        <td>08:30</td>
+                                        <th class="text-center" scope="row"><?php echo $no++;?></th>
+                                        <td><?php echo $l->nama_part;?></td>
+                                        <td><?php echo $l->tanggal;?></td>
+                                        <td><?php echo date('G:i', strtotime($l->jam));?></td>
+                                        
                                         <td class="d-none d-sm-table-cell">
-                                            <span class="badge badge-danger">Urgent</span>
+                                            <span class="badge badge-danger"><?php echo $l->kategori;?></span>
                                         </td>
+                                        <?php echo "<h1>ddd</h1>" ?>
                                         <td>
                                         <button type="button" class="js-swal-warning btn btn-alt-secondary">
-                                        <i class="fa fa-cog fa-spin"></i> Menunggu
+                                        <i class="fa fa-cog fa-spin"></i> <?php echo $l->status_laporan;?>
                                     </button>
                                         </td>
-                                        <td>Belum dikerjakan</td>
+                                        <td><?php echo $l->status_pengerjaan;?></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
@@ -54,7 +79,8 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <?php } ?>
+                                     <tr>
                                         <th class="text-center" scope="row">2</th>
                                         <td>Water Leveling Charging</td>
                                         <td>07/07/2020</td>
@@ -105,22 +131,4 @@
                                                 </button>
                                             </div>
                                         </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- END Table -->
-
-                    <!-- Striped Table -->
-
-
-                    <!-- Hover Table -->
-                  
-                    <!-- END Hover Table -->
-
-                    <!-- Bordered Table -->
-                   
-                    <!-- END Contextual Table -->
-                    <!-- END Default Table Style -->
-</div>
+                                    </tr>  -->

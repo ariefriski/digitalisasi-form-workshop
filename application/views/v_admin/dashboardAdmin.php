@@ -9,7 +9,7 @@
                             
                         </div>
                         <div class="block-content">
-                            <table class="table table-vcenter">
+                            <table id="table-dashboard" class="table table-vcenter">
                                 <thead>
                                     <tr>
                                         <th class="text-center" style="width: 50px;">#</th>
@@ -18,12 +18,13 @@
                                         <th>Jam</th>
                                         <th class="d-none d-sm-table-cell" style="width: 15%;">Kategori</th>
                                         <th>Departement</th>
-                                        <th>Status</th>
+                                        <th>Status Laporan</th>
+                                        <th>Status Pengerjaan</th>
                                         <th class="text-center" style="width: 100px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <th class="text-center" scope="row">1</th>
                                         <td>Mould Cos</td>
                                         <td>07/07/2020</td>
@@ -99,7 +100,7 @@
                                                 </button>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
