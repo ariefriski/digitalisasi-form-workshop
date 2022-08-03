@@ -6,6 +6,8 @@ class Dashboard extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('m_order');
+		$this->load->helper('url', 'form');
+		$this->load->library('upload');
 		$this->load->model('m_login');
 		if($this->session->userdata('admin_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
@@ -77,7 +79,7 @@ class Dashboard extends CI_Controller {
 			}else if ($l->kategori == 'biasa'){
 				$row[] = '<span class="badge badge-warning">biasa</span>';
 			}
-			$row[] = $d['name'];
+			$row[] = $d['department_name'];
 			$row[] = $l->status_laporan;
 			$row[] = $l->status_pengerjaan;
 			$row[] = $view.$delete;

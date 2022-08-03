@@ -28,13 +28,15 @@
                                     <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nomor NPK</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nomor_npk" name="nomor_npk" placeholder="NPK" disabled>
+                                                <input type="text" class="form-control" id="nomor_npk" name="db_nomor_npk" placeholder="<?=$this->session->userdata('npk')?>" disabled>
+                                                <input type="hidden" name= "id_user" value="<?=$this->session->userdata('id_user')?>">
+                                                <input type="hidden" name= "id_department" value="<?=$this->session->userdata('id_department')?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-disabled-input">Nama/Departemen</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="department" name="department" placeholder="Arief/Departemen A" disabled="">
+                                                <input type="text" class="form-control" id="department" name="db_department" placeholder="<?=$this->session->userdata('user_name')?>/<?=$this->session->userdata('department_name')?>" disabled="">
                                             </div>
                                         </div>
                                     <div class="form-group row">

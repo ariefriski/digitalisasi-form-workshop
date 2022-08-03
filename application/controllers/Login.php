@@ -37,6 +37,7 @@ class Login extends CI_Controller {
                 $id_user = $val->id_user;
                 $id_department = $val->id_department;
                 $npk = $val->npk;
+                $department_name = $val->department_name;
 
                 if($level=='user')
                 {
@@ -47,7 +48,8 @@ class Login extends CI_Controller {
                         'user_is_logged_in' => true,
                         'id_user' => $id_user,
                         'id_department' =>$id_department,
-                        'npk' =>$npk
+                        'npk' =>$npk,
+                        'department_name' =>$department_name
                     );
                     
                     $this->session->set_userdata($data); /*Here  setting the user datas in session */

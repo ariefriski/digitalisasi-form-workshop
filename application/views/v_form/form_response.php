@@ -31,13 +31,13 @@
                                     <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nomor NPK</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="nomor_npk" name="nomor_npk" placeholder="NPK"  disabled >
+                                                <input type="text" class="form-control" id="nomor_npk" name="nomor_npk" value="<?php echo $ar['npk'];?>"  disabled >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-disabled-input">Nama/Departemen</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" id="department" name="department" placeholder="Arief/Departemen A" disabled="">
+                                                <input type="text" class="form-control" id="department" name="department" value="<?php echo $ar['name'];?>/<?php echo $ar['department_name'];?>" disabled="">
                                             </div>
                                         </div>
                                         <div class="form-group row">

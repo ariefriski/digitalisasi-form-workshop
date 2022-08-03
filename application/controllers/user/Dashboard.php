@@ -41,8 +41,8 @@ class Dashboard extends CI_Controller {
 		
 		
 
-		$id_customer =1;
-		$id_department = 1;
+		$id_user = $this->input->post('id_user');
+		$id_department = $this->input->post('id_department');
 		$order_type = $this->input->post('r_jenispekerjaan');
 		$kategori = $this->input->post('kategori');
 		$nama_part = $this->input->post('nama_part');
@@ -61,7 +61,7 @@ class Dashboard extends CI_Controller {
 
 		
 		$data =array(
-			'id_customer'=>$id_customer,
+			'id_user'=>$id_user,
 			'id_department' =>$id_department,
 			'order_type' => $order_type,
 			'kategori'=>$kategori,

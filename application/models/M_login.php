@@ -23,8 +23,13 @@ class M_login extends CI_Model {
 		
 	function get_id($username, $password)
 	{
+		$this->db->select('user.*,department.department_name');
+		$this->db->from('user');
+		$this->db->join('department','user.id_department=department.id_department');
 		$this->db->where('password', $password);
 		$this->db->where('username', $username);	
-		return $this->db->get('user')->result();	
+		return $this->db->get()->result();	
 	}		
+
+
 }
