@@ -40,7 +40,7 @@
             <main id="main-container">
 
                 <!-- Page Content -->
-                <div class="bg-image" style="background-image: url('<?php echo base_url().'assets/media/photos/download1.jpg'?>');">
+                <div class="bg-image" style="background-image: url('<?php echo base_url().'assets/media/photos/office.jpg'?>');">
                     <div class="row mx-0 bg-black-op">
                         <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
                             <div class="p-30 invisible" data-toggle="appear">
@@ -60,7 +60,7 @@
                                         <i class="si si-globe"></i>
                                         <span class="font-size-xl text-primary-dark">PT</span><span class="font-size-xl"> Century Batteries Indonesia</span>
                                     </a>
-                                    <h1 class="h3 font-w700 mt-30 mb-10">Sistem Pembuatan Checksheet Dinamis</h1>
+                                    <h1 class="h3 font-w700 mt-30 mb-10">Sistem Pembuatan Workshop Order</h1>
                                     <h2 class="h5 font-w400 text-muted mb-0">Silahkan Log in </h2>
                                 </div>
                                 <!-- END Header -->

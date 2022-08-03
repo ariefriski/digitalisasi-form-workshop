@@ -17,7 +17,11 @@ class Dashboard extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('m_order');
-
+		$this->load->model('m_login');
+		if($this->session->userdata('kadept_is_logged_in')=='') {
+			$this->session->set_flashdata('msg','Please Login to Continue');
+			redirect('login');
+		}
     }
 
 
@@ -31,9 +35,9 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function acceptForm(){
-		$this->load->view('v_form/header');
+		$this->load->view('v_kadept/header');
 		$this->load->view('v_form/form_acc');
-		$this->load->view('v_form/footer');
+		$this->load->view('v_kadept/footer');
 	}
 	
 	public function order_list()
