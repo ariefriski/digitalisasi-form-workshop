@@ -6,8 +6,13 @@ class Dashboard extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('m_order');
+		$this->load->model('m_login');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
+		if($this->session->userdata('user_is_logged_in')=='') {
+			$this->session->set_flashdata('msg','Please Login to Continue');
+			redirect('login');
+		}
     }
 
 	public function index()
@@ -19,9 +24,9 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function createForm(){
-		$this->load->view('v_form/header');
+		$this->load->view('v_user/header');
 		$this->load->view('v_form/form_customer');
-		$this->load->view('v_form/footer');
+		$this->load->view('v_user/footer');
 	}
 
 	public function createOrder(){

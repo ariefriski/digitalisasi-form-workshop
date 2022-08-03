@@ -42,10 +42,7 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			
-			
-			
-			
+	
 			if (($l->status_laporan == 'Disetujui') || ($l->status_laporan == 'Ditolak')){
 			$view ='<a type="button" href="#"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
@@ -54,16 +51,7 @@ class Dashboard extends CI_Controller {
 				$view ='<a type="button" href="'.base_url() . 'kadept/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
-			}
-			
-			// '<button type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
-			// 		<i class="fa fa-hand-pointer-o"></i>
-			// 		</button>';	
-		
-			// ="'.base_url() . 'admin/response/viewResponseByTitle?id='.$l->id_checksheet.'
-		
-		
-	
+			}	
 			$no++;
 			$date = date_create($l->jam);
 			$row = array();
