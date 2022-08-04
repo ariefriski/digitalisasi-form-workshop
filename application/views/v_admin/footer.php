@@ -87,189 +87,189 @@
                                             <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_1" name="routing_item_1">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_1" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_2" name="routing_item_2">
-                                                    <option value="0">Please select</option>
+                                                <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_2" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_3" name="routing_item_3">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_3" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_4" name="routing_item_4">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_4" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_5" name="routing_item_5">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_5" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_6" name="routing_item_6">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_6" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_7" name="routing_item_7">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_7" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_8" name="routing_item_8">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_8" placeholder="0">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-md-4">
                                                 <select class="form-control" id="routing_plan_9" name="routing_item_9">
                                                 <option value="0">Please select</option>
+                                                    <option value="DESIGN">Design</option>
+                                                    <option value="CAM_PROGRAMMING">Cam Programming</option>
                                                     <option value="CNC">CNC</option>
                                                     <option value="EDM">EDM</option>
                                                     <option value="MILLING">Milling</option>
                                                     <option value="BUBUT">Bubut</option>
                                                     <option value="GRINDING">Grinding</option>
                                                     <option value="DRILLING">Drilling</option>
-                                                    <option value="SAW">SAW</option>
-                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="SAW">SAW</option>     
                                                     <option value="WELDING">Welding</option>
-                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            <input type="text" class="form-control" id="hour" name="hour_9" placeholder="0">
                                             </div>
                                         </div>
                                         </div>

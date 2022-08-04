@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('m_order');
+		$this->load->model('m_routing');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
 		$this->load->model('m_login');
@@ -107,6 +108,27 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/header');
 		$this->load->view('v_form/form_response',$data);
 		$this->load->view('v_admin/footer');
+	}
+
+	public function addNomorOrder()
+	{
+		$id = $this->input->get('id');
+		$no_order = $this->input->post('no_order');
+		$response_order = $this->input->post('response_order');
+		$id_order = $this->input->post('id_order');
+		$data =array(
+			'no_order'=>$no_order
+			
+		);
+
+		$data1 = array(
+			'id_order' => $id_order,
+			'status'=>$response_order
+		);
+		$this->m_order->updateOrder($id,$data);
+		$this->m_routing->addRouting($data1);
+		
+		redirect(site_url('admin/dashboard/'));
 	}
 	
 }

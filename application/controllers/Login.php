@@ -30,7 +30,8 @@ class Login extends CI_Controller {
             $get_id = $this->m_login->get_id($username, $password);                
                 
             foreach($get_id as $val)
-            {                                                                       
+            {            
+                // $id_order = $val->id_order;                                                           
                 $name = $val->name;                  
                 $password = $val->password;                 
                 $level=$val->level;
@@ -79,7 +80,8 @@ class Login extends CI_Controller {
                         'level'=>$level,
                         'admin_is_logged_in'=>true,
                         'id_user' => $id_user,
-                        'id_department' => $id_department
+                        'id_department' => $id_department,
+                        // 'id_order' => $id_order
                     );
                     $this->session->set_userdata($data); /*Here  setting the User datas in session */
                     redirect('admin/dashboard');

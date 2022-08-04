@@ -10,9 +10,13 @@
 <div class="col-md-6">
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>
+        <?php 
+                                foreach($accept_response as $ar) { 
+                            ?>
     <div class="col-md-6">
-        <input type="text" class="form-control" id="no_order" name="no_order" placeholder="Nomor Order" >
-        <div class="form-text text-muted">di isi oleh admin PE</div>                      
+        <input type="text" class="form-control" id="no_order" name="no_order" placeholder="Nomor Order" disabled  value="<?php echo $ar['no_order'];?>">
+        <div class="form-text text-muted">di isi oleh admin PE</div>
+        <?php }?>                      
     </div>
 </div>
 </div>
@@ -153,7 +157,9 @@
                                 <?php 
                                 foreach($accept_response as $ar) { 
                                 ?>
-                                    <form action="be_forms_elements_bootstrap.html" method="post" enctype="multipart/form-data" onsubmit="return false;">
+                                    
+                                    <form action="<?php echo base_url()?>admin/dashboard/addNomorOrder?id=<?php echo $ar['id_order']; ?>" method="post" enctype="multipart/form-data" >
+                                    <input type="hidden" name="id_order" value="<?php echo $ar['id_order']; ?>" >
                                     <div class="form-group row" >
                                             <label class="col-8" for="example-text-input">Kadept Approval Department X</label>
                                             <div class="col-6">
@@ -181,16 +187,24 @@
                                             <?php } ?>    
                                         </div>
                                         <?php if($ar['approve']=='accept') {?>
-                                        <div class="form-group row">
+                                            <?php if($ar['no_order']== NULL){?>
+                                            <div class="form-group row">
+                                                 <label class="col-8" for="example-text-input">Nomor Order</label>
+                                            <div class="col-md-6">
+                                                 <input type="text" class="form-control" id="no_order" name="no_order" placeholder="Nomor Order" >
+                                            </div>
+                                            </div>
+                                                <?php } ?>     
+                                                 <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Process Order</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="response_order" id="inhouse" >
+                                                <input type="radio" class="css-control-input" name="response_order" id="inhouse" value="inhouse" >
                                                 <span class="css-control-indicator"></span> Inhouse
                                             </label>
                                             
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="radio" class="css-control-input" name="response_order" id="outhouse">
+                                                <input type="radio" class="css-control-input" name="response_order" id="outhouse" value="outhouse">
                                                 <span class="css-control-indicator"></span> Outhouse
                                             </label>
                                         </div>
