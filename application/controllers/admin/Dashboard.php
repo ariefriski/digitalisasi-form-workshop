@@ -92,8 +92,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						// "recordsTotal" => $this->m_checksheet->count_all(),
-						// "recordsFiltered" => $this->m_checksheet->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all(),
+						"recordsFiltered" => $this->m_order->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format

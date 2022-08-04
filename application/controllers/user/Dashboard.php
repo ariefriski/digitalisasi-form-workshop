@@ -145,18 +145,18 @@ class Dashboard extends CI_Controller {
 			
 			
 			
-			$view = '<a type="button" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+			$view = '<a type="button" style="width:20%;" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
 		
 			// ="'.base_url() . 'admin/response/viewResponseByTitle?id='.$l->id_checksheet.'
 		
 			if ($l->status_laporan == 'Disetujui'){
-				$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+				$delete = '	<a id="id-delete" name="delete" href="#" style="width:20%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
 							  <i class="fa fa-times"></i>
 						</a>';
 			}else{
-			$delete = '	<a id="id-delete" name="delete" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
 							  <i class="fa fa-times"></i>
 						</a>';
 			}			
@@ -181,8 +181,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						// "recordsTotal" => $this->m_checksheet->count_all(),
-						// "recordsFiltered" => $this->m_checksheet->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all(),
+						"recordsFiltered" => $this->m_order->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format

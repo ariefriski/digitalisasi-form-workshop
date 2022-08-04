@@ -42,6 +42,10 @@ class M_order extends CI_model
     {
         $this->db->select('order.*');
         $this->db->from('order');
+        if ($this->session->userdata('level') == 'kadept' || $this->session->userdata('level') == 'user') {
+			$this->db->where('order.id_department',$this->session->id_department);
+		}
+        
         $i = 0;
 	
 		foreach ($this->column_search as $item) // loop column 
@@ -126,5 +130,16 @@ class M_order extends CI_model
         return $query->result_array();
     }
 
+    public function count_all()
+    {
+        $this->db->from($this->table);
+		return $this->db->count_all_results();
+    }
+    public function count_filtered()
+    {
+        $this->_get_datatables_query();
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
 }
 ?>
