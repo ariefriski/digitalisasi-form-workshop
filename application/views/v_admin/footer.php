@@ -38,7 +38,7 @@
             $(document).on('click','#accept',function(){
                 $("#reason").remove(); 
             });
-            $(document).on('click','#subcount',function(){
+            $(document).on('click','#outhouse',function(){
                 $("#plan2").remove(); 
                 
 
