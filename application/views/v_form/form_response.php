@@ -195,8 +195,10 @@
                                             </label>
                                         </div>
                                         </div>
-                                        <?php } else {?>
-                                            <?php echo 'Request Di Tolak'?>
+                                        <?php } else if ($ar['approve']=='reject'){?>
+                                            <?php echo 'Request Di Tolak';?>
+                                        <?php }else{ ?>
+                                            <?php echo 'Request Menunggu Approve';?>
                                         <?php } ?>
                                         <div id="plan1">
                                         
