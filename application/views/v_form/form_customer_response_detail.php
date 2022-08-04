@@ -47,7 +47,7 @@
                                 foreach($response as $r) { ?>
                                 
                                 <div class="block-content">
-                                    <form action="<?php echo base_url()?>user/dashboard/updateOrder?id=<?php echo $r['id_order']; ?>" method="post" >
+                                    <form action="<?php echo base_url()?>user/dashboard/updateOrder?id=<?php echo $r['id_order']; ?>" method="post" enctype="multipart/form-data">
                                     <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nomor NPK</label>
                                             <div class="col-md-4">
@@ -64,15 +64,15 @@
                                             <label class="col-12">Jenis Pekerjaan</label>
                                             <div class="col-12">
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_part_baru" value="Part Baru" <?php if($r['order_type']=='Part Baru') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" require_once type="radio" name="r_jenispekerjaan" id="r_part_baru" value="Part Baru" <?php if($r['order_type']=='Part Baru') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_part_baru">Part Baru</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_repair" value="Repair" <?php if($r['order_type']=='Repair') echo 'checked'?> disabled>
-                                                    <label class="custom-control-label" for="r_repair">Repair</label>
+                                                    <input class="custom-control-input" require_once type="radio" name="r_jenispekerjaan" id="r_repair" value="Repair" <?php if($r['order_type']=='Repair') echo 'checked'?> disabled>
+                                                    <label class="custom-control-label"  for="r_repair">Repair</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_modifikasi" value="Modifikasi" <?php if($r['order_type']=='Modifikasi') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" require_once type="radio" name="r_jenispekerjaan" id="r_modifikasi" value="Modifikasi" <?php if($r['order_type']=='Modifikasi') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_modifikasi">Modifikasi</label>
                                                 </div>
                                             </div>
@@ -81,11 +81,11 @@
                                             <label class="col-12">Respon yang di inginkan</label>
                                             <div class="col-12">
                                                 <div class="custom-control custom-radio custom-control-inline mb-5">
-                                                    <input class="custom-control-input" type="radio" name="kategori" id="r_urgent" value="urgent" <?php if($r['kategori']=='urgent') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" require_once type="radio" name="kategori" id="r_urgent" value="urgent" <?php if($r['kategori']=='urgent') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_urgent">Mendesak (Ugent)*</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline mb-5">
-                                                    <input class="custom-control-input" type="radio" name="kategori" id="r_biasa" value="biasa" <?php if($r['kategori']=='biasa') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" require_once type="radio" name="kategori" id="r_biasa" value="biasa" <?php if($r['kategori']=='biasa') echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_biasa">Biasa</label>
                                                 </div>
                                             </div>
@@ -93,14 +93,14 @@
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nama Part</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nama_part" name="nama_part" value="<?php echo $r['nama_part'];?>" disabled>
+                                                <input type="text" class="form-control"  required id="nama_part" name="nama_part" value="<?php echo $r['nama_part'];?>" disabled>
                                                 
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Jumlah</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah" value="<?php echo $r['jumlah'];?>" disabled>
+                                                <input type="text" class="form-control" id="jumlah" required name="jumlah" placeholder="Masukan Jumlah" value="<?php echo $r['jumlah'];?>" disabled>
                                                 
                                             </div>
                                         </div>
@@ -152,12 +152,31 @@
                                             </div>                                          
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-8" for="example-text-input">Upload Gambar Keterangan</label>
+                                            <label class="col-8" for="example-text-input">Gambar Keterangan</label>
                                         </div>
-                                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn">
+                                        <div class="form-group row">
+                                            <label class="col-8" for="example-text-input">Upload Gambar Keterangan</label>
+                                            <div class="col-md-5">
+                                                <input type="hidden" name="userfile_old" value="<?php echo $r['attachment'];?>">
+                                                <input type="file" name="userfile" id="gambar" size="20" disabled>
+                                                    
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn" id="gambar_keterangan">
+                                        <?php if ($r['attachment'] != NULL) {?>
                                         <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'uploads/'.$r['attachment']?>">
                                                 <img class="img-fluid" src="<?=base_url() .'uploads/'.$r['attachment']?>" alt="pict" >
+                                             
                                             </a>
+                                            <?php } else {?>
+                                                <label class="col-8" for="example-text-input">Gambar Tidak Ada</label>
+                                             <?php }?>   
+                                        </div>
+                                        <div class="form-group row">
+                                        <button type="button" class="btn btn-success" id="ganti_btn" disabled  >
+                                            <i class="si si-check"></i>&nbsp;Ganti Gambar
+                                        </button>
                                         </div>
                                         <br><br>
                                         <div class="form-group row">
@@ -193,10 +212,15 @@
         $("#material").removeAttr('disabled');
         $("#cancel_raw").removeAttr('disabled');
         $("#cancel-button").removeAttr('disabled');
+        $("#ganti_btn").removeAttr('disabled');
   });
   $('#cancel-button').click(function(){
     location.reload(true);
   });
+
+  $('#ganti_btn').click(function(){
+    $("#gambar").removeAttr('disabled');
+  })
   
 </script>
 

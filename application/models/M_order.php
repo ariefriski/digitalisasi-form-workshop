@@ -16,9 +16,17 @@ class M_order extends CI_model
 
     public function updateOrder($id,$data)
     {   
-        extract($data);
+        //extract($data);
+        // $this->db->where('id_order',$id);
+        // $this->db->update('order',$data);
+        $row = $this->db->where('id_order',$id)->get('order')->row();
+        if($row->attachment != $data['attachment']){
+        unlink('./uploads/'.$row->attachment);
         $this->db->where('id_order',$id);
-        $this->db->update('order',$data);
+        $this->db->update($this->table,$data);
+        }
+        
+        
     }
 
     public function getNpk($npk)
@@ -91,8 +99,11 @@ class M_order extends CI_model
 
     public function deleteOrder($id)
     {
+        $row = $this->db->where('id_order',$id)->get('order')->row();
+        unlink('./uploads/'.$row->attachment);
         $this->db->where('id_order',$id);
-        $this->db->delete('order');
+        $this->db->delete($this->table);
+        return true;
     }
 
     public function getResponseOrder($id)

@@ -209,6 +209,69 @@
                                             <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_7" name="routing_item_7">
+                                                <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_8" name="routing_item_8">
+                                                <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                                <select class="form-control" id="routing_plan_9" name="routing_item_9">
+                                                <option value="0">Please select</option>
+                                                    <option value="CNC">CNC</option>
+                                                    <option value="EDM">EDM</option>
+                                                    <option value="MILLING">Milling</option>
+                                                    <option value="BUBUT">Bubut</option>
+                                                    <option value="GRINDING">Grinding</option>
+                                                    <option value="DRILLING">Drilling</option>
+                                                    <option value="SAW">SAW</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="WELDING">Welding</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
+                                                    <option value="INSPECTION">Inspection</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="0">
+                                            </div>
+                                        </div>
                                         </div>
                 `);
             });

@@ -33,11 +33,11 @@ class Dashboard extends CI_Controller {
 		$config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 2000;
- 
+		$filename = 'userfile';
  
         $this->load->library('upload', $config);
 		$this->upload->initialize($config);
-		$this->upload->do_upload('userfile');
+		$this->upload->do_upload($filename);
 		
 		
 
@@ -85,36 +85,10 @@ class Dashboard extends CI_Controller {
 		redirect(site_url('user/dashboard/'));
 	}
 
-	public function upload() 
-    {
-        $config['upload_path'] = './uploads/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = 2000;
- 
- 
-        $this->load->library('upload', $config);
-		$this->upload->initialize($config);
-        if (!$this->upload->do_upload('profile_pic')) 
-        {
-            $error = array('error' => $this->upload->display_errors());
- 
-            $this->load->view('v_form/imageupload_form', $error);
-        } 
-        else 
-        {
-            $data = array('image_metadata' => $this->upload->data());
- 
-            $this->load->view('v_form/imageupload_success', $data);
-        }
-		
-		
-    }
 
 	public function updateOrder()
 	{
 		$id = $this->input->get('id');
-		$id_customer =1;
-		$id_department = 1;
 		$order_type = $this->input->post('r_jenispekerjaan');
 		$kategori = $this->input->post('kategori');
 		$nama_part = $this->input->post('nama_part');
@@ -125,9 +99,24 @@ class Dashboard extends CI_Controller {
 		$tinggi = $this->input->post('tinggi');
 		$material =$this->input->post('material');
 		
+		if($_FILES['userfile']['name'] != ""){
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$this->load->library('upload', $config);
+			$this->path = './uploads/';
+
+			$this->upload->initialize($config);
+			if(!$this->upload->do_upload('userfile')){
+			$error = array('error'=>$this->upload->display_errors());
+		}	else{
+			$imageUpload = $this->upload->data();
+			$userfile_attachment = $imageUpload['file_name'];
+		}
+	  }else{
+		$userfile_attachment = $this->input->post('userfile_old');
+	  }
+
 		$data =array(
-			'id_customer'=>$id_customer,
-			'id_department' =>$id_department,
 			'order_type' => $order_type,
 			'kategori'=>$kategori,
 			'nama_part'=>$nama_part,
@@ -138,7 +127,8 @@ class Dashboard extends CI_Controller {
 			'tinggi'=>$tinggi,
 			'material'=>$material,
 			'jam'=>date('H:i',strtotime('now')),
-			'tanggal' => date('d-m-Y',strtotime('now')),	
+			'tanggal' => date('d-m-Y',strtotime('now')),
+			'attachment' => $userfile_attachment
 		);
 		$this->m_order->updateOrder($id,$data);
 		redirect(site_url('user/dashboard/'));

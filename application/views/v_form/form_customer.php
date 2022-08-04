@@ -43,15 +43,15 @@
                                             <label class="col-12">Jenis Pekerjaan</label>
                                             <div class="col-12">
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_part_baru" value="Part Baru">
+                                                    <input class="custom-control-input" required type="radio" name="r_jenispekerjaan" id="r_part_baru" value="Part Baru">
                                                     <label class="custom-control-label" for="r_part_baru">Part Baru</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_repair" value="Repair">
-                                                    <label class="custom-control-label" for="r_repair">Repair</label>
+                                                    <input class="custom-control-input" required type="radio" name="r_jenispekerjaan" id="r_repair" value="Repair">
+                                                    <label class="custom-control-label"  for="r_repair">Repair</label>
                                                 </div>
                                                 <div class="custom-control custom-radio mb-5">
-                                                    <input class="custom-control-input" type="radio" name="r_jenispekerjaan" id="r_modifikasi" value="Modifikasi">
+                                                    <input class="custom-control-input" required type="radio" name="r_jenispekerjaan" id="r_modifikasi" value="Modifikasi">
                                                     <label class="custom-control-label" for="r_modifikasi">Modifikasi</label>
                                                 </div>
                                             </div>
@@ -60,11 +60,11 @@
                                             <label class="col-12">Respon yang di inginkan</label>
                                             <div class="col-12">
                                                 <div class="custom-control custom-radio custom-control-inline mb-5">
-                                                    <input class="custom-control-input" type="radio" name="kategori" id="r_urgent" value="urgent">
+                                                    <input class="custom-control-input" required type="radio" name="kategori" id="r_urgent" value="urgent">
                                                     <label class="custom-control-label" for="r_urgent">Mendesak (Ugent)*</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline mb-5">
-                                                    <input class="custom-control-input" type="radio" name="kategori" id="r_biasa" value="biasa">
+                                                    <input class="custom-control-input"  required type="radio" name="kategori" id="r_biasa" value="biasa">
                                                     <label class="custom-control-label" for="r_biasa">Biasa</label>
                                                 </div>
                                             </div>
@@ -72,14 +72,14 @@
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Nama Part</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="nama_part" name="nama_part" placeholder="Masukan nama part">
+                                                <input type="text" class="form-control" required id="nama_part" name="nama_part" placeholder="Masukan nama part">
                                                 
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Jumlah</label>
                                             <div class="col-md-4">
-                                                <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah">
+                                                <input type="text" class="form-control" required id="jumlah" name="jumlah" placeholder="Masukan Jumlah">
                                                 
                                             </div>
                                         </div>
