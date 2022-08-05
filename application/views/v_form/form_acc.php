@@ -127,10 +127,15 @@
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Gambar Keterangan</label>
                                         </div>
-                                        <div class="col-md-6 col-lg-4 col-xl-6 animated fadeIn">
+                                        <div class="col-md-6 col-lg-4 col-xl-3 animated fadeIn" id="gambar_keterangan">
+                                        <?php if ($a['attachment'] != NULL) {?>
                                         <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'uploads/'.$a['attachment']?>">
-                                                <img class="img-fluid" src="<?=base_url() .'uploads/'.$a['attachment']?>" alt="pict"  >
+                                                <img class="img-fluid" src="<?=base_url() .'uploads/'.$a['attachment']?>" alt="pict" >
+                                             
                                             </a>
+                                            <?php } else {?>
+                                                <label class="col-8" for="example-text-input">Gambar Tidak Ada</label>
+                                             <?php }?>   
                                         </div>
                                         <br><br>
                                         <?php }?>
@@ -154,7 +159,9 @@
                                                 <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept">
                                                 <span class="css-control-indicator"></span> Accept
                                             </label>
-                                            
+                                            <!-- foto -->
+                                        
+
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
                                                 <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject">
                                                 <span class="css-control-indicator"></span> Reject

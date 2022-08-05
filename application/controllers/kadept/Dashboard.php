@@ -94,6 +94,8 @@ class Dashboard extends CI_Controller {
 
 	public function acceptOrder()
 	{
+		
+
 		$id = $this->input->get('id');
 		$approve = $this->input->post('r_order_response');
 		$alasan = $this->input->post('alasan');
@@ -107,7 +109,7 @@ class Dashboard extends CI_Controller {
 			'approve'=>$approve,
 			'alasan' =>$alasan
 		);
-		$this->m_order->updateOrder($id,$data);
+		$this->m_order->updateOrderNoPict($id,$data);
 		redirect(site_url('kadept/dashboard/'));
 	}
 }

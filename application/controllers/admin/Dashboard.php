@@ -17,10 +17,18 @@ class Dashboard extends CI_Controller {
 
     }
 
+	
 	public function index()
 	{
 		$this->load->view('v_admin/header');
 		$this->load->view('v_admin/dashboardAdmin');
+		$this->load->view('v_admin/footer');
+	}
+
+	public function resultroute()
+	{
+		$this->load->view('v_admin/header');
+		$this->load->view('v_admin/form_table');
 		$this->load->view('v_admin/footer');
 	}
 
@@ -110,12 +118,17 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/footer');
 	}
 
+	
+
 	public function addNomorOrder()
 	{
 		$id = $this->input->get('id');
 		$no_order = $this->input->post('no_order');
 		$response_order = $this->input->post('response_order');
+		$routing_item_1 = $this->input->post('routing_item_1');
+		$hour_1 = $this->input->post('hour_1');
 		$id_order = $this->input->post('id_order');
+		
 		$data =array(
 			'no_order'=>$no_order
 			
@@ -123,12 +136,131 @@ class Dashboard extends CI_Controller {
 
 		$data1 = array(
 			'id_order' => $id_order,
+			'routing_plan1'=>$routing_item_1,
+			'hour_1'=>$hour_1,
 			'status'=>$response_order
 		);
-		$this->m_order->updateOrder($id,$data);
+		$this->m_order->updateOrderNoPict($id,$data);
 		$this->m_routing->addRouting($data1);
 		
 		redirect(site_url('admin/dashboard/'));
 	}
 	
+	public function table()
+	{
+		
+		$this->load->view('v_form/form_table');
+		
+	}
+
+	public function routingList()
+	{
+		$list = $this->m_routing->get_datatables_1();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $l) {
+			//$order = $this->m_order->getRoutingList($l->id_order);
+			
+		
+			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
+		
+			// if ($l->status_laporan == 'Disetujui'){
+			// 	$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			// 				  <i class="fa fa-times"></i>
+			// 			</a>';
+			// }else{
+			// $delete = '	<a id="id-delete" name="delete" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			// 				  <i class="fa fa-times"></i>
+			// 			</a>';
+			// }			
+				
+			$no++;
+			
+			$row = array();
+			// $rl['status']; foreach($routingList as $rl){	
+			//PartName			
+			$row[] = $l->nama_part;
+			//No.Order
+			$row[] = $l->no_order;
+			//IN/OUTHOUSE (status)
+			$row[] = $l->status; 
+			//Material
+			$row[] = $l->material;
+			//Cost Material
+			$row[] = 'cost material';
+			//Cost Price
+			$row[] = 'Price';
+			//Total Cost
+			$row[] = 'Total Cost';
+			//Process Design & Cam
+			//JAM
+			$row[] = $l->routing_plan1;
+			//1
+			$row[] = $l->hour_1;
+			//JAM
+			$row[] = $l->routing_plan2;
+			//2
+			$row[] = $l->hour_2;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan3;
+			//1
+			$row[] = $l->hour_3;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan4;
+			//1
+			$row[] = $l->hour_4;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan5;
+			//1
+			$row[] = $l->hour_5;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan6;
+			//1
+			$row[] = $l->hour_6;
+			//Proses
+			///JAM
+			$row[] = $l->routing_plan7;
+			//1
+			$row[] = $l->hour_7;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan8;
+			//1
+			$row[] = $l->hour_8;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan9;
+			//1
+			$row[] = $l->hour_9;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan10;
+			//1
+			$row[] = $l->hour_10;
+			//Proses
+			//JAM
+			$row[] = $l->routing_plan11;
+			//1
+			$row[] = $l->hour_11;
+			//Total
+			$row[] = 'Total';
+			// }
+			
+			$data[] = $row;
+			
+		}
+		
+		$output = array(
+						//"draw" => $_POST['draw'],
+						// "recordsTotal" => $this->m_order->count_all(),
+						// "recordsFiltered" => $this->m_order->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
 }

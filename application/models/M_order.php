@@ -24,9 +24,18 @@ class M_order extends CI_model
         unlink('./uploads/'.$row->attachment);
         $this->db->where('id_order',$id);
         $this->db->update($this->table,$data);
+        }else{
+        $this->db->where('id_order',$id);
+        $this->db->update($this->table,$data);
         }
         
         
+    }
+
+    public function updateOrderNoPict($id,$data)
+    {
+        $this->db->where('id_order',$id);
+        $this->db->update('order',$data);
     }
 
     public function getNpk($npk)
