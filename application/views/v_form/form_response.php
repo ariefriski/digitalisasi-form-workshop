@@ -215,7 +215,7 @@
                                             <?php echo 'Request Menunggu Approve';?>
                                         <?php } ?>
                                         <div id="plan1">
-                                        
+                                            
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-8">
@@ -228,6 +228,7 @@
                               } 
                             ?>
                             </div>
+                            
                             
 </div>
 </div>

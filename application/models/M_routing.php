@@ -36,9 +36,11 @@ class M_routing extends CI_model
 
 	private function _get_datatables_query_1()
     {
-        $this->db->select('routing.*,order.*');
+        $this->db->select('routing.*,order.*,user.name,department.department_name');
         $this->db->from('routing');
 		$this->db->join('order','routing.id_order=order.id_order');
+		$this->db->join('user','order.id_user=user.id_user');
+		$this->db->join('department','order.id_department=department.id_department');
         // if ($this->session->userdata('level') == 'kadept' || $this->session->userdata('level') == 'user') {
 		// 	$this->db->where('order.id_department',$this->session->id_department);
 		// }

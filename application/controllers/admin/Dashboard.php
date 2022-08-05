@@ -32,6 +32,12 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/footer');
 	}
 
+	public function inputorder()
+	{
+		$this->load->view('v_admin/header');
+		$this->load->view('v_admin/input_order');
+		$this->load->view('v_admin/footer');
+	}
 	
 	
 	public function response()
@@ -43,7 +49,7 @@ class Dashboard extends CI_Controller {
 	public function test()
 	{
 		$this->load->view('v_form/header');
-		$this->load->view('v_form/form_perhitungan');
+		$this->load->view('v_admin/input_order');
 		$this->load->view('v_form/footer');
 	}
 
@@ -127,6 +133,25 @@ class Dashboard extends CI_Controller {
 		$response_order = $this->input->post('response_order');
 		$routing_item_1 = $this->input->post('routing_item_1');
 		$hour_1 = $this->input->post('hour_1');
+		$routing_item_2 = $this->input->post('routing_item_2');
+		$hour_2 = $this->input->post('hour_2');
+		$routing_item_3 = $this->input->post('routing_item_3');
+		$hour_3 = $this->input->post('hour_3');
+		$routing_item_4 = $this->input->post('routing_item_4');
+		$hour_4 = $this->input->post('hour_4');
+		$routing_item_5 = $this->input->post('routing_item_5');
+		$hour_5 = $this->input->post('hour_5');
+		$routing_item_6 = $this->input->post('routing_item_6');
+		$hour_6 = $this->input->post('hour_6');
+		$routing_item_7 = $this->input->post('routing_item_7');
+		$hour_7 = $this->input->post('hour_7');
+		$routing_item_8 = $this->input->post('routing_item_8');
+		$hour_8 = $this->input->post('hour_8');
+		$routing_item_9 = $this->input->post('routing_item_9');
+		$hour_9 = $this->input->post('hour_9');
+		$routing_item_10 = $this->input->post('routing_item_10');
+		$hour_10 = $this->input->post('hour_10');
+		
 		$id_order = $this->input->post('id_order');
 		
 		$data =array(
@@ -138,7 +163,25 @@ class Dashboard extends CI_Controller {
 			'id_order' => $id_order,
 			'routing_plan1'=>$routing_item_1,
 			'hour_1'=>$hour_1,
-			'status'=>$response_order
+			'routing_plan2'=>$routing_item_2,
+			'hour_2'=>$hour_2,
+			'routing_plan3'=>$routing_item_3,
+			'hour_3'=>$hour_3,
+			'routing_plan4'=>$routing_item_4,
+			'hour_4'=>$hour_4,
+			'routing_plan5'=>$routing_item_5,
+			'hour_5'=>$hour_5,
+			'routing_plan6'=>$routing_item_6,
+			'hour_6'=>$hour_6,
+			'routing_plan7'=>$routing_item_7,
+			'hour_7'=>$hour_7,
+			'routing_plan8'=>$routing_item_8,
+			'hour_8'=>$hour_8,
+			'routing_plan9'=>$routing_item_9,
+			'hour_9'=>$hour_9,
+			'routing_plan10'=>$routing_item_10,
+			'hour_10	'=>$hour_10
+			
 		);
 		$this->m_order->updateOrderNoPict($id,$data);
 		$this->m_routing->addRouting($data1);
@@ -194,58 +237,58 @@ class Dashboard extends CI_Controller {
 			$row[] = 'Total Cost';
 			//Process Design & Cam
 			//JAM
-			$row[] = $l->routing_plan1;
-			//1
 			$row[] = $l->hour_1;
+			//1
+			$row[] = $l->routing_plan1;
 			//JAM
-			$row[] = $l->routing_plan2;
-			//2
 			$row[] = $l->hour_2;
+			//1
+			$row[] = $l->routing_plan2;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan3;
-			//1
 			$row[] = $l->hour_3;
+			//1
+			$row[] = $l->routing_plan3;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan4;
-			//1
 			$row[] = $l->hour_4;
+			//1
+			$row[] = $l->routing_plan4;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan5;
-			//1
 			$row[] = $l->hour_5;
+			//1
+			$row[] = $l->routing_plan5;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan6;
-			//1
 			$row[] = $l->hour_6;
+			//1
+			$row[] = $l->routing_plan6;
 			//Proses
 			///JAM
-			$row[] = $l->routing_plan7;
-			//1
 			$row[] = $l->hour_7;
+			//1
+			$row[] = $l->routing_plan7;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan8;
-			//1
 			$row[] = $l->hour_8;
+			//1
+			$row[] = $l->routing_plan8;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan9;
-			//1
 			$row[] = $l->hour_9;
+			//1
+			$row[] = $l->routing_plan9;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan10;
-			//1
 			$row[] = $l->hour_10;
+			//1
+			$row[] = $l->routing_plan10;
 			//Proses
 			//JAM
-			$row[] = $l->routing_plan11;
-			//1
 			$row[] = $l->hour_11;
+			//1
+			$row[] = $l->routing_plan11;
 			//Total
 			$row[] = 'Total';
 			// }
@@ -256,8 +299,123 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						// "recordsTotal" => $this->m_order->count_all(),
-						// "recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_routing->count_all(),
+						"recordsFiltered" => $this->m_routing->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+	public function inputList()
+	{
+		$list = $this->m_routing->get_datatables_1();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $l) {
+			//$order = $this->m_order->getRoutingList($l->id_order);
+			
+		
+			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
+		
+			// if ($l->status_laporan == 'Disetujui'){
+			// 	$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			// 				  <i class="fa fa-times"></i>
+			// 			</a>';
+			// }else{
+			// $delete = '	<a id="id-delete" name="delete" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			// 				  <i class="fa fa-times"></i>
+			// 			</a>';
+			// }			
+				
+			$no++;
+			
+			$row = array();
+			// $rl['status']; foreach($routingList as $rl){	
+			//Tanggal			
+			$row[] = $l->tanggal;
+			//Urgent
+			$row[] = $l->kategori;
+			//Nomor Permintaan
+			$row[] = $l->no_order; 
+			//Requestor
+			$row[] = $l->name;
+			//Department
+			$row[] = $l->department_name;
+			//Mesin
+			$row[] = $l->nama_part;
+			//Material
+			$row[] = $l->material;
+			//Jumlah
+			$row[] = $l->jumlah;
+			//Item Pekerjaan
+			$row[] = $l->order_type;
+			//Status
+			$row[] = $l->status_pengerjaan;
+			//cos Mat
+			$row[] = 'Cost.Mat';
+			//Preparation/Manual
+			if($l->routing_plan1=='PREPARATION' || $l->routing_plan1=='MANUAL'){
+				$row[] = $l->hour_1;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan2=='CNC'){
+				$row[] = $l->hour_2;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan3=='MILLING'){
+				$row[] = $l->hour_3;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan4=='BUBUT'){
+				$row[] = $l->hour_4;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan5=='GRINDING'){
+				$row[] = $l->hour_5;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan6=='DRILLING'){
+				$row[] = $l->hour_6;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan7=='SAW'){
+				$row[] = $l->hour_7;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan8=='MANMACHINING'){
+				$row[] = $l->hour_8;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan9=='WELDING'){
+				$row[] = $l->hour_9;
+			}else{
+				$row[] = '';
+			}
+			if($l->routing_plan10=='MANFABRIKASI'){
+				$row[] = $l->hour_10;
+			}else{
+				$row[] = '';
+			}
+			
+			
+			
+			$data[] = $row;
+			
+		}
+		
+		$output = array(
+						//"draw" => $_POST['draw'],
+						"recordsTotal" => $this->m_routing->count_all(),
+						"recordsFiltered" => $this->m_routing->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format

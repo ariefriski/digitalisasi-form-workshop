@@ -98,6 +98,7 @@
                                                     <option value="WELDING">Welding</option>
                                                     <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
+                                                    <option value="MANUAL">Preparation/Manual</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -119,6 +120,7 @@
                                                     <option value="WELDING">Welding</option>
                                                     <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
+                                                    <option value="MANUAL">Preparation/Manual</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -140,6 +142,7 @@
                                                     <option value="WELDING">Welding</option>
                                                     <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
+                                                    <option value="MANUAL">Preparation/Manual</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -161,6 +164,9 @@
                                                     <option value="WELDING">Welding</option>
                                                     <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
+                                                    <option value="MANUAL">Preparation/Manual</option>
+                                                    <option value="MANMACHINING">Man.Machining</option>
+                                                    <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -182,6 +188,7 @@
                                                     <option value="WELDING">Welding</option>
                                                     <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
+                                                    <option value="MANUAL">Preparation/Manual</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
@@ -203,6 +210,7 @@
                                                     <option value="WELDING">Welding</option>
                                                     <option value="MANFABRIKASI">Man.Fabrikasi</option>
                                                     <option value="INSPECTION">Inspection</option>
+                                                    <option value="MANUAL">Preparation/Manual</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-2">
