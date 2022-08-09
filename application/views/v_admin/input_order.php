@@ -21,9 +21,8 @@
                 <th>Requestor</th>
                 <th>Dept</th>
                 <th>Mesin</th>
-                <th>Material</th>
                 <th>Jumlah</th>
-                
+                <th>Material</th>
                 <th>Item Pekerjaan</th>
                 <th>Status</th>
                 <th>COS MAT.</th>
@@ -37,13 +36,15 @@
                 <th>Man.Machining</th>
                 <th>Welding</th>
                 <th>Man.Fabrikasi</th>
+                <th>Total Actual</th>
+                
                 <!-- <th colspan="4">Proses Design & CAM</th>
                 <th colspan="2">Proses</th> -->
                
             </tr>
         </thead>
         <tbody>
-                <tr>
+                <!-- <tr>
                     <td>da</td>
                     <td>da</td>
                     <td>da</td>
@@ -69,7 +70,7 @@
                     <td>da</td>
                 
 
-                </tr>
+                </tr> -->
         </tbody>
 </table>
 

@@ -95,96 +95,95 @@
                                             
                                             <label class="col-12" for="routing_plan">Routing Plan</label>
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" id="routing1 "name="routing_item_1" value="MANUAL" >
+                                                <input type="checkbox" class="css-control-input" id="routing1" name="inputorder[]" value="1" >
                                                 <span class="css-control-indicator"></span> Manual
                                             </label>&#9;
                                             <div class="col-md-2" id="hour1">
-                                            <input type="text" class="form-control"  name="hour_1" >
+                                            <input type="text" class="form-control"  name="hour[]" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_2" value="CNC" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="2" >
                                                 <span class="css-control-indicator"></span> CNC
                                             </label>&#9;
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour2" name="hour_2" placeholder="0">
+                                            <input type="text" class="form-control" id="hour2" name="hour[]" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_3" value="MILLING" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="3" >
                                                 <span class="css-control-indicator"></span> Milling
                                             </label>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour3" name="hour_3" placeholder="0">
+                                            <input type="text" class="form-control" id="hour3" name="hour[]" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_4" value="BUBUT" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="4" >
                                                 <span class="css-control-indicator"></span> Bubut
                                             </label>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour4" name="hour_4" placeholder="0">
+                                            <input type="text" class="form-control" id="hour4" name="hour[]">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_5" value="GRINDING" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="5" >
                                                 <span class="css-control-indicator"></span> Grinding
                                             </label>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour5" name="hour_5" placeholder="0">
+                                            <input type="text" class="form-control" id="hour5" name="hour[]">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_6" value="DRILLING" >
-                                                <span class="css-control-indicator"></span> Drilling
-                                            </label>
-                                            <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour6" name="hour_6" placeholder="0">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_7" value="SAW" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="6" >
                                                 <span class="css-control-indicator"></span> Saw
                                             </label>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour7" name="hour_7" placeholder="0">
+                                            <input type="text" class="form-control" id="hour7" name="hour[]">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_8" value="MANMACHINING" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="7" >
+                                                <span class="css-control-indicator"></span> Drilling
+                                            </label>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="hour5" name="hour[]">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="8" >
                                                 <span class="css-control-indicator"></span> Man.Machining
                                             </label>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour8" name="hour_8" placeholder="0">
+                                            <input type="text" class="form-control" id="hour5" name="hour[]">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_9" value="WELDING" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="9" >
                                                 <span class="css-control-indicator"></span> Welding
                                             </label>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour9" name="hour_9" placeholder="0">
+                                            <input type="text" class="form-control" id="hour5" name="hour[]">
                                             </div>
-                                        </div>
                                         </div>
                                         <div class="form-group row">
                                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_10" value="MANFABRIKASI" >
+                                                <input type="checkbox" class="css-control-input" name="inputorder[]" value="10" >
                                                 <span class="css-control-indicator"></span> Man.Fabrikasi
                                             </label>
                                             <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour10" name="hour_10" placeholder="0">
+                                            <input type="text" class="form-control" id="hour5" name="hour[]">
                                             </div>
                                         </div>
-                                        </div>
+                                        
                 `);
             });
 
@@ -331,3 +330,35 @@
                                             </div>
     </div> -->
 </html>
+
+<!-- 
+    <div class="form-group row">
+                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="checkbox" class="css-control-input" name="routing_item_8" value="0" >
+                                                <span class="css-control-indicator"></span> Man.Machining
+                                            </label>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="hour8" name="hour_8" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="checkbox" class="css-control-input" name="routing_item_9" value="0" >
+                                                <span class="css-control-indicator"></span> Welding
+                                            </label>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="hour9" name="hour_9" placeholder="0">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="checkbox" class="css-control-input" name="routing_item_10" value="0" >
+                                                <span class="css-control-indicator"></span> Man.Fabrikasi
+                                            </label>
+                                            <div class="col-md-2">
+                                            <input type="text" class="form-control" id="hour10" name="hour_10" placeholder="0">
+                                            </div>
+                                        </div>
+                                        </div>
+ -->

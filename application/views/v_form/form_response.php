@@ -158,7 +158,7 @@
                                 foreach($accept_response as $ar) { 
                                 ?>
                                     
-                                    <form action="<?php echo base_url()?>admin/dashboard/addNomorOrder?id=<?php echo $ar['id_order']; ?>" method="post" enctype="multipart/form-data" >
+                                    <form action="<?php echo base_url()?>admin/dashboard/inputOrder" method="post" enctype="multipart/form-data" >
                                     <input type="hidden" name="id_order" value="<?php echo $ar['id_order']; ?>" >
                                     <div class="form-group row" >
                                             <label class="col-8" for="example-text-input">Kadept Approval Department X</label>
@@ -191,7 +191,7 @@
                                             <div class="form-group row">
                                                  <label class="col-8" for="example-text-input">Nomor Order</label>
                                             <div class="col-md-6">
-                                                 <input type="text" class="form-control" id="no_order" name="no_order" placeholder="Nomor Order" >
+                                                 <input type="text" class="form-control" id="no_order" name="no_order" placeholder="Nomor Order" required>
                                             </div>
                                             </div>
                                                 <?php } ?>     
