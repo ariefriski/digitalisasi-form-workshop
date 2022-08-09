@@ -32,6 +32,8 @@
                 <th colspan="2">Proses</th>
                 <th colspan="2">Proses</th>
                 <th colspan="2">Proses</th>
+                <th colspan="2">Proses</th>
+                <th colspan="2">Proses</th>
                 <th colspan="2">Total</th>
             </tr>
             <tr>
@@ -64,43 +66,15 @@
                 <th style="text-align: center;">8</th>
                 <th style="text-align: center;">JAM</th>
                 <th style="text-align: center;">9</th>
-               
+                <th style="text-align: center;">JAM</th>
+                <th style="text-align: center;">10</th>
+                <th style="text-align: center;">JAM</th>
+                <th style="text-align: center;">11</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
-                <tr>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-
-                </tr>
+                
         </tbody>
 </table>
 

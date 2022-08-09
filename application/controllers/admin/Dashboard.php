@@ -69,7 +69,10 @@ class Dashboard extends CI_Controller {
 			$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewAcceptedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-hand-o-up"></i>
 						</a>';	
-		
+			
+			$report = 		'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaper?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+							<i class="fa fa-save"></i>
+						</a>';	
 			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
 		
 			// if ($l->status_laporan == 'Disetujui'){
@@ -98,7 +101,7 @@ class Dashboard extends CI_Controller {
 			$row[] = $d['department_name'];
 			$row[] = $l->status_laporan;
 			$row[] = $l->status_pengerjaan;
-			$row[] = $view.$delete;
+			$row[] = $view.$delete.$report;
 			
 			}
 			
@@ -125,6 +128,13 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/footer');
 	}
 
+	public function viewReportPaper()
+	{
+		$id = $this->input->get('id');
+		$data['report'] = $this->m_proses->getReportPaper($id);
+		$this->load->view('v_admin/report');
+	}
+
 	
 
 	
@@ -135,6 +145,7 @@ class Dashboard extends CI_Controller {
 		$hour = $this->input->post('hour');
 		$id_order = $this->input->post('id_order');
 		$no_order = $this->input->post('no_order');
+		$response_order = $this->input->post('response_order');
 		for ($i=0;$i< sizeof($ordercheck);$i++)
 		{
 			$data = array(
@@ -143,7 +154,8 @@ class Dashboard extends CI_Controller {
 				'id_order'=>$id_order
 			);
 			$data2 = array(
-				'no_order'=>$no_order
+				'no_order'=>$no_order,
+				'inhouse'=>$response_order
 			);
 			$this->m_order->updateOrderNoPict($id_order,$data2);
 			$this->m_proses->addInputOrder($data);
@@ -168,11 +180,11 @@ class Dashboard extends CI_Controller {
 
 	public function routingList()
 	{
-		$list = $this->m_routing->get_datatables_1();
+		$list = $this->m_proses->get_datatables_1();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			//$order = $this->m_order->getRoutingList($l->id_order);
+			$routingLiz = $this->m_proses->routingTable($l->id_order);
 			
 		
 			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
@@ -192,85 +204,57 @@ class Dashboard extends CI_Controller {
 			$row = array();
 			// $rl['status']; foreach($routingList as $rl){	
 			//PartName			
-			$row[] = $l->nama_part;
-			//No.Order
-			$row[] = $l->no_order;
-			//IN/OUTHOUSE (status)
-			$row[] = $l->status; 
-			//Material
-			$row[] = $l->material;
-			//Cost Material
-			$row[] = 'cost material';
-			//Cost Price
-			$row[] = 'Price';
-			//Total Cost
-			$row[] = 'Total Cost';
-			//Process Design & Cam
-			//JAM
-			$row[] = $l->hour_1;
-			//1
-			$row[] = $l->routing_plan1;
-			//JAM
-			$row[] = $l->hour_2;
-			//1
-			$row[] = $l->routing_plan2;
-			//Proses
-			//JAM
-			$row[] = $l->hour_3;
-			//1
-			$row[] = $l->routing_plan3;
-			//Proses
-			//JAM
-			$row[] = $l->hour_4;
-			//1
-			$row[] = $l->routing_plan4;
-			//Proses
-			//JAM
-			$row[] = $l->hour_5;
-			//1
-			$row[] = $l->routing_plan5;
-			//Proses
-			//JAM
-			$row[] = $l->hour_6;
-			//1
-			$row[] = $l->routing_plan6;
-			//Proses
-			///JAM
-			$row[] = $l->hour_7;
-			//1
-			$row[] = $l->routing_plan7;
-			//Proses
-			//JAM
-			$row[] = $l->hour_8;
-			//1
-			$row[] = $l->routing_plan8;
-			//Proses
-			//JAM
-			$row[] = $l->hour_9;
-			//1
-			$row[] = $l->routing_plan9;
-			//Proses
-			//JAM
-			$row[] = $l->hour_10;
-			//1
-			$row[] = $l->routing_plan10;
-			//Proses
-			//JAM
-			$row[] = $l->hour_11;
-			//1
-			$row[] = $l->routing_plan11;
-			//Total
-			$row[] = 'Total';
-			// }
 			
+			//Total
+			
+			$row[] = $l->nama_part;
+			$row[] = $l->no_order;
+			$row[] = $l->inhouse;
+			$row[] = $l->material;
+			$row[] = '-';
+			$row[] = $l->total;
+			$row[] = $l->total;
+			$row[] = '???';
+			$row[] = 'design';
+			$row[] = '???';
+			$row[] = 'CAM';
+			
+			$row[] = $l->MANUAL;
+			$row[] = 'Manual';
+			$row[] = $l->CNC;
+			$row[] = 'CNC';
+			$row[] = $l->MILLING;
+			$row[] = 'Milling';
+			$row[] = $l->BUBUT;
+			$row[] = 'Bubut';
+			$row[] = $l->GRINDING;
+			$row[] = 'Grinding';
+			$row[] = $l->SAWING;
+			$row[] = 'Saw';
+			$row[] = $l->DRILLING;
+			$row[] = 'Drilling';
+			$row[] = $l->MANMACHINING;
+			$row[] = 'Man.Machining';
+			$row[] = $l->WELDING;
+			$row[] = 'Welding';
+			$row[] = $l->MANFABRIKASI;
+			$row[] = 'Man.Fabrikasi';
+			$row[] = 'Inspeksi';
+			$row[] = '???';
+			// }
+			// foreach($routingLiz as $rl){
+			// 	$row[] = $rl['hour'];
+			// 	$row[] = $rl['nama_proses'];
+			// }
+			$row[] = $l->total_actual;
 			$data[] = $row;
 			
 		}
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_routing->count_all(),
-						"recordsFiltered" => $this->m_routing->count_filtered(),
+						"recordsTotal" => $this->m_proses->count_all(),
+						"recordsFiltered" => $this->m_proses->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format
