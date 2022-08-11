@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 	
 	public function index()
 	{
+		
 		$this->load->view('v_admin/header');
 		$this->load->view('v_admin/dashboardAdmin');
 		$this->load->view('v_admin/footer');
@@ -35,8 +36,9 @@ class Dashboard extends CI_Controller {
 
 	public function IO()
 	{
+		$data['column'] = $this->m_proses->showDatabaseProcess();
 		$this->load->view('v_admin/header');
-		$this->load->view('v_admin/input_order');
+		$this->load->view('v_admin/input_order',$data);
 		$this->load->view('v_admin/footer');
 	}
 	
@@ -132,7 +134,7 @@ class Dashboard extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['report'] = $this->m_proses->getReportPaper($id);
-		$this->load->view('v_admin/report');
+		$this->load->view('v_admin/report',$data);
 	}
 
 	
@@ -174,6 +176,7 @@ class Dashboard extends CI_Controller {
 
 	public function testing()
 	{
+		// $data['ambil'] = $this->m_proses->
 		$data['test'] = $this->m_proses->testing();
 		$this->load->view('v_form/test',$data);
 	}
@@ -290,37 +293,45 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->tanggal;
 			//Urgent
 			$row[] = $l->kategori;
-			// $row[] = $l->kategori;
-			// // //Nomor Permintaan
+			// // $row[] = $l->kategori;
+			// // // //Nomor Permintaan
 			 $row[] = $l->no_order; 
-			// // //Requestor
+			// // // //Requestor
 			 $row[] = $l->name;
-			// // //Department
+			// // // //Department
 			 $row[] = $l->department_name;
-			// // //Mesin
+			// // // //Mesin
 			$row[] = $l->nama_part;
-			// //Jumlah
+			// // //Jumlah
 			$row[] = $l->jumlah;
-			// // //Material
-			$row[] = $l->material;
-			// // //Item Pekerjaan
+			// // // //Material
+			$row[] = $l->nama_material;
+			// // // //Item Pekerjaan
 			 $row[] = $l->order_type;
-			// // //Status
+			// // // //Status
 			 $row[] = $l->status_pengerjaan;
-			// // //cos Mat
-			 $row[] = 'Cost.Mat';
-			// //Preparation/Manual
-			 $row[] = $l->MANUAL;
-			 $row[] = $l->CNC;
-			 $row[] = $l->MILLING;
-			 $row[] = $l->BUBUT;
-			 $row[] = $l->GRINDING;
-			 $row[] = $l->SAWING;
-			 $row[] = $l->DRILLING;
-			 $row[] = $l->MANMACHINING;
-			 $row[] = $l->WELDING;
-			 $row[] = $l->MANFABRIKASI;
-			 $row[] = $l->total_actual;
+			// // // //cos Mat
+			 $row[] = $l->price_kg;
+
+			 if($l->nama_proses == 'MANUAL'){
+				$row[] = $l->hour;
+			 }
+			 
+			 
+
+			
+			// // //Preparation/Manual
+			//  $row[] = $l->MANUAL;
+			//  $row[] = $l->CNC;
+			//  $row[] = $l->MILLING;
+			//  $row[] = $l->BUBUT;
+			//  $row[] = $l->GRINDING;
+			//  $row[] = $l->SAWING;
+			//  $row[] = $l->DRILLING;
+			//  $row[] = $l->MANMACHINING;
+			//  $row[] = $l->WELDING;
+			//  $row[] = $l->MANFABRIKASI;
+			//  $row[] = $l->total_actual;
 			 
 			
 			

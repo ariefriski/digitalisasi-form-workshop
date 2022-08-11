@@ -110,10 +110,13 @@
                                         </div>
                                         
                                         <div class="form-group row">
-                                            <label class="col-8" for="example-text-input">Material</label>
-                                            <div class="col-md-5">
-                                                <input type="text" class="form-control" id="material" name="material" placeholder="Material">
-                                            </div>                                          
+                                            <label class="col-12" for="example-text-input">Material</label>
+                                            <select class="form-control col-md-4" id="material" name="material">
+                                            <?php foreach($material as $m){ ?>
+                                                <option value="<?php echo $m['id_material']; ?>"><?php echo $m['nama_material']; ?> </option>
+                                            <?php } ?>                
+                                            </select>
+                                            
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Upload Gambar Keterangan</label>

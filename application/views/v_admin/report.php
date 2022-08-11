@@ -46,6 +46,7 @@
 		<td style="border-top: 1px solid #000000" align="center" valign=middle bgcolor="#BFBFBF"><font face="Verdana" size=3 color="#FFFFFF">PLANNING</font></td>
 	</tr>
 	<tr>
+	
 		<td style="border-left: 1px solid #000000" height="20" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 		</tr>
 	<tr>
@@ -61,21 +62,25 @@
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td align="center" valign=middle><font face="Verdana" size=3><br></font></td>
 	</tr>
+	<?php foreach($report as $r) { ?>
 	<tr>
 		<td style="border-left: 1px solid #000000" height="20" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" align="left" valign=middle><b><font face="Verdana" size=3>Customer</font></b></td>
 		<td style="border-top: 1px solid #000000" align="right" valign=middle><b><font face="Verdana" size=3>:</font></b></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana">-</font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana"><?php echo $r['name']; ?></font></b></td>
 		<td style="border-top: 1px solid #000000" align="left" valign=middle><b><font face="Verdana" size=3><br></font></b></td>
 		<td style="border-top: 1px solid #000000" align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" align="right" valign=middle><font face="Verdana">Job Order :</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle bgcolor="#FFFF00"><b><font face="Verdana">K-00-000</font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle bgcolor="#FFFF00"><b><font face="Verdana"><?php echo $r['no_order']; ?></font></b></td>
 	</tr>
+	<?php } ?>
+	<?php foreach($report as $r) { ?>
 	<tr>
+		
 		<td style="border-left: 1px solid #000000" height="20" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 		<td style="border-left: 1px solid #000000" align="left" valign=middle><b><font face="Verdana" size=3>Dept.</font></b></td>
 		<td align="right" valign=middle><b><font face="Verdana" size=3>:</font></b></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana">-</font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana"><?php echo $r['department_name']; ?></font></b></td>
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td style="border-left: 1px solid #000000" align="right" valign=middle><font face="Verdana">Drawing No. :</font></td>
@@ -85,7 +90,7 @@
 		<td style="border-left: 1px solid #000000" height="20" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 		<td style="border-left: 1px solid #000000" align="left" valign=middle><b><font face="Verdana" size=3>Part Name</font></b></td>
 		<td align="right" valign=middle><b><font face="Verdana" size=3>:</font></b></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana">-</font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana"><?php echo $r['nama_part'] ?></font></b></td>
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td style="border-left: 1px solid #000000" align="right" valign=middle><font face="Verdana">Revision :</font></td>
@@ -95,7 +100,7 @@
 		<td style="border-left: 1px solid #000000" height="20" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 		<td style="border-left: 1px solid #000000" align="left" valign=middle><b><font face="Verdana" size=3>Pekerjaan</font></b></td>
 		<td align="right" valign=middle><b><font face="Verdana" size=3>:</font></b></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana">-</font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana"><?php echo $r['order_type']; ?></font></b></td>
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td style="border-left: 1px solid #000000" align="right" valign=middle><font face="Verdana">Received Date/PIC :</font></td>
@@ -105,7 +110,7 @@
 		<td style="border-left: 1px solid #000000" height="20" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000" align="left" valign=middle><b><font face="Verdana" size=3>IN/OUT</font></b></td>
 		<td style="border-bottom: 1px solid #000000" align="right" valign=middle><b><font face="Verdana" size=3>:</font></b></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana">-</font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle><b><font face="Verdana"><?php echo $r['inhouse']; ?></font></b></td>
 		<td style="border-bottom: 1px solid #000000" align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td style="border-bottom: 1px solid #000000" align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000" align="right" valign=middle><font face="Verdana">Delivery :</font></td>
@@ -124,6 +129,7 @@
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 		<td align="left" valign=middle><font face="Verdana" size=3><br></font></td>
 	</tr>
+	<?php }?>
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 rowspan=3 align="left" valign=middle><b><font face="Verdana">A. PART NAME</font></b></td>
@@ -138,19 +144,22 @@
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		</tr>
 	<tr>
+		
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		</tr>
+	<?php foreach($report as $r){?>
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="left" valign=middle><font face="Verdana">-</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana">-</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana">-</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" align="center" valign=middle sdnum="1033;0;0.000"><font face="Verdana">-</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="left" valign=middle><font face="Verdana"><?php echo $r['nama_part']; ?></font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana"><?php echo $r['nama_material']; ?> </font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana"><?php echo $r['Volume']; ?> </font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" align="center" valign=middle sdnum="1033;0;0.000"><font face="Verdana"><?php echo $r['Berat']; ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana">kg</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana">-</font></td>
-		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana"><br></font></td>
-		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana"> Rp-   </font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana"><?php echo $r['jumlah']; ?></font></td>
+		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana"><br>Rp.<?php echo $r['price_kg']; ?></font></td>
+		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana"> RpXXX   </font></td>
 	</tr>
+	<?php } ?>
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle><font face="Verdana"><br></font></td>
@@ -164,7 +173,7 @@
 	</tr>
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle><font face="Verdana"><br></font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle><font face="Verdana"></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana"><br></font></td>
 		<td style="border-bottom: 1px solid #000000" align="left" valign=middle sdnum="1033;0;_-* #,##0_-;-* #,##0_-;_-* -_-;_-@_-"><font face="Verdana"><br></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" align="center" valign=middle sdnum="1033;0;0.0"><font face="Verdana"><br></font></td>
@@ -807,6 +816,7 @@
 		<td style="border-bottom: 1px solid #000000" align="center" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 		<td style="border-bottom: 1px solid #000000" align="center" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;" size=3><br></font></td>
 	</tr>
+	
 </table>
 
 <br clear=left>

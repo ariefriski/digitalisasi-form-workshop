@@ -125,6 +125,7 @@
                                             </div>
                                             
                                             
+                                            
                                         </div>
                                         
                                         <div id="dimensi">
@@ -136,20 +137,20 @@
                                                 <input type="number" class="form-control" id="panjang" name="panjang" value="<?php echo $r['panjang'];?>" disabled>
                                             </div>
                                             <div class="col-md-2">L
-                                                <input type="number" class="form-control" id="lebar" name="lebar" value="<?php echo $r['panjang'];?>" disabled >
+                                                <input type="number" class="form-control" id="lebar" name="lebar" value="<?php echo $r['lebar'];?>" disabled >
                                             </div>
                                             <div class="col-md-2">T
-                                                <input type="number" class="form-control" id="tinggi" name="tinggi" value="<?php echo $r['panjang'];?>" disabled>
+                                                <input type="number" class="form-control" id="diameter" name="diameter" value="<?php echo $r['diameter'];?>" disabled>
                                             </div>
                                         </div>
                                             <?php } ?>
                                         </div>
                                         
                                         <div class="form-group row">
-                                            <label class="col-8" for="example-text-input">Material</label>
-                                            <div class="col-md-5">
-                                                <input type="text" class="form-control" id="material" name="material" placeholder="Material" value="<?php echo $r['material'];?>" disabled>
-                                            </div>                                          
+                                            <label class="col-12" for="example-text-input">Material</label>
+                                            <div class="col-md-4" id="selectmaterial">
+                                                <input type="text" class="form-control" id="material" name="material" value="<?php echo $r['nama_material'];?>" disabled="">
+                                            </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-8" for="example-text-input">Gambar Keterangan</label>
@@ -208,11 +209,19 @@
         $("#r_fabrikasi").removeAttr('disabled');
         $("#panjang").removeAttr('disabled');
         $("#lebar").removeAttr('disabled');
-        $("#tinggi").removeAttr('disabled');
-        $("#material").removeAttr('disabled');
+        $("#diameter").removeAttr('disabled');
+        // $("#material").removeAttr('disabled');
         $("#cancel_raw").removeAttr('disabled');
         $("#cancel-button").removeAttr('disabled');
         $("#ganti_btn").removeAttr('disabled');
+        $("#material").remove(); 
+        $("#selectmaterial").empty().append (`
+        <select class="form-control col-md-4" id="material" name="material">
+                    <?php foreach($material as $m){ ?>
+            <option value="<?php echo $m['id_material']; ?>"><?php echo $m['nama_material']; ?> </option>
+                    <?php } ?>                
+        </select>
+        `);
   });
   $('#cancel-button').click(function(){
     location.reload(true);

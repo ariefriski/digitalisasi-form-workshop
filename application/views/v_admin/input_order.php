@@ -13,6 +13,7 @@
 </div>
 </div>
 <table id="table-input-order" class="table table-vcenter" >
+   
         <thead>
             <tr>
                 <th>Tanggal</th>
@@ -26,16 +27,12 @@
                 <th>Item Pekerjaan</th>
                 <th>Status</th>
                 <th>COS MAT.</th>
-                <th>Preparation/Manual</th>
-                <th>CNC</th>
-                <th>Milling</th>
-                <th>Bubut/Turning</th>
-                <th>Grinding</th>
-                <th>Drilling</th>
-                <th>SAW</th>
-                <th>Man.Machining</th>
-                <th>Welding</th>
-                <th>Man.Fabrikasi</th>
+                <?php foreach($column as $c){?>
+                 <th><?php echo $c['nama_proses']; ?></th>
+   
+                <?php } ?>
+                
+             
                 <th>Total Actual</th>
                 
                 <!-- <th colspan="4">Proses Design & CAM</th>

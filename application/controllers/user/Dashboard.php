@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->load->model('m_order');
 		$this->load->model('m_login');
+		$this->load->model('m_proses');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
 		if($this->session->userdata('user_is_logged_in')=='') {
@@ -24,8 +25,9 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function createForm(){
+		$data['material']=$this->m_proses->selectMaterial();
 		$this->load->view('v_user/header');
-		$this->load->view('v_form/form_customer');
+		$this->load->view('v_form/form_customer',$data);
 		$this->load->view('v_user/footer');
 	}
 
@@ -50,10 +52,10 @@ class Dashboard extends CI_Controller {
 		$raw_type = $this->input->post('raw_type');
 		$panjang = $this->input->post('panjang');
 		$lebar	=$this->input->post('lebar');
-		$tinggi = $this->input->post('tinggi');
+		$diameter = $this->input->post('diameter');
 		$material =$this->input->post('material');
 		$status_laporan = 'Menunggu Approve';
-		$status_pengerjaan = 'Belum dikerjakan';
+		$status_pengerjaan = 'WAITING';
 		$approve = 'No';
 		$image = $this->upload->data('file_name');
 
@@ -70,8 +72,8 @@ class Dashboard extends CI_Controller {
 			'raw_type'=>$raw_type,
 			'panjang'=>$panjang,
 			'lebar'=>$lebar,
-			'tinggi'=>$tinggi,
-			'material'=>$material,
+			'diameter'=>$diameter,
+			'id_material'=>$material,
 			'status_laporan'=>$status_laporan,
 			'status_pengerjaan'=>$status_pengerjaan,
 			'jam'=>date('H:i',strtotime('now')),
@@ -96,8 +98,8 @@ class Dashboard extends CI_Controller {
 		$raw_type = $this->input->post('raw_type');
 		$panjang = $this->input->post('panjang');
 		$lebar	=$this->input->post('lebar');
-		$tinggi = $this->input->post('tinggi');
-		$material =$this->input->post('material');
+		$diameter = $this->input->post('diameter');
+		$id_material =$this->input->post('material');
 		
 		if($_FILES['userfile']['name'] != ""){
 			$config['upload_path'] = './uploads/';
@@ -124,8 +126,8 @@ class Dashboard extends CI_Controller {
 			'raw_type'=>$raw_type,
 			'panjang'=>$panjang,
 			'lebar'=>$lebar,
-			'tinggi'=>$tinggi,
-			'material'=>$material,
+			'diameter'=>$diameter,
+			'id_material'=>$id_material,
 			'jam'=>date('H:i',strtotime('now')),
 			'tanggal' => date('d-m-Y',strtotime('now')),
 			'attachment' => $userfile_attachment
@@ -200,16 +202,13 @@ class Dashboard extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['response'] = $this->m_order->getResponseOrder($id);
+		$data['material']=$this->m_proses->selectMaterial();
 		$this->load->view('v_user/header');
 		$this->load->view('v_form/form_customer_response_detail',$data);
 		$this->load->view('v_user/footer');
 		
 	}
 
-	public function processAddImage()
-	{
-		
-	}	
-
+	
 }
 

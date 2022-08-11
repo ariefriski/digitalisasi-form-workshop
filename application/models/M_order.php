@@ -171,10 +171,11 @@ class M_order extends CI_model
 
     public function getResponseOrder($id)
     {
-        $this->db->select('order.*,department.department_name,user.npk,user.name');
+        $this->db->select('order.*,department.department_name,user.npk,user.name,material.nama_material');
         $this->db->from('order');
         $this->db->join('department','order.id_department=department.id_department');
         $this->db->join('user','order.id_user=user.id_user');
+        $this->db->join('material','order.id_material=material.id_material');
         $this->db->where('order.id_order',$id);
         return $this->db->get()->result_array();
     }

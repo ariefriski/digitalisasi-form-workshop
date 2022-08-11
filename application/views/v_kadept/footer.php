@@ -66,8 +66,8 @@
                                             <div class="col-md-2">L
                                                 <input type="number" class="form-control" id="lebar" name="lebar" placeholder="mm">
                                             </div>
-                                            <div class="col-md-2">T
-                                                <input type="number" class="form-control" id="tinggi" name="tinggi" placeholder="mm">
+                                            <div class="col-md-2">Diameter/tebal
+                                                <input type="number" class="form-control" id="diameter" name="diameter" placeholder="mm">
                                             </div>
                 </div>
                 `);
