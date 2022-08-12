@@ -274,9 +274,7 @@
 
         // DATATABLE DASHBOARD
         table2 = $('#table-input-order').DataTable({ 
-            "scrollY": 500,
-           "scrollX": true,
-
+            
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.

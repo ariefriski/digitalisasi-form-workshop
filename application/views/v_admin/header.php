@@ -70,6 +70,9 @@
                                 <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/proses">
                                     <i class="si si-pencil"></i> Edit Data Proses
                                 </a>
+                                <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/material">
+                                    <i class="si si-pencil"></i> Edit Data Material
+                                </a>
                                 <a class="dropdown-item" href="<?php echo base_url();?>login/admin_logout">
                                     <i class="si si-logout mr-5"></i> Sign Out
                                 </a>

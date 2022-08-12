@@ -36,9 +36,9 @@ class Dashboard extends CI_Controller {
 
 	public function IO()
 	{
-		$data['column'] = $this->m_proses->showDatabaseProcess();
+		//
 		$this->load->view('v_admin/header');
-		$this->load->view('v_admin/input_order',$data);
+		$this->load->view('v_admin/input_order');
 		$this->load->view('v_admin/footer');
 	}
 	
@@ -293,29 +293,21 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->tanggal;
 			//Urgent
 			$row[] = $l->kategori;
-			// // $row[] = $l->kategori;
-			// // // //Nomor Permintaan
-			 $row[] = $l->no_order; 
-			// // // //Requestor
-			 $row[] = $l->name;
-			// // // //Department
-			 $row[] = $l->department_name;
-			// // // //Mesin
+			$row[] = $l->no_order;
+			$row[] = $l->name;
+			$row[] = $l->department_name;
 			$row[] = $l->nama_part;
-			// // //Jumlah
 			$row[] = $l->jumlah;
-			// // // //Material
+			
+			
 			$row[] = $l->nama_material;
-			// // // //Item Pekerjaan
-			 $row[] = $l->order_type;
-			// // // //Status
-			 $row[] = $l->status_pengerjaan;
-			// // // //cos Mat
-			 $row[] = $l->price_kg;
-
-			 if($l->nama_proses == 'MANUAL'){
-				$row[] = $l->hour;
-			 }
+			  
+			$row[] = $l->order_type;
+			$row[] = $l->status_pengerjaan;
+			$row[] = $l->price_kg;
+			$row[] = $l->total_actual;
+			
+			 
 			 
 			 
 

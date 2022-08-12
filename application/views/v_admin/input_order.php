@@ -27,10 +27,7 @@
                 <th>Item Pekerjaan</th>
                 <th>Status</th>
                 <th>COS MAT.</th>
-                <?php foreach($column as $c){?>
-                 <th><?php echo $c['nama_proses']; ?></th>
-   
-                <?php } ?>
+                
                 
              
                 <th>Total Actual</th>
@@ -41,33 +38,13 @@
             </tr>
         </thead>
         <tbody>
-                <!-- <tr>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
+                <tr>
+                  
+                
                     
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
-                    <td>da</td>
                 
 
-                </tr> -->
+                </tr>
         </tbody>
 </table>
 
