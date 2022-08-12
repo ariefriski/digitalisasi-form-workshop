@@ -27,25 +27,25 @@
                 <th>Item Pekerjaan</th>
                 <th>Status</th>
                 <th>COS MAT.</th>
-                
-                
+                <?php
+                    foreach ($columnTitle as $ct) {
+                        echo '
+                            <th>'.$ct['nama_proses'].'</th>
+                        ';
+                    }
+                ?>                
              
                 <th>Total Actual</th>
                 
-                <!-- <th colspan="4">Proses Design & CAM</th>
-                <th colspan="2">Proses</th> -->
+                <th colspan="4">Proses Design & CAM</th>
+                <th colspan="2">Proses</th>
                
             </tr>
         </thead>
         <tbody>
                 <tr>
-                  
-                
-                    
-                
 
                 </tr>
         </tbody>
 </table>
-
 

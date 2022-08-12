@@ -220,6 +220,15 @@ class M_proses extends CI_model
         return $hasil;
     }
 
+    function getDataProcessing($id_order, $id_proses) {
+        return $this->db->get_where('processing',array('id_order'=>$id_order,'id_proses'=>$id_proses))->result_array();
+    }
+    
+    function getIdOrderProcess() {
+        // $this->db->distinct();
+        // return $this->db->get('processing')->result_array();
+        $sql = "select distinct id_order from processing";
+        return $this->db->query($sql)->result_array();
 
-   
+    }
 }

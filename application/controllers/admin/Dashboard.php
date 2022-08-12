@@ -37,8 +37,9 @@ class Dashboard extends CI_Controller {
 	public function IO()
 	{
 		//
+		$data['columnTitle'] = $this->m_proses->showDatabaseProcess();
 		$this->load->view('v_admin/header');
-		$this->load->view('v_admin/input_order');
+		$this->load->view('v_admin/input_order',$data);
 		$this->load->view('v_admin/footer');
 	}
 	
@@ -269,22 +270,8 @@ class Dashboard extends CI_Controller {
 		$list = $this->m_proses->get_datatables_1();
 		$data = array();
 		$no = $_POST['start'];
+		$i = 0;
 		foreach ($list as $l) {
-			//$order = $this->m_order->getRoutingList($l->id_order);
-			
-		
-			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
-		
-			// if ($l->status_laporan == 'Disetujui'){
-			// 	$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }else{
-			// $delete = '	<a id="id-delete" name="delete" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }			
-				
 			$no++;
 			
 			$row = array();
@@ -299,7 +286,6 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->nama_part;
 			$row[] = $l->jumlah;
 			
-			
 			$row[] = $l->nama_material;
 			  
 			$row[] = $l->order_type;
@@ -307,28 +293,19 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->price_kg;
 			$row[] = $l->total_actual;
 			
-			 
-			 
-			 
-
-			
-			// // //Preparation/Manual
-			//  $row[] = $l->MANUAL;
-			//  $row[] = $l->CNC;
-			//  $row[] = $l->MILLING;
-			//  $row[] = $l->BUBUT;
-			//  $row[] = $l->GRINDING;
-			//  $row[] = $l->SAWING;
-			//  $row[] = $l->DRILLING;
-			//  $row[] = $l->MANMACHINING;
-			//  $row[] = $l->WELDING;
-			//  $row[] = $l->MANFABRIKASI;
-			//  $row[] = $l->total_actual;
-			 
-			
-			
+			$columnTitle = $this->m_proses->showDatabaseProcess();
+			$idOrder = $this->m_proses->getIdOrderProcess();
+                
+			foreach ($columnTitle as $ct) {
+				$detailProcess = $this->m_proses->getDataProcessing($idOrder[$i]['id_order'],$ct['id_proses']);
+				if(!empty($detailProcess[0]['hour'])) {
+					$row[] = $detailProcess[0]['hour'];
+				} else {
+					$row[]= "-";
+				}
+			}
 			$data[] = $row;
-			
+			$i++;
 		}
 		
 		$output = array(
