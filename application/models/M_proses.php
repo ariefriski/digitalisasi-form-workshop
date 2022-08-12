@@ -2,15 +2,15 @@
 date_default_timezone_set('Asia/Jakarta');
 class M_proses extends CI_model
 {
-    var $table = 'order';
-	var $column_order = array(null, 'nama_part'); //set column field database for datatable orderable
-	var $column_search = array('nama_part'); //set column field database for datatable searchable 
-	var $orderr = array('kategori' => 'desc'); // default order
+    // var $table = 'order';
+	// var $column_order = array(null, 'nama_part'); //set column field database for datatable orderable
+	// var $column_search = array('nama_part'); //set column field database for datatable searchable 
+	// var $orderr = array('kategori' => 'desc'); // default order
 
-    public function addInputOrder($data)
-    {
-        $this->db->insert('processing',$data);
-    }
+    // public function addInputOrder($data)
+    // {
+    //     $this->db->insert('processing',$data);
+    // }
 
 // /
 	
@@ -170,10 +170,6 @@ class M_proses extends CI_model
     {
         $this->db->select('*');
         $this->db->from('process');
-        
-        
-    
-
     }
 	function get_datatables_2()
 	{

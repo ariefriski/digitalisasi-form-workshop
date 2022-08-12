@@ -307,7 +307,7 @@
     });
 
 
-    var table3;
+var table3;
 
 $(document).ready(function() {
 
@@ -339,6 +339,45 @@ $(document).ready(function() {
         ],
     });
 
+    
+ 
+
+    
+});
+
+var table4;
+
+$(document).ready(function() {
+
+    // DATATABLE DASHBOARD
+    table4 = $('#table-edit-material').DataTable({ 
+        
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+        "language": {
+            "infoFiltered": ""
+        },
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('admin/edit/editMaterialTable')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+
+    
  
 
     
@@ -350,53 +389,6 @@ $(document).ready(function() {
         
     </body>
 
-    <!-- <div class="form-group row">
-                                            <label class="col-12">Checkboxes</label>
-                                            <div class="col-12">
-                                                <div class="custom-control custom-checkbox mb-5">
-                                                    <input class="custom-control-input" type="checkbox" name="example-checkbox1" id="example-checkbox1" value="option1" checked="">
-                                                    <label class="custom-control-label" for="example-checkbox1">Option 1</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox mb-5">
-                                                    <input class="custom-control-input" type="checkbox" name="example-checkbox2" id="example-checkbox2" value="option2">
-                                                    <label class="custom-control-label" for="example-checkbox2">Option 2</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox mb-5">
-                                                    <input class="custom-control-input" type="checkbox" name="example-checkbox3" id="example-checkbox3" value="option3">
-                                                    <label class="custom-control-label" for="example-checkbox3">Option 3</label>
-                                                </div>
-                                            </div>
-    </div> -->
+    
 </html>
 
-<!-- 
-    <div class="form-group row">
-                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_8" value="0" >
-                                                <span class="css-control-indicator"></span> Man.Machining
-                                            </label>
-                                            <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour8" name="hour_8" placeholder="0">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_9" value="0" >
-                                                <span class="css-control-indicator"></span> Welding
-                                            </label>
-                                            <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour9" name="hour_9" placeholder="0">
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="form-group row">
-                                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                                                <input type="checkbox" class="css-control-input" name="routing_item_10" value="0" >
-                                                <span class="css-control-indicator"></span> Man.Fabrikasi
-                                            </label>
-                                            <div class="col-md-2">
-                                            <input type="text" class="form-control" id="hour10" name="hour_10" placeholder="0">
-                                            </div>
-                                        </div>
-                                        </div>
- -->

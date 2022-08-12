@@ -111,7 +111,7 @@
 					<form class="form-horizontal">
 						<div class="modal-body">
 
-							<input type="hidden" name="id_proses" id="textid" value="">
+							<input type="   " name="id_proses" id="textid" value="">
 							<div class="alert alert-warning">
 								<p>Apakah Anda yakin mau menghapus?</p>
 							</div>
