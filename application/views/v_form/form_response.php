@@ -234,4 +234,64 @@
 </div>
 
  
- 
+ <script>
+     $(document).on('click',"#inhouse",function(){
+                $("#plan1").empty().append(`
+                <div id="plan2">
+                                        <div class="form-group row" id="planxxx">
+                                            
+                                            <label class="col-12" for="routing_plan">Routing Plan</label>
+                                            <div class="form-group row" id="form-group">
+                                            <div class="col-md-8">
+                                                <select class="form-control"  name="inputorder[]">
+                                                <option value="0">Select</option>
+                                                <?php foreach($get_Routing as $gr){ ?>
+                                                <option value="<?php echo "$gr[id_proses]"?>"><?php echo "$gr[nama_proses]"?></option>
+                                                <?php } ?>    
+                                                </select>
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                            <input type="text" class="form-control" id="example-text-input" name="hour[]" placeholder="0">
+                                            </div>
+                                            </div>
+
+                                            
+                                            
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5" id="add_process">
+                                             <i class="fa fa-plus"></i>
+                                         </button>
+                                        <button type="button" class="btn btn-sm btn-circle btn-alt-danger mr-5 mb-5" id="remove_process" hidden>
+                                        <i class="fa fa-times"></i>
+                                         </button>    
+                </div>
+                `);
+            });
+            $(document).on('click',"#add_process",function(){
+                $("#planxxx").append(`
+
+                <div class="form-group row" id="form-group_1">
+                                            <div class="col-md-8">
+                                                <select class="form-control"  name="inputorder[]">
+                                                <option value="0">Select</option>
+                                                <?php foreach($get_Routing as $gr){ ?>
+                                                <option value="<?php echo "$gr[id_proses]"?>"><?php echo "$gr[nama_proses]"?></option>
+                                                <?php } ?>    
+                                                </select>
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                            <input type="text" class="form-control" id="example-text-input" name="hour[]" placeholder="0">
+                                            </div>
+                                            </div>
+
+                `)
+                $("#remove_process").removeAttr('hidden');
+
+            });  
+            $(document).on('click','#remove_process',function(){
+                $("#form-group_1").remove();
+               
+            });
+ </script>

@@ -55,7 +55,7 @@
             //     alert("ADADA");
             // }
             $('#rawradio').click(function(){
-             if (($('#r_block').is(':checked'))||($('#r_cylinder').is(':checked'))||($('#r_fabrikasi').is(':checked'))) {
+             if (($('#r_block').is(':checked'))||($('#r_fabrikasi').is(':checked'))) {
                 $("#dimensi").empty().append(`
                 <div class="form-group row" id="dimensi2">
                 <label class="col-12" for="example-text-input">Dimensi Produk</label>
@@ -65,6 +65,22 @@
                                             </div>
                                             <div class="col-md-2">L
                                                 <input type="number" class="form-control" id="lebar" name="lebar" placeholder="mm">
+                                            </div>
+                                            <div class="col-md-2">Diamter/Tebal
+                                                <input type="number" class="form-control" id="diameter" name="diameter" placeholder="mm">
+                                            </div>
+                </div>
+                `);
+             }else if (($('#r_cylinder').is(':checked'))){
+                $("#dimensi").empty().append(`
+                <div class="form-group row" id="dimensi2">
+                <label class="col-12" for="example-text-input">Dimensi Produk</label>
+                                            <br><br>
+                                            <div class="col-md-2">P
+                                                <input type="number" class="form-control" id="panjang" name="panjang" placeholder="mm">
+                                            </div>
+                                            <div class="col-md-2">L
+                                                <input type="text" class="form-control" id="lebar" name="lebar" value="0" readonly>
                                             </div>
                                             <div class="col-md-2">Diamter/Tebal
                                                 <input type="number" class="form-control" id="diameter" name="diameter" placeholder="mm">

@@ -7,10 +7,10 @@ class M_proses extends CI_model
 	var $column_search = array('nama_part'); //set column field database for datatable searchable 
 	var $orderr = array('kategori' => 'desc'); // default order
 
-    // public function addInputOrder($data)
-    // {
-    //     $this->db->insert('processing',$data);
-    // }
+    public function addInputOrder($data)
+    {
+        $this->db->insert('processing',$data);
+    }
 
 // /
 	
@@ -67,6 +67,17 @@ class M_proses extends CI_model
         "order.status_laporan","order.status_pengerjaan","order.jam","order.tanggal","order.approve",
         "order.alasan","order.inhouse","user.name","department.department_name","material.nama_material","material.price_kg",
         "processing.id_order","material.massa_jenis"));
+        return $this->db->get()->result_array();
+    }
+
+    public function getProcessing($id)
+    {
+        $this->db->select('process.nama_proses,process.total_cost,processing.hour');
+        $this->db->select('SUM(processing.hour*process.total_cost) as harga');
+        $this->db->from('process');
+        $this->db->join('processing','process.id_proses=processing.id_proses');
+        $this->db->where('processing.id_order',$id);
+        $this->db->group_by(array("process.nama_proses","process.total_cost","processing.hour"));
         return $this->db->get()->result_array();
     }
 //         // $this->db->select('IIF(order.lebar > 1,order.panjang * order.lebar * order.diameter ,3.14 * order.diameter /2 * order.diameter /2 * panjang) as Volume');

@@ -87,5 +87,13 @@ class M_routing extends CI_model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	public function selectRouting()
+    {
+        $this->db->select('process.id_proses,process.nama_proses');
+		$this->db->from('process');
+        $result = $this->db->get();
+        return $result->result_array();
+    }
 }
 ?>

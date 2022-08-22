@@ -67,6 +67,9 @@
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
+                            <a class="dropdown-item" href="<?php echo base_url();?>admin/dashboard/IO">
+                                    <i class="si si-list"></i> Input Order List
+                                </a>
                                 <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/proses">
                                     <i class="si si-pencil"></i> Edit Data Proses
                                 </a>

@@ -77,7 +77,7 @@ class Dashboard extends CI_Controller {
 			'status_laporan'=>$status_laporan,
 			'status_pengerjaan'=>$status_pengerjaan,
 			'jam'=>date('H:i',strtotime('now')),
-			'tanggal' => date('d-m-Y',strtotime('now')),
+			'tanggal' => date('Y-m-d',strtotime('now')),
 			'approve' =>$approve,
 			'attachment' => $image
 			

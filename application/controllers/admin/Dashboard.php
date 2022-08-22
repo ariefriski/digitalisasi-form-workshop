@@ -126,6 +126,7 @@ class Dashboard extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['accept_response'] = $this->m_order->getResponseOrder($id);
+		$data['get_Routing'] = $this->m_routing->selectRouting();
 		$this->load->view('v_admin/header');
 		$this->load->view('v_form/form_response',$data);
 		$this->load->view('v_admin/footer');
@@ -135,6 +136,7 @@ class Dashboard extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['report'] = $this->m_proses->getReportPaper($id);
+		$data['processing'] = $this->m_proses->getProcessing($id);
 		$this->load->view('v_admin/report',$data);
 	}
 
@@ -214,43 +216,43 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->nama_part;
 			$row[] = $l->no_order;
 			$row[] = $l->inhouse;
-			$row[] = $l->material;
-			$row[] = '-';
-			$row[] = $l->total;
-			$row[] = $l->total;
-			$row[] = '???';
-			$row[] = 'design';
-			$row[] = '???';
-			$row[] = 'CAM';
+			$row[] = $l->nama_material;
+			$row[] = $l->price_kg;
+			// $row[] = $l->total;
+			// $row[] = $l->total;
+			// $row[] = '???';
+			// $row[] = 'design';
+			// $row[] = '???';
+			// $row[] = 'CAM';
 			
-			$row[] = $l->MANUAL;
-			$row[] = 'Manual';
-			$row[] = $l->CNC;
-			$row[] = 'CNC';
-			$row[] = $l->MILLING;
-			$row[] = 'Milling';
-			$row[] = $l->BUBUT;
-			$row[] = 'Bubut';
-			$row[] = $l->GRINDING;
-			$row[] = 'Grinding';
-			$row[] = $l->SAWING;
-			$row[] = 'Saw';
-			$row[] = $l->DRILLING;
-			$row[] = 'Drilling';
-			$row[] = $l->MANMACHINING;
-			$row[] = 'Man.Machining';
-			$row[] = $l->WELDING;
-			$row[] = 'Welding';
-			$row[] = $l->MANFABRIKASI;
-			$row[] = 'Man.Fabrikasi';
-			$row[] = 'Inspeksi';
-			$row[] = '???';
+			// $row[] = $l->MANUAL;
+			// $row[] = 'Manual';
+			// $row[] = $l->CNC;
+			// $row[] = 'CNC';
+			// $row[] = $l->MILLING;
+			// $row[] = 'Milling';
+			// $row[] = $l->BUBUT;
+			// $row[] = 'Bubut';
+			// $row[] = $l->GRINDING;
+			// $row[] = 'Grinding';
+			// $row[] = $l->SAWING;
+			// $row[] = 'Saw';
+			// $row[] = $l->DRILLING;
+			// $row[] = 'Drilling';
+			// $row[] = $l->MANMACHINING;
+			// $row[] = 'Man.Machining';
+			// $row[] = $l->WELDING;
+			// $row[] = 'Welding';
+			// $row[] = $l->MANFABRIKASI;
+			// $row[] = 'Man.Fabrikasi';
+			// $row[] = 'Inspeksi';
+			// $row[] = '???';
 			// }
 			// foreach($routingLiz as $rl){
 			// 	$row[] = $rl['hour'];
 			// 	$row[] = $rl['nama_proses'];
 			// }
-			$row[] = $l->total_actual;
+			// $row[] = $l->total_actual;
 			$data[] = $row;
 			
 		}
@@ -291,7 +293,7 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->order_type;
 			$row[] = $l->status_pengerjaan;
 			$row[] = $l->price_kg;
-			$row[] = $l->total_actual;
+			
 			
 			$columnTitle = $this->m_proses->showDatabaseProcess();
 			$idOrder = $this->m_proses->getIdOrderProcess();
@@ -304,6 +306,7 @@ class Dashboard extends CI_Controller {
 					$row[]= "-";
 				}
 			}
+			$row[] = $l->total_actual;
 			$data[] = $row;
 			$i++;
 		}
