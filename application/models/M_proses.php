@@ -50,21 +50,10 @@ class M_proses extends CI_model
 
     public function getReportPaper($id)
     {
-        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg');
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,material.massa_jenis');
         $this->db->select('SUM(processing.hour * process.harga_perjam) AS total');
         $this->db->select('SUM(processing.hour) as total_actual');
-        $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6) AS Volume');
-        $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6 / 1000000 * 78) AS Berat');
-        // $this->db->select('max(case when processing.id_proses = 1 then processing.hour end) as MANUAL,
-        // max(case when processing.id_proses = 2 then processing.hour end) as CNC,
-        // max(case when processing.id_proses = 3 then processing.hour end) as MILLING,
-        // max(case when processing.id_proses = 4 then processing.hour end) as BUBUT,
-        // max(case when processing.id_proses = 5 then processing.hour end) as GRINDING,
-        // max(case when processing.id_proses = 6 then processing.hour end) as SAWING,
-        // max(case when processing.id_proses = 7 then processing.hour end) as DRILLING,
-        // max(case when processing.id_proses = 8 then processing.hour end) as MANMACHINING,
-        // max(case when processing.id_proses = 9 then processing.hour end) as WELDING,
-        // max(case when processing.id_proses = 10 then processing.hour end) as MANFABRIKASI');
+        
         $this->db->from('order');
         $this->db->join('user','order.id_user = user.id_user');
         $this->db->join('department','order.id_department = department.id_department');
@@ -76,10 +65,12 @@ class M_proses extends CI_model
         "order.no_order","order.order_type","order.kategori","order.nama_part","order.jumlah",
         "order.raw_type","order.panjang","order.lebar","order.diameter","order.id_material","order.attachment",
         "order.status_laporan","order.status_pengerjaan","order.jam","order.tanggal","order.approve",
-        "order.alasan","order.inhouse","user.name","department.department_name","material.nama_material","material.price_kg"));
+        "order.alasan","order.inhouse","user.name","department.department_name","material.nama_material","material.price_kg",
+        "processing.id_order","material.massa_jenis"));
         return $this->db->get()->result_array();
     }
-
+//         // $this->db->select('IIF(order.lebar > 1,order.panjang * order.lebar * order.diameter ,3.14 * order.diameter /2 * order.diameter /2 * panjang) as Volume');
+        
 
 	private function _get_datatables_query_1()
     {
