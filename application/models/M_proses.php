@@ -233,4 +233,9 @@ class M_proses extends CI_model
         return $this->db->query($sql)->result_array();
 
     }
+
+    function getProcessById($id)
+    {
+        return $this->db->get_where('process',array('id_proses'=>$id))->result_array();
+    }
 }

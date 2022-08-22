@@ -151,6 +151,7 @@ class Dashboard extends CI_Controller {
 		$id_order = $this->input->post('id_order');
 		$no_order = $this->input->post('no_order');
 		$response_order = $this->input->post('response_order');
+		$total = 0;
 		for ($i=0;$i< sizeof($ordercheck);$i++)
 		{
 			$data = array(
@@ -162,11 +163,15 @@ class Dashboard extends CI_Controller {
 				'no_order'=>$no_order,
 				'inhouse'=>$response_order
 			);
-			$this->m_order->updateOrderNoPict($id_order,$data2);
-			$this->m_proses->addInputOrder($data);
+			// $this->m_order->updateOrderNoPict($id_order,$data2);
+			// $this->m_proses->addInputOrder($data);
+			
+			$total_cost = $this->m_proses->getProcessById($ordercheck[$i]);
+			$result = $hour[$i] * $total_cost[0]['total_cost'];
+			$total += $result;
 		}
-		
-		redirect(site_url('admin/dashboard/'));
+		var_dump($total_cost);
+		//redirect(site_url('admin/dashboard/'));
 		//Tambah Sintaks Update No Order
 	}
 	
@@ -217,7 +222,7 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->no_order;
 			$row[] = $l->inhouse;
 			$row[] = $l->nama_material;
-			$row[] = $l->price_kg;
+			
 			// $row[] = $l->total;
 			// $row[] = $l->total;
 			// $row[] = '???';
