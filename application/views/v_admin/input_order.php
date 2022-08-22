@@ -37,8 +37,7 @@
              
                 <th>Total Actual</th>
                 
-                <th colspan="4">Proses Design & CAM</th>
-                <th colspan="2">Proses</th>
+                
                
             </tr>
         </thead>
