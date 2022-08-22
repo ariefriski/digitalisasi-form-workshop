@@ -281,7 +281,7 @@
             "language": {
                 "infoFiltered": ""
             },
-
+            "searching" : false,
             // Load data for the table's content from an Ajax source
             "ajax": {
                 "url": "<?php echo site_url('admin/dashboard/inputList')?>",
