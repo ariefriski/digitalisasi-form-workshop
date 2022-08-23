@@ -87,15 +87,15 @@
                                             <label class="col-12">Raw type</label>
                                             <div class="col-12" id="rawradio">
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="block">
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="1">
                                                     <label class="custom-control-label" for="r_block">Block</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="cylinder">
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="2">
                                                     <label class="custom-control-label" for="r_cylinder">Cylinder</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="fabrikasi">
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="3">
                                                     <label class="custom-control-label" for="r_fabrikasi">Fabrikasi</label>
                                                 </div>
                                                 <button type="button" class="btn btn-sm btn-circle btn-alt-danger mr-5 mb-5" id="cancel_raw">

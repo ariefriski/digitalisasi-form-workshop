@@ -20,12 +20,13 @@
 <div class="col-md-12">
                             <div class="block-header block-header-default">
                                     <h3 class="block-title" style="text-align: center;">1. FORM PERMINTAAN (di isi oleh user)</h3> 
+                                
                                     <?php foreach($response as $r) { ?>
-                                        <?php if($r['status_laporan'] == 'Disetujui') { ?>
+                                        <?php if($r['status_approval'] == 'Disetujui') { ?>
                                             <?php echo '<button class="btn btn-info" id="edit-button" disabled >
                                             <i class="si si-pencil"></i>&nbsp;Edit
                                         </button>' ?>
-                                        <?php } else if ($r['status_laporan'] == 'Ditolak') {?>
+                                        <?php } else if ($r['status_approval'] == 'Ditolak') {?>
                                             <?php echo '<button class="btn btn-info" id="edit-button" disabled >
                                             <i class="si si-pencil"></i>&nbsp;Edit
                                         </button>' ?>
@@ -108,15 +109,15 @@
                                             <label class="col-12">Raw type</label>
                                             <div class="col-12" id="rawradio">
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="block" <?php if($r['raw_type']=='block') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="1" <?php if($r['id_raw_type']==1) echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_block">Block</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="cylinder" <?php if($r['raw_type']=='cylinder') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="2" <?php if($r['id_raw_type']==2) echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_cylinder">Cylinder</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="fabrikasi" <?php if($r['raw_type']=='fabrikasi') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="3" <?php if($r['id_raw_type']==3) echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_fabrikasi">Fabrikasi</label>
                                                 </div>
                                                 <button type="button" class="btn btn-sm btn-circle btn-alt-danger mr-5 mb-5" id="cancel_raw" disabled>
@@ -129,7 +130,7 @@
                                         </div>
                                         
                                         <div id="dimensi">
-                                            <?php if($r['raw_type'] != NULL){ ?>
+                                            <?php if($r['id_raw_type'] != NULL){ ?>
                                                 <div class="form-group row" id="dimensi2">
                                                 <label class="col-12" for="example-text-input">Dimensi Produk</label>
                                             <br><br>

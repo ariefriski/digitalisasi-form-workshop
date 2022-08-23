@@ -171,11 +171,14 @@ class M_order extends CI_model
 
     public function getResponseOrder($id)
     {
-        $this->db->select('order.*,department.department_name,user.npk,user.name,material.nama_material');
+        $this->db->select('order.*,department.department_name,user.npk,user.name,material.nama_material,
+        detail_raw_type.*,approval.status_approval,approval.alasan');
         $this->db->from('order');
         $this->db->join('department','order.id_department=department.id_department');
         $this->db->join('user','order.id_user=user.id_user');
         $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_raw_type','detail_raw_type.id_order=order.id_order');
+        $this->db->join('approval','approval.id_order=order.id_order','left');
         $this->db->where('order.id_order',$id);
         return $this->db->get()->result_array();
     }
@@ -200,6 +203,11 @@ class M_order extends CI_model
         $this->_get_datatables_query();
 		$query = $this->db->get();
 		return $query->num_rows();
+    }
+
+    public function addDetailRawType($data)
+    {
+        $this->db->insert('detail_raw_type',$data);
     }
 }
 ?>

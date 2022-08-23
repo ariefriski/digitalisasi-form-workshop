@@ -7,7 +7,9 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->load->model('m_order');
 		$this->load->model('m_login');
+		$this->load->model('m_routing');
 		$this->load->model('m_proses');
+		$this->load->model('m_material');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
 		if($this->session->userdata('user_is_logged_in')=='') {
@@ -42,7 +44,7 @@ class Dashboard extends CI_Controller {
 		$this->upload->do_upload($filename);
 		
 		
-
+		$id_order= 'K-01-3';
 		$id_user = $this->input->post('id_user');
 		$id_department = $this->input->post('id_department');
 		$order_type = $this->input->post('r_jenispekerjaan');
@@ -54,36 +56,60 @@ class Dashboard extends CI_Controller {
 		$lebar	=$this->input->post('lebar');
 		$diameter = $this->input->post('diameter');
 		$material =$this->input->post('material');
-		$status_laporan = 'Menunggu Approve';
+		$tempat_pembuatan = 'NULL';
 		$status_pengerjaan = 'WAITING';
-		$approve = 'No';
+		$tanggal = "%Y-%M-%d %H:%i";
 		$image = $this->upload->data('file_name');
+		if($lebar==0){
+			$volume = 3.14 * (($diameter/2) * ($diameter/2)) * $panjang;
+		}else{
+			$volume = $panjang*$lebar*$diameter;
+		}
+		$material_detail = $this->m_material->getMaterialById($material);
+		$berat = $volume * $material_detail[0]['massa_jenis'];
+		
+		//Rumus Material Cost
+		$total_cost_material = ($material_detail[0]['price_kg']*$berat*$jumlah)*1.1;
 
 		
-
-		
-		$data =array(
+		$data_order =array(
+			'id_order'=>$id_order,
 			'id_user'=>$id_user,
 			'id_department' =>$id_department,
 			'order_type' => $order_type,
 			'kategori'=>$kategori,
 			'nama_part'=>$nama_part,
 			'jumlah'=>$jumlah,
-			'raw_type'=>$raw_type,
-			'panjang'=>$panjang,
-			'lebar'=>$lebar,
-			'diameter'=>$diameter,
 			'id_material'=>$material,
-			'status_laporan'=>$status_laporan,
 			'status_pengerjaan'=>$status_pengerjaan,
-			'jam'=>date('H:i',strtotime('now')),
-			'tanggal' => date('Y-m-d',strtotime('now')),
-			'approve' =>$approve,
+			'tanggal'=>mdate($tanggal),
+			'tempat_pembuatan'=>$tempat_pembuatan,
 			'attachment' => $image
 			
 		);
 
-		$this->m_order->addOrder($data);
+		$data_detail_raw_type = array(
+			'id_order'=>$id_order,
+			'id_raw_type'=>$raw_type,
+			'panjang'=>$panjang,
+			'lebar'=>$lebar,
+			'diameter'=>$diameter,
+			'volume'=>$volume,
+			'berat'=>$berat
+
+		);
+
+		$data_estimate_routing = array(
+			'id_order'=>$id_order,
+			'total_cost_material'=>$total_cost_material
+		);
+
+
+		// var_dump($total_cost_material);
+		
+		$this->m_order->addOrder($data_order);
+		$this->m_order->addDetailRawType($data_detail_raw_type);
+		$this->m_routing->addEstimateRouting($data_estimate_routing);
 		redirect(site_url('user/dashboard/'));
 	}
 

@@ -9,7 +9,7 @@ class M_proses extends CI_model
 
     public function addInputOrder($data)
     {
-        $this->db->insert('processing',$data);
+        $this->db->insert('routing_plan',$data);
     }
 
 // /

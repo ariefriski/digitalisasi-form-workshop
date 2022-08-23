@@ -154,24 +154,25 @@ class Dashboard extends CI_Controller {
 		$total = 0;
 		for ($i=0;$i< sizeof($ordercheck);$i++)
 		{
-			$data = array(
-				'id_proses' => $ordercheck[$i],
-				'hour'=> $hour[$i],
-				'id_order'=>$id_order
-			);
-			$data2 = array(
-				'no_order'=>$no_order,
-				'inhouse'=>$response_order
-			);
-			// $this->m_order->updateOrderNoPict($id_order,$data2);
-			// $this->m_proses->addInputOrder($data);
-			
 			$total_cost = $this->m_proses->getProcessById($ordercheck[$i]);
 			$result = $hour[$i] * $total_cost[0]['total_cost'];
 			$total += $result;
+			$data = array(
+				'id_proses' => $ordercheck[$i],
+				'hour'=> $hour[$i],
+				'id_order'=>$id_order,
+				'estimate_cost_process'=>$result
+			);
+			// $this->m_order->updateOrderNoPict($id_order,$data2);
+			 $this->m_proses->addInputOrder($data);
+			 
+			
 		}
-		var_dump($total_cost);
-		//redirect(site_url('admin/dashboard/'));
+		$total_cost_material = $this->m_routing->getTotalCostMaterialByIdOrder($id_order);
+		$total_all = $total + $total_cost_material[0]['total_cost_material'];
+		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all);
+		
+		redirect(site_url('admin/dashboard/'));
 		//Tambah Sintaks Update No Order
 	}
 	

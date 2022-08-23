@@ -18,6 +18,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->load->model('m_order');
 		$this->load->model('m_login');
+		$this->load->model('m_approval');
 		if($this->session->userdata('kadept_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
 			redirect('login');
@@ -96,20 +97,27 @@ class Dashboard extends CI_Controller {
 	{
 		
 
-		$id = $this->input->get('id');
+		$id_order = $this->input->get('id');
 		$approve = $this->input->post('r_order_response');
 		$alasan = $this->input->post('alasan');
+		$id_user = $this->session->userdata('id_user');
+		$tanggal = "%Y-%M-%d %H:%i";
+		$jenis_approval = $this->session->userdata('level');
 		if ($approve == 'accept'){
-			$status_laporan = 'Disetujui';
+			$status_approval = 'Disetujui';
 		}else if ($approve == 'reject'){
-			$status_laporan = 'Ditolak';
+			$status_approval = 'Ditolak';
 		}
 		$data =array(
-			'status_laporan'=>$status_laporan,
-			'approve'=>$approve,
-			'alasan' =>$alasan
+			'id_order'=>$id_order,
+			'id_user'=>$id_user,
+			'status_approval'=>$status_approval,
+			'alasan' =>$alasan,
+			'tanggal'=>mdate($tanggal),
+			'jenis_approval'=>$jenis_approval
+
 		);
-		$this->m_order->updateOrderNoPict($id,$data);
+		$this->m_approval->addApproval($data);
 		redirect(site_url('kadept/dashboard/'));
 	}
 }

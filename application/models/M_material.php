@@ -64,5 +64,10 @@ class M_material extends CI_model
         $hasil = $this->db->query("DELETE FROM material WHERE id_material='$id_material'");
 		return $hasil;
     }
+
+    function getMaterialById($id)
+    {
+        return $this->db->get_where('material',array('id_material'=>$id))->result_array();
+    }
     
 }

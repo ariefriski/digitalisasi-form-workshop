@@ -86,22 +86,22 @@
                                             <label class="col-12">Raw type</label>
                                             <div class="col-12" id="rawradio">
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="block" <?php if($a['raw_type']=='block') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_block" value="1" <?php if($a['id_raw_type']==1) echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_block">Block</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="cylinder" <?php if($a['raw_type']=='cylinder') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_cylinder" value="2" <?php if($a['id_raw_type']==2) echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_cylinder">Cylinder</label>
                                                 </div>
                                                 <div class="custom-control custom-radio custom-control-inline">
-                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="fabrikasi" <?php if($a['raw_type']=='fabrikasi') echo 'checked'?> disabled>
+                                                    <input class="custom-control-input" type="radio" name="raw_type" id="r_fabrikasi" value="3" <?php if($a['id_raw_type']==3) echo 'checked'?> disabled>
                                                     <label class="custom-control-label" for="r_fabrikasi">Fabrikasi</label>
                                                 </div>
                                             </div>
                                         </div>
                                         
                                         <div id="dimensi">
-                                            <?php if($a['raw_type'] != NULL){ ?>
+                                            <?php if($a['id_raw_type'] != NULL){ ?>
                                                 <div class="form-group row" id="dimensi2">
                                                 <label class="col-12" for="example-text-input">Dimensi Produk</label>
                                             <br><br>
@@ -150,10 +150,11 @@
 </div>
                              <div class="block">
                                 <div class="block-content">
+                                
                                 <?php foreach($accept as $a) { ?>
                                     <form action="<?php echo base_url()?>kadept/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
                                     <div class="form-group row" >
-                                            <label class="col-8" for="example-text-input">Kadept Approval Department X</label>
+                                            <label class="col-8" for="example-text-input">Kadept Approval User</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
                                                 <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept">

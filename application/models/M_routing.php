@@ -95,5 +95,22 @@ class M_routing extends CI_model
         $result = $this->db->get();
         return $result->result_array();
     }
+
+	function addEstimateRouting($data)
+	{
+		$this->db->insert('detail_estimate_routing',$data);
+	}
+
+	function updateEstimateRouting($id,$total_cost_process,$total_all)
+	{
+		$this->db->set('total_cost_process',$total_cost_process);
+		$this->db->set('total_all',$total_all);
+		$this->db->where('id_order',$id);
+		$this->db->update('detail_estimate_routing');
+	}
+	function getTotalCostMaterialByIdOrder($id)
+	{
+		return $this->db->get_where('detail_estimate_routing',array('id_order'=>$id))->result_array();
+	}
 }
 ?>
