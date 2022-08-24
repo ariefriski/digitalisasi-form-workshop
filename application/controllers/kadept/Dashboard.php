@@ -48,28 +48,28 @@ class Dashboard extends CI_Controller {
 		$no = $_POST['start'];
 		foreach ($list as $l) {
 	
-			if (($l->status_laporan == 'Disetujui') || ($l->status_laporan == 'Ditolak')){
-			$view ='<a type="button" href="#"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
-						<i class="fa fa-eye"></i>
-					</a>'; 
-			}else{
+			// if (($l->status_pengerjaan == 'Disetujui') || ($l->status_pengerjaan == 'Ditolak')){
+			// $view ='<a type="button" href="#"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+			// 			<i class="fa fa-eye"></i>
+			// 		</a>'; 
+			// }else{
 				$view ='<a type="button" href="'.base_url() . 'kadept/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
-			}	
+			// }	
 			$no++;
-			$date = date_create($l->jam);
+			$tanggal = date_create($l->tanggal);
 			$row = array();
 			$row[] = $no;
 			$row[] = $l->nama_part;
-			$row[] = $l->tanggal;
-			$row[] = date_format($date,"H:i");
+			$row[] = date_format($tanggal,"d/m/Y");
+			$row[] = date_format($tanggal,"H:i");
 			if ($l->kategori == 'urgent'){
 				$row[] = '<span class="badge badge-danger">urgent</span>';
 			}else if ($l->kategori == 'biasa'){
 				$row[] = '<span class="badge badge-warning">biasa</span>';
 			}
-			$row[] = $l->status_laporan;
+			$row[] = $l->status_pengerjaan;
 			$row[] = $view;
 			$data[] = $row;
 		}

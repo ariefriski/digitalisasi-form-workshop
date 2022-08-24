@@ -89,21 +89,22 @@ class Dashboard extends CI_Controller {
 			// }			
 				
 			$no++;
-			$date = date_create($l->jam);
+			$tanggal = date_create($l->tanggal);
 			$row = array();
 			foreach($departmentName as $d){
 			$row[] = $no;
 			$row[] = $l->nama_part;
-			$row[] = $l->tanggal;
-			$row[] = date_format($date,"H:i");
+			$row[] = date_format($tanggal,"d/m/Y");
+			$row[] = date_format($tanggal,"H:i");
 			if ($l->kategori == 'urgent'){
 				$row[] = '<span class="badge badge-danger">urgent</span>';
 			}else if ($l->kategori == 'biasa'){
 				$row[] = '<span class="badge badge-warning">biasa</span>';
 			}
 			$row[] = $d['department_name'];
-			$row[] = $l->status_laporan;
+			
 			$row[] = $l->status_pengerjaan;
+			$row[] = 'waiting  ';
 			$row[] = $view.$delete.$report;
 			
 			}
@@ -280,15 +281,16 @@ class Dashboard extends CI_Controller {
 		$no = $_POST['start'];
 		$i = 0;
 		foreach ($list as $l) {
-			$no++;
 			
+			$no++;
 			$row = array();
-			// $rl['status']; foreach($routingList as $rl){	
-			//Tanggal			
-			$row[] = $l->tanggal;
+			
+			$tanggal = date_create($l->tanggal);
+			$row[] = date_format($tanggal,"d/m/Y");
 			//Urgent
+			
 			$row[] = $l->kategori;
-			$row[] = $l->no_order;
+			$row[] = $l->id_order;
 			$row[] = $l->name;
 			$row[] = $l->department_name;
 			$row[] = $l->nama_part;
@@ -304,14 +306,14 @@ class Dashboard extends CI_Controller {
 			$columnTitle = $this->m_proses->showDatabaseProcess();
 			$idOrder = $this->m_proses->getIdOrderProcess();
                 
-			foreach ($columnTitle as $ct) {
-				$detailProcess = $this->m_proses->getDataProcessing($idOrder[$i]['id_order'],$ct['id_proses']);
-				if(!empty($detailProcess[0]['hour'])) {
-					$row[] = $detailProcess[0]['hour'];
-				} else {
-					$row[]= "-";
-				}
-			}
+			// foreach ($columnTitle as $ct) {
+			// 	$detailProcess = $this->m_proses->getDataProcessing($idOrder[$i]['id_order'],$ct['id_proses']);
+			// 	if(!empty($detailProcess[0]['hour'])) {
+			// 		$row[] = $detailProcess[0]['hour'];
+			// 	} else {
+			// 		$row[]= "-";
+			// 	}
+			// }
 			$row[] = $l->total_actual;
 			$data[] = $row;
 			$i++;

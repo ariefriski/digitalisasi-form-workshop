@@ -86,23 +86,12 @@ class M_proses extends CI_model
 	private function _get_datatables_query_1()
     {
         $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg');
-        $this->db->select('SUM(processing.hour * process.harga_perjam) AS total');
-        $this->db->select('SUM(processing.hour) as total_actual');
-        $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6) AS Volume');
-        $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6 / 1000000 * 78) AS Berat');
         $this->db->from('order');
         $this->db->join('user','order.id_user = user.id_user');
         $this->db->join('department','order.id_department = department.id_department');
-        $this->db->join('processing','order.id_order = processing.id_order');
-        $this->db->join('process','processing.id_proses=process.id_proses');
         $this->db->join('material','order.id_material=material.id_material');
         
-        $this->db->group_by(array("order.id_order", "order.id_user","order.id_department",
-        "order.no_order","order.order_type","order.kategori","order.nama_part","order.jumlah",
-        "order.raw_type","order.panjang","order.lebar","order.diameter","order.id_material","order.attachment",
-        "order.status_laporan","order.status_pengerjaan","order.jam","order.tanggal","order.approve",
-        "order.alasan","order.inhouse","user.name","department.department_name","material.nama_material","material.price_kg",
-        "processing.id_order"));
+     
 
    
 
@@ -118,25 +107,31 @@ class M_proses extends CI_model
 
     function testing()
     {
-        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,processing.id_proses,process.nama_proses,processing.hour');
-        $this->db->select('SUM(processing.hour * process.harga_perjam) AS total');
-        $this->db->select('SUM(processing.hour) as total_actual');
-        $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6) AS Volume');
-        $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6 / 1000000 * 78) AS Berat');
+        // $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,processing.id_proses,process.nama_proses,processing.hour');
+        // $this->db->select('SUM(processing.hour * process.harga_perjam) AS total');
+        // $this->db->select('SUM(processing.hour) as total_actual');
+        // $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6) AS Volume');
+        // $this->db->select('SUM(3.14 * diameter / 2 * diameter / 2 * panjang / 6 / 1000000 * 78) AS Berat');
+        // $this->db->from('order');
+        // $this->db->join('user','order.id_user = user.id_user');
+        // $this->db->join('department','order.id_department = department.id_department');
+        // $this->db->join('processing','order.id_order = processing.id_order');
+        // $this->db->join('process','processing.id_proses=process.id_proses');
+        // $this->db->join('material','order.id_material=material.id_material');
+        
+        // $this->db->group_by(array("order.id_order", "order.id_user","order.id_department",
+        // "order.no_order","order.order_type","order.kategori","order.nama_part","order.jumlah",
+        // "order.raw_type","order.panjang","order.lebar","order.diameter","order.id_material","order.attachment",
+        // "order.status_laporan","order.status_pengerjaan","order.jam","order.tanggal","order.approve",
+        // "order.alasan","order.inhouse","user.name","department.department_name","material.nama_material","material.price_kg",
+        // "processing.id_order","process.nama_proses","processing.hour"));
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg');
+        
         $this->db->from('order');
         $this->db->join('user','order.id_user = user.id_user');
         $this->db->join('department','order.id_department = department.id_department');
-        $this->db->join('processing','order.id_order = processing.id_order');
-        $this->db->join('process','processing.id_proses=process.id_proses');
         $this->db->join('material','order.id_material=material.id_material');
-        
-        $this->db->group_by(array("order.id_order", "order.id_user","order.id_department",
-        "order.no_order","order.order_type","order.kategori","order.nama_part","order.jumlah",
-        "order.raw_type","order.panjang","order.lebar","order.diameter","order.id_material","order.attachment",
-        "order.status_laporan","order.status_pengerjaan","order.jam","order.tanggal","order.approve",
-        "order.alasan","order.inhouse","user.name","department.department_name","material.nama_material","material.price_kg",
-        "processing.id_order","process.nama_proses","processing.hour"));
-        return $this->db->get()->result_array();
+        return $this->db->get()->result();
 
     }
 
@@ -223,13 +218,13 @@ class M_proses extends CI_model
     }
 
     function getDataProcessing($id_order, $id_proses) {
-        return $this->db->get_where('processing',array('id_order'=>$id_order,'id_proses'=>$id_proses))->result_array();
+        return $this->db->get_where('routing_plan',array('id_order'=>$id_order,'id_proses'=>$id_proses))->result_array();
     }
     
     function getIdOrderProcess() {
         // $this->db->distinct();
         // return $this->db->get('processing')->result_array();
-        $sql = "select distinct id_order from processing";
+        $sql = "select distinct id_order from routing_plan";
         return $this->db->query($sql)->result_array();
 
     }
