@@ -23,7 +23,7 @@
                                         <th>Tanggal</th>
                                         <th>Jam</th>
                                         <th class="d-none d-sm-table-cell" style="width: 10%;">Kategori</th>
-                                        <th >Status Laporan</th>
+                                        
                                         <th >Status Pengerjaan</th>
                                         <th class="text-center" style="width: 18%;">Actions</th>
                                     </tr>

@@ -200,7 +200,7 @@ class Dashboard extends CI_Controller {
 		
 			// ="'.base_url() . 'admin/response/viewResponseByTitle?id='.$l->id_checksheet.'
 		
-			if ($l->status_laporan == 'Disetujui'){
+			if ($l->status_pengerjaan == 'Disetujui'){
 				$delete = '	<a id="id-delete" name="delete" href="#" style="width:20%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
 							  <i class="fa fa-times"></i>
 						</a>';
@@ -211,20 +211,20 @@ class Dashboard extends CI_Controller {
 			}			
 		
 			$no++;
-			$date = date_create($l->jam);
+			$tanggal = date_create($l->tanggal);
 			$row = array();
 			$row[] = $no;
 			$row[] = $l->nama_part;
-			$row[] = $l->tanggal;
-			$row[] = date_format($date,"H:i");
+			$row[] = date_format($tanggal,"d/m/Y");
+			$row[] = date_format($tanggal,"H:i");
 			if ($l->kategori == 'urgent'){
 				$row[] = '<span class="badge badge-danger">urgent</span>';
 			}else if ($l->kategori == 'biasa'){
 				$row[] = '<span class="badge badge-warning">biasa</span>';
 			}
-			$row[] = $l->status_laporan;
-			$row[] = $l->status_pengerjaan;
-			$row[] = $view.$delete;
+			
+			 $row[] = $l->status_pengerjaan;
+			 $row[] = $view.$delete;
 			$data[] = $row;
 		}
 		
