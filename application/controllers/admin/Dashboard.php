@@ -137,7 +137,8 @@ class Dashboard extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['report'] = $this->m_proses->getReportPaper($id);
-		$data['processing'] = $this->m_proses->getProcessing($id);
+		$data['processing'] = $this->m_proses->getRoutingPlan($id);
+		$data['total'] = $this->m_proses->totalALL($id);
 		$this->load->view('v_admin/report',$data);
 	}
 
@@ -151,7 +152,7 @@ class Dashboard extends CI_Controller {
 		$hour = $this->input->post('hour');
 		$id_order = $this->input->post('id_order');
 		// $no_order = $this->input->post('no_order');
-		// $response_order = $this->input->post('response_order');
+		$response_order = $this->input->post('response_order');
 		$total_hour = 0;
 		$total = 0;
 		for ($i=0;$i< sizeof($ordercheck);$i++)
@@ -173,7 +174,7 @@ class Dashboard extends CI_Controller {
 		}
 		$total_cost_material = $this->m_routing->getTotalCostMaterialByIdOrder($id_order);
 		$total_all = $total + $total_cost_material[0]['total_cost_material'];
-		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all,$total_hour);
+		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all,$total_hour,$response_order);
 		
 		redirect(site_url('admin/dashboard/'));
 		//Tambah Sintaks Update No Order
@@ -331,7 +332,7 @@ class Dashboard extends CI_Controller {
 		// $data['ambil'] = $this->m_proses->
 		// $data['test'] = $this->m_proses->testing();
 		// $data['columnTitle'] = $this->m_proses->showDatabaseProcess();
-		$data['test'] = $this->m_proses->getDataProcessing('K-01-3',14);
+		$data['report'] = $this->m_proses->getReportPaper('K-08-3');
 		$this->load->view('v_form/test',$data);
 	}
 

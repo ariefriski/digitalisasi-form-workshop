@@ -210,6 +210,12 @@ class M_order extends CI_model
         $this->db->insert('detail_raw_type',$data);
     }
 
+    function updateDetailRawType($id,$data)
+    {
+        $this->db->where('id_order',$id);
+        $this->db->update('detail_raw_type',$data);
+    }
+
     public function sumRowsOrder()
     {        
         $this->db->select('id_order');
@@ -226,6 +232,13 @@ class M_order extends CI_model
         $this->db->order_by('tanggal', 'DESC');
         $this->db->limit(1);
         return $this->db->get()->result_array();
+    }
+
+    function updateTempatPembuatan($id,$response_order)
+    {
+        $this->db->set('tempat_pembuatan',$response_order);
+		$this->db->where('id_order',$id);
+		$this->db->update('order');
     }
 }
 ?>

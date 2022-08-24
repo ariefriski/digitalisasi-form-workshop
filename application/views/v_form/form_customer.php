@@ -112,7 +112,9 @@
                                         <div class="form-group row">
                                             <label class="col-12" for="example-text-input">Material</label>
                                             <select class="form-control col-md-4" id="material" name="material">
+                                            <option value="0">Kosong</option>
                                             <?php foreach($material as $m){ ?>
+                                                
                                                 <option value="<?php echo $m['id_material']; ?>"><?php echo $m['nama_material']; ?> </option>
                                             <?php } ?>                
                                             </select>

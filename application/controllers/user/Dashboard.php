@@ -80,7 +80,7 @@ class Dashboard extends CI_Controller {
 		$lebar	=$this->input->post('lebar');
 		$diameter = $this->input->post('diameter');
 		$material =$this->input->post('material');
-		$tempat_pembuatan = 'NULL';
+		
 		$status_pengerjaan = 'WAITING';
 		$tanggal = "%Y-%M-%d %H:%i";
 		$image = $this->upload->data('file_name');
@@ -107,7 +107,6 @@ class Dashboard extends CI_Controller {
 			'id_material'=>$material,
 			'status_pengerjaan'=>$status_pengerjaan,
 			'tanggal'=>mdate($tanggal),
-			'tempat_pembuatan'=>$tempat_pembuatan,
 			'attachment' => $image
 			
 		);
@@ -150,7 +149,17 @@ class Dashboard extends CI_Controller {
 		$lebar	=$this->input->post('lebar');
 		$diameter = $this->input->post('diameter');
 		$id_material =$this->input->post('material');
+		$material =$this->input->post('material');
+		if($lebar==0){
+			$volume = 3.14 * (($diameter/2) * ($diameter/2)) * $panjang;
+		}else{
+			$volume = $panjang*$lebar*$diameter;
+		}
+		$material_detail = $this->m_material->getMaterialById($material);
+		$berat = $volume * $material_detail[0]['massa_jenis'];
 		
+		//Rumus Material Cost
+		$total_cost_material = ($material_detail[0]['price_kg']*$berat*$jumlah)*1.1;
 		if($_FILES['userfile']['name'] != ""){
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png';
@@ -173,16 +182,24 @@ class Dashboard extends CI_Controller {
 			'kategori'=>$kategori,
 			'nama_part'=>$nama_part,
 			'jumlah'=>$jumlah,
-			'raw_type'=>$raw_type,
+			'id_material'=>$id_material,
+			'attachment' => $userfile_attachment
+		);
+		$data_detail_raw_type = array(
+			'id_raw_type'=>$raw_type,
 			'panjang'=>$panjang,
 			'lebar'=>$lebar,
 			'diameter'=>$diameter,
-			'id_material'=>$id_material,
-			'jam'=>date('H:i',strtotime('now')),
-			'tanggal' => date('d-m-Y',strtotime('now')),
-			'attachment' => $userfile_attachment
+			'volume'=>$volume,
+			'berat'=>$berat
+
 		);
+
+	
+		
 		$this->m_order->updateOrder($id,$data);
+		$this->m_order->updateDetailRawType($id,$data_detail_raw_type);
+		$this->m_routing->updEstimateRouting($id,$total_cost_material);
 		redirect(site_url('user/dashboard/'));
 	}
 
