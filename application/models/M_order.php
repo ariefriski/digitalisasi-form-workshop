@@ -209,5 +209,23 @@ class M_order extends CI_model
     {
         $this->db->insert('detail_raw_type',$data);
     }
+
+    public function sumRowsOrder()
+    {        
+        $this->db->select('id_order');
+        $this->db->from('order');
+        $this->db->where('MONTH(tanggal)', date("n"));
+        return $this->db->get()->num_rows();
+    }
+
+    public function getLastIdOrder()
+    {        
+        $this->db->select('id_order');
+        $this->db->from('order');
+        $this->db->where('MONTH(tanggal)', date("n"));
+        $this->db->order_by('tanggal', 'DESC');
+        $this->db->limit(1);
+        return $this->db->get()->result_array();
+    }
 }
 ?>

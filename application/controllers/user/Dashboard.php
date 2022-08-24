@@ -26,8 +26,29 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_user/footer');
 	}
 
+	public function generateIdOrder()
+	{
+		$getLastNumberOrder = $this->m_order->getLastIdOrder();
+		$last = $getLastNumberOrder[0]['id_order'];
+
+		$lastNumberOrder = explode("-",$last);
+		$currentNumberOrder = (int)$lastNumberOrder[2] + 1;
+
+		$sumRowOrder = $this->m_order->sumRowsOrder();
+		$startNumberOrder = 1;
+
+		if ($sumRowOrder == 0) {
+			$formatIdOrder = "K-".date('m')."-".$startNumberOrder;
+		} else {
+			$formatIdOrder = "K-".date('m')."-".$currentNumberOrder;
+		}
+
+		return $formatIdOrder;
+	}
+
 	public function createForm(){
 		$data['material']=$this->m_proses->selectMaterial();
+		
 		$this->load->view('v_user/header');
 		$this->load->view('v_form/form_customer',$data);
 		$this->load->view('v_user/footer');
@@ -44,7 +65,10 @@ class Dashboard extends CI_Controller {
 		$this->upload->do_upload($filename);
 		
 		
-		$id_order= 'K-01-1';
+
+		
+
+		$id_order= $this->generateIdOrder();
 		$id_user = $this->input->post('id_user');
 		$id_department = $this->input->post('id_department');
 		$order_type = $this->input->post('r_jenispekerjaan');
