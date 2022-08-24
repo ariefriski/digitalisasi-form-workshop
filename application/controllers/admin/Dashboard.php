@@ -150,14 +150,16 @@ class Dashboard extends CI_Controller {
 		$ordercheck = $this->input->post('inputorder');
 		$hour = $this->input->post('hour');
 		$id_order = $this->input->post('id_order');
-		$no_order = $this->input->post('no_order');
-		$response_order = $this->input->post('response_order');
+		// $no_order = $this->input->post('no_order');
+		// $response_order = $this->input->post('response_order');
+		$total_hour = 0;
 		$total = 0;
 		for ($i=0;$i< sizeof($ordercheck);$i++)
 		{
 			$total_cost = $this->m_proses->getProcessById($ordercheck[$i]);
 			$result = $hour[$i] * $total_cost[0]['total_cost'];
 			$total += $result;
+			$total_hour += $hour[$i];
 			$data = array(
 				'id_proses' => $ordercheck[$i],
 				'hour'=> $hour[$i],
@@ -171,7 +173,7 @@ class Dashboard extends CI_Controller {
 		}
 		$total_cost_material = $this->m_routing->getTotalCostMaterialByIdOrder($id_order);
 		$total_all = $total + $total_cost_material[0]['total_cost_material'];
-		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all);
+		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all,$total_hour);
 		
 		redirect(site_url('admin/dashboard/'));
 		//Tambah Sintaks Update No Order
@@ -184,13 +186,7 @@ class Dashboard extends CI_Controller {
 		
 	}
 
-	public function testing()
-	{
-		// $data['ambil'] = $this->m_proses->
-		$data['test'] = $this->m_proses->testing();
-		$this->load->view('v_form/test',$data);
-	}
-
+	
 	public function routingList()
 	{
 		$list = $this->m_proses->get_datatables_1();
@@ -306,15 +302,17 @@ class Dashboard extends CI_Controller {
 			$columnTitle = $this->m_proses->showDatabaseProcess();
 			$idOrder = $this->m_proses->getIdOrderProcess();
                 
-			// foreach ($columnTitle as $ct) {
-			// 	$detailProcess = $this->m_proses->getDataProcessing($idOrder[$i]['id_order'],$ct['id_proses']);
-			// 	if(!empty($detailProcess[0]['hour'])) {
-			// 		$row[] = $detailProcess[0]['hour'];
-			// 	} else {
-			// 		$row[]= "-";
-			// 	}
-			// }
-			$row[] = $l->total_actual;
+			foreach ($columnTitle as $ct) {
+				$detailProcess = $this->m_proses->getDataProcessing($idOrder[$i]['id_order'],$ct['id_proses']);
+				if(!empty($detailProcess[0]['hour'])) {
+					$row[] = $detailProcess[0]['hour'];
+				} else {
+					$row[]= "-";
+				}
+				
+			}
+			$row[] = $l->total_hour;
+			// $row[] = $l->total_actual;
 			$data[] = $row;
 			$i++;
 		}
@@ -328,6 +326,15 @@ class Dashboard extends CI_Controller {
 		//output to json format
 		echo json_encode($output);
 	}
+	public function testing()
+	{
+		// $data['ambil'] = $this->m_proses->
+		// $data['test'] = $this->m_proses->testing();
+		// $data['columnTitle'] = $this->m_proses->showDatabaseProcess();
+		$data['test'] = $this->m_proses->getDataProcessing('K-01-3',14);
+		$this->load->view('v_form/test',$data);
+	}
+
 
 	
 }

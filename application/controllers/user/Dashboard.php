@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller {
 		$this->upload->do_upload($filename);
 		
 		
-		$id_order= 'K-01-3';
+		$id_order= 'K-01-1';
 		$id_user = $this->input->post('id_user');
 		$id_department = $this->input->post('id_department');
 		$order_type = $this->input->post('r_jenispekerjaan');
