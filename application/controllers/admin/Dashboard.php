@@ -91,23 +91,26 @@ class Dashboard extends CI_Controller {
 			$no++;
 			$tanggal = date_create($l->tanggal);
 			$row = array();
-			foreach($departmentName as $d){
-			$row[] = $no;
-			$row[] = $l->nama_part;
-			$row[] = date_format($tanggal,"d/m/Y");
-			$row[] = date_format($tanggal,"H:i");
-			if ($l->kategori == 'urgent'){
-				$row[] = '<span class="badge badge-danger">urgent</span>';
-			}else if ($l->kategori == 'biasa'){
-				$row[] = '<span class="badge badge-warning">biasa</span>';
+			if($l->status_approval=='Disetujui'){
+				foreach($departmentName as $d){
+					$row[] = $no;
+					$row[] = $l->nama_part;
+					$row[] = date_format($tanggal,"d/m/Y");
+					$row[] = date_format($tanggal,"H:i");
+					if ($l->kategori == 'urgent'){
+						$row[] = '<span class="badge badge-danger">urgent</span>';
+					}else if ($l->kategori == 'biasa'){
+						$row[] = '<span class="badge badge-warning">biasa</span>';
+					}
+					$row[] = $d['department_name'];
+					
+					$row[] = $l->status_pengerjaan;
+					$row[] = 'waiting  ';
+					$row[] = $view.$delete.$report;
+					
+					}
 			}
-			$row[] = $d['department_name'];
 			
-			$row[] = $l->status_pengerjaan;
-			$row[] = 'waiting  ';
-			$row[] = $view.$delete.$report;
-			
-			}
 			
 			$data[] = $row;
 			

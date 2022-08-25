@@ -65,7 +65,7 @@ class M_proses extends CI_model
 
     public function getRoutingPlan($id)
     {
-        $this->db->select('process.nama_proses,process.total_cost, routing_plan.hour,routing_plan.estimate_cost_process');
+        $this->db->select('process.nama_proses,process.total_cost, routing_plan.id_proses,routing_plan.hour,routing_plan.estimate_cost_process');
         $this->db->from('process');
         $this->db->join('routing_plan','process.id_proses=routing_plan.id_proses');
         $this->db->where('routing_plan.id_order',$id);

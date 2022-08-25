@@ -34,18 +34,6 @@
                             </table>
                         </div>
                     </div>
-                    <!-- END Table -->
-
-                    <!-- Striped Table -->
-
-
-                    <!-- Hover Table -->
-                  
-                    <!-- END Hover Table -->
-
-                    <!-- Bordered Table -->
-                   
-                    <!-- END Contextual Table -->
-                    <!-- END Default Table Style -->
+                    
 </div>
              

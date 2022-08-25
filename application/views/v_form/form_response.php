@@ -137,9 +137,13 @@
                                             <label class="col-8" for="example-text-input">Gambar Keterangan</label>
                                         </div>
                                         <div class="col-md-6 col-lg-4 col-xl-6 animated fadeIn">
+                                        <?php if($ar['attachment']!=NULL){ ?>
                                         <a class="img-link img-link-zoom-in img-thumb img-lightbox" href="<?=base_url() .'uploads/'.$ar['attachment']?>">
                                                 <img class="img-fluid" src="<?=base_url() .'uploads/'.$ar['attachment']?>" alt="pict"  >
                                             </a>
+                                        <?php }else{?>
+                                            <p>Gambar Tidak Ada</p>
+                                        <?php }?>
                                         </div>
                                         <br><br>
                                 <?php }?>
@@ -161,7 +165,7 @@
                                     <form action="<?php echo base_url()?>admin/dashboard/inputOrder" method="post" enctype="multipart/form-data" >
                                     <input type="hidden" name="id_order" value="<?php echo $ar['id_order']; ?>" >
                                     <div class="form-group row" >
-                                            <label class="col-8" for="example-text-input">Kadept Approval Department X</label>
+                                            <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
                                                 <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($ar['status_approval']=='Disetujui') echo 'checked'?> disabled>
@@ -195,7 +199,8 @@
                                             </div>
                                             </div>
                                                 <?php } ?>     
-                                                 <div class="form-group row">
+                                            <div class="form-group row">
+                                            <?php if($ar['tempat_pembuatan']==NULL){ ?>
                                             <label class="col-8" for="example-text-input">Process Order</label>
                                             <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
@@ -208,6 +213,19 @@
                                                 <span class="css-control-indicator"></span> Outhouse
                                             </label>
                                         </div>
+                                        <?php } else{?>
+                                            <label class="col-8" for="example-text-input">Process Order</label>
+                                            <div class="col-6">
+                                            <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="radio" class="css-control-input" name="response_order" id="inhouse" value="inhouse" <?php if($ar['tempat_pembuatan']=='inhouse') echo 'checked'?> disabled >
+                                                <span class="css-control-indicator"></span> Inhouse
+                                            </label>
+                                            
+                                            <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="radio" class="css-control-input" name="response_order" id="outhouse" value="outhouse" <?php if($ar['tempat_pembuatan']=='outhouse') echo 'checked'?> disabled>
+                                                <span class="css-control-indicator"></span> Outhouse
+                                            </label>
+                                            <?php }?>
                                         </div>
                                         <?php } else if ($ar['status_approval']=='Ditolak'){?>
                                             <?php echo 'Request Di Tolak';?>
@@ -219,7 +237,7 @@
                                         </div>
                                         <div class="form-group row">
                                         <div class="col-8">
-                                                <button type="submit" class="btn btn-alt-primary"> Sumbit </button>
+                                                <button type="submit" id="submit_bt" class="btn btn-alt-primary"> Sumbit </button>
                                             </div>
                                         </div>
                                 </form>
@@ -268,6 +286,41 @@
                 </div>
                 `);
             });
+
+            $(document).on('click',"#outhouse",function(){
+                $("#plan1").empty().append(`
+                <div id="plan2">
+                                        <div class="form-group row" id="planxxx">
+                                            
+                                            <label class="col-12" for="routing_plan">Routing Plan</label>
+                                            <div class="form-group row" id="form-group">
+                                            <div class="col-md-8">
+                                                <select class="form-control"  name="inputorder[]">
+                                                <option value="0">Select</option>
+                                                <?php foreach($get_Routing as $gr){ ?>
+                                                <option value="<?php echo "$gr[id_proses]"?>"><?php echo "$gr[nama_proses]"?></option>
+                                                <?php } ?>    
+                                                </select>
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                            <input type="text" class="form-control" id="example-text-input" name="hour[]" placeholder="0">
+                                            </div>
+                                            </div>
+
+                                            
+                                            
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-circle btn-alt-success mr-5 mb-5" id="add_process">
+                                             <i class="fa fa-plus"></i>
+                                         </button>
+                                        <button type="button" class="btn btn-sm btn-circle btn-alt-danger mr-5 mb-5" id="remove_process" hidden>
+                                        <i class="fa fa-times"></i>
+                                         </button>    
+                </div>
+                `);
+            });
+        
             $(document).on('click',"#add_process",function(){
                 $("#planxxx").append(`
 
@@ -294,4 +347,10 @@
                 $("#form-group_1").remove();
                
             });
+
+            if ($('#inhouse').is(':checked')){
+                $("#submit_bt").attr('disabled','disabled');
+            }else if ($('#outhouse').is(':checked')){
+                $("#submit_bt").attr('disabled','disabled');
+            }
  </script>

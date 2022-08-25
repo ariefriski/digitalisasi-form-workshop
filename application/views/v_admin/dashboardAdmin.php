@@ -29,17 +29,5 @@
                             </table>
                         </div>
                     </div>
-                    <!-- EN D Table -->
-
-                    <!-- Striped Table -->
-
-
-                    <!-- Hover Table -->
-                  
-                    <!-- END Hover Table -->
-
-                    <!-- Bordered Table -->
                    
-                    <!-- END Contextual Table -->
-                    <!-- END Default Table Style -->
 </div>

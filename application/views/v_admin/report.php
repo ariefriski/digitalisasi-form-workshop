@@ -383,17 +383,18 @@
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['estimate_cost_process'] ?></span></font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['estimate_cost_process'] ?></span> </font></b></td>
 	</tr>
 	<?php }?>
 	<?php }?>
 	
-	
+
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 align="left" valign=middle bgcolor="#D9D9D9"><font face="Verdana">B. TOTAL MATERIAL COST</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#D9D9D9" sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana"><div id="harga_cam" style="font-size: 13px;">Rp.<span></span></div></font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#D9D9D9" sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana">Rp.<span></font></td>
 	</tr>
+	
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td align="left" valign=middle><font face="Verdana"><br></font></td>
@@ -429,7 +430,7 @@
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['estimate_cost_process'] ?></span></font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana"> <div id="mchn" style="font-size: 13px;">Rp.<span><?php echo $p['estimate_cost_process'] ?></span></div> </font></b></td> 
 	</tr>
 	<?php }?>
 	<?php }?>
@@ -817,7 +818,8 @@
 	// 	alert("d");
 	// });
 	
-	// var price_kg = parseFloat($('#price_kg span').text());
+	// var cost = parseFloat($('#dprog span').text());
+	// alert(cost);
 	// // var berat = parseFloat($('#berat span').text());
 	//  var jumlah = parseFloat($('#jumlah span').text());
 	// // var result = price_kg * berat * jumlah;

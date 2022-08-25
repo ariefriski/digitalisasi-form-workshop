@@ -92,9 +92,9 @@ class M_order extends CI_model
 
     private function _get_datatables_query_1()
     {
-        $this->db->select('order.*');
+        $this->db->select('order.*,approval.status_approval');
         $this->db->from('order');
-        
+        $this->db->join('approval','order.id_order=approval.id_order');        
         
         $i = 0;
 	
@@ -172,12 +172,13 @@ class M_order extends CI_model
     public function getResponseOrder($id)
     {
         $this->db->select('order.*,department.department_name,user.npk,user.name,material.nama_material,
-        detail_raw_type.*,approval.status_approval,approval.alasan');
+        detail_raw_type.*,approval.status_approval,approval.alasan,detail_estimate_routing.tempat_pembuatan');
         $this->db->from('order');
         $this->db->join('department','order.id_department=department.id_department');
         $this->db->join('user','order.id_user=user.id_user');
         $this->db->join('material','order.id_material=material.id_material');
         $this->db->join('detail_raw_type','detail_raw_type.id_order=order.id_order');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
         $this->db->join('approval','approval.id_order=order.id_order','left');
         $this->db->where('order.id_order',$id);
         return $this->db->get()->result_array();
