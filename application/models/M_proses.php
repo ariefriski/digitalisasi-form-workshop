@@ -50,38 +50,35 @@ class M_proses extends CI_model
 
     public function getReportPaper($id)
     {
-        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,material.massa_jenis');
-        $this->db->select('SUM(processing.hour * process.harga_perjam) AS total');
-        $this->db->select('SUM(processing.hour) as total_actual');
-        
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
+        detail_estimate_routing.total_cost_process,detail_estimate_routing.total_cost_material,detail_estimate_routing.total_all,detail_estimate_routing.tempat_pembuatan,
+        detail_raw_type.berat,detail_raw_type.volume');
         $this->db->from('order');
-        $this->db->join('user','order.id_user = user.id_user');
-        $this->db->join('department','order.id_department = department.id_department');
-        $this->db->join('processing','order.id_order = processing.id_order');
-        $this->db->join('process','processing.id_proses=process.id_proses');
+        $this->db->join('user','order.id_user=user.id_user');
+        $this->db->join('department','order.id_department=department.id_department');
         $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->join('detail_raw_type','order.id_order=detail_raw_type.id_order');
         $this->db->where('order.id_order',$id);
-        $this->db->group_by(array("order.id_order", "order.id_user","order.id_department",
-        "order.no_order","order.order_type","order.kategori","order.nama_part","order.jumlah",
-        "order.raw_type","order.panjang","order.lebar","order.diameter","order.id_material","order.attachment",
-        "order.status_laporan","order.status_pengerjaan","order.jam","order.tanggal","order.approve",
-        "order.alasan","order.inhouse","user.name","department.department_name","material.nama_material","material.price_kg",
-        "processing.id_order","material.massa_jenis"));
         return $this->db->get()->result_array();
     }
 
-    public function getProcessing($id)
+    public function getRoutingPlan($id)
     {
-        $this->db->select('process.nama_proses,process.total_cost,processing.hour');
-        $this->db->select('SUM(processing.hour*process.total_cost) as harga');
+        $this->db->select('process.nama_proses,process.total_cost, routing_plan.id_proses,routing_plan.hour,routing_plan.estimate_cost_process');
         $this->db->from('process');
-        $this->db->join('processing','process.id_proses=processing.id_proses');
-        $this->db->where('processing.id_order',$id);
-        $this->db->group_by(array("process.nama_proses","process.total_cost","processing.hour"));
+        $this->db->join('routing_plan','process.id_proses=routing_plan.id_proses');
+        $this->db->where('routing_plan.id_order',$id);
         return $this->db->get()->result_array();
     }
-        // $this->db->select('IIF(order.lebar > 1,order.panjang * order.lebar * order.diameter ,3.14 * order.diameter /2 * order.diameter /2 * panjang) as Volume');
-        
+
+    function totalALL($id)
+    {
+        $this->db->select('total_all');
+        $this->db->from('detail_estimate_routing');
+        $this->db->where('id_order',$id);
+        return $this->db->get()->result_array();
+    }
 
 	private function _get_datatables_query_1()
     {

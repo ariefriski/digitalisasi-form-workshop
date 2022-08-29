@@ -46,12 +46,77 @@ class M_order extends CI_model
         return $query->result();
     }
 
-
-    private function _get_datatables_query()
+    function get_datatables_kasie_user()
+	{
+		$this->_get_datatables_kasie_user();
+		if($_POST['length'] != -1)
+		$this->db->limit($_POST['length'], $_POST['start']);
+		$query = $this->db->get();
+		return $query->result();
+	}
+    
+    private function _get_datatables_kasie_user()
     {
-        $this->db->select('order.*');
+        $this->db->select('order.*,approval.status_approval');
         $this->db->from('order');
-        if ($this->session->userdata('level') == 'kadept' || $this->session->userdata('level') == 'user') {
+        $this->db->join('approval','order.id_order=approval.id_order','left');
+    
+        if ($this->session->userdata('level') == 'kasie_user'){
+			$this->db->where('order.id_department',$this->session->id_department);
+            $this->db->where('order.id_section',$this->session->id_section);
+		}
+        
+        $i = 0;
+	
+		foreach ($this->column_search as $item) // loop column 
+		{
+			if($_POST['search']['value']) // if datatable send POST for search
+			{
+				
+				if($i===0) // first loop
+				{
+					$this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+					$this->db->like($item, $_POST['search']['value']);
+				}
+				else
+				{
+					$this->db->or_like($item, $_POST['search']['value']);
+				}
+
+				if(count($this->column_search) - 1 == $i) //last loop
+					$this->db->group_end(); //close bracket
+			}
+			$i++;
+            if(isset($_POST['orderr'])) // here order processing
+		    {
+			$this->db->order_by($this->column_order[$_POST['orderr']['0']['column']], $_POST['orderr']['0']['dir']);
+		    } 
+		    else if(isset($this->orderr))
+		    {
+			$orderr = $this->orderr;
+			$this->db->order_by(key($orderr), $orderr[key($orderr)]);
+		    }
+		}
+
+
+    }
+
+    function get_datatables_kadept_user()
+	{
+		$this->_get_datatables_kadept_user();
+		if($_POST['length'] != -1)
+		$this->db->limit($_POST['length'], $_POST['start']);
+		$query = $this->db->get();
+		return $query->result();
+	}
+    
+    private function _get_datatables_kadept_user()
+    {
+        $this->db->select('order.*,approval.status_approval');
+        $this->db->from('order');
+        $this->db->join('approval','order.id_order=approval.id_order','left');
+
+        if ($this->session->userdata('level') == 'kadept_user' ) {
 			$this->db->where('order.id_department',$this->session->id_department);
 		}
         
@@ -90,11 +155,23 @@ class M_order extends CI_model
 
     }
 
-    private function _get_datatables_query_1()
+    function get_datatables_user()
+	{
+		$this->_get_datatables_user();
+		if($_POST['length'] != -1)
+		$this->db->limit($_POST['length'], $_POST['start']);
+		$query = $this->db->get();
+		return $query->result();
+	}
+    
+    private function _get_datatables_user()
     {
         $this->db->select('order.*');
         $this->db->from('order');
-        
+        if ($this->session->userdata('level') == 'user' ) {
+			$this->db->where('order.id_department',$this->session->id_department);
+            $this->db->where('order.id_section',$this->session->id_section);
+		}
         
         $i = 0;
 	
@@ -131,14 +208,48 @@ class M_order extends CI_model
 
     }
 
-    function get_datatables()
-	{
-		$this->_get_datatables_query();
-		if($_POST['length'] != -1)
-		$this->db->limit($_POST['length'], $_POST['start']);
-		$query = $this->db->get();
-		return $query->result();
-	}
+
+
+    private function _get_datatables_query_1()
+    {
+        $this->db->select('order.*,approval.status_approval');
+        $this->db->from('order');
+        $this->db->join('approval','order.id_order=approval.id_order');        
+        
+        $i = 0;
+	
+		foreach ($this->column_search as $item) // loop column 
+		{
+			if($_POST['search']['value']) // if datatable send POST for search
+			{
+				
+				if($i===0) // first loop
+				{
+					$this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+					$this->db->like($item, $_POST['search']['value']);
+				}
+				else
+				{
+					$this->db->or_like($item, $_POST['search']['value']);
+				}
+
+				if(count($this->column_search) - 1 == $i) //last loop
+					$this->db->group_end(); //close bracket
+			}
+			$i++;
+            if(isset($_POST['orderr'])) // here order processing
+		    {
+			$this->db->order_by($this->column_order[$_POST['orderr']['0']['column']], $_POST['orderr']['0']['dir']);
+		    } 
+		    else if(isset($this->orderr))
+		    {
+			$orderr = $this->orderr;
+			$this->db->order_by(key($orderr), $orderr[key($orderr)]);
+		    }
+		}
+
+
+    }
 
     function get_datatables_1()
 	{
@@ -172,12 +283,13 @@ class M_order extends CI_model
     public function getResponseOrder($id)
     {
         $this->db->select('order.*,department.department_name,user.npk,user.name,material.nama_material,
-        detail_raw_type.*,approval.status_approval,approval.alasan');
+        detail_raw_type.*,approval.status_approval,approval.jenis_approval,approval.alasan,detail_estimate_routing.tempat_pembuatan');
         $this->db->from('order');
         $this->db->join('department','order.id_department=department.id_department');
         $this->db->join('user','order.id_user=user.id_user');
         $this->db->join('material','order.id_material=material.id_material');
         $this->db->join('detail_raw_type','detail_raw_type.id_order=order.id_order');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
         $this->db->join('approval','approval.id_order=order.id_order','left');
         $this->db->where('order.id_order',$id);
         return $this->db->get()->result_array();
@@ -200,7 +312,20 @@ class M_order extends CI_model
     }
     public function count_filtered()
     {
-        $this->_get_datatables_query();
+        $this->_get_datatables_kasie_user();
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
+    public function count_filtered_kadept()
+    {
+        $this->_get_datatables_kadept_user();
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
+
+    public function count_filtered_user()
+    {
+        $this->_get_datatables_user();
 		$query = $this->db->get();
 		return $query->num_rows();
     }
@@ -208,6 +333,12 @@ class M_order extends CI_model
     public function addDetailRawType($data)
     {
         $this->db->insert('detail_raw_type',$data);
+    }
+
+    function updateDetailRawType($id,$data)
+    {
+        $this->db->where('id_order',$id);
+        $this->db->update('detail_raw_type',$data);
     }
 
     public function sumRowsOrder()
@@ -226,6 +357,13 @@ class M_order extends CI_model
         $this->db->order_by('tanggal', 'DESC');
         $this->db->limit(1);
         return $this->db->get()->result_array();
+    }
+
+    function updateTempatPembuatan($id,$response_order)
+    {
+        $this->db->set('tempat_pembuatan',$response_order);
+		$this->db->where('id_order',$id);
+		$this->db->update('order');
     }
 }
 ?>

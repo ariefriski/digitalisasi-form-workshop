@@ -5,13 +5,15 @@ class Dashboard extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
+		$this->load->model('m_login');
         $this->load->model('m_order');
 		$this->load->model('m_routing');
 		$this->load->model('m_proses');
+		$this->load->model('m_approval');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
-		$this->load->model('m_login');
-		if($this->session->userdata('admin_is_logged_in')=='') {
+		
+		if($this->session->userdata('admin_ws_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
 			redirect('login');
 		}
@@ -21,8 +23,7 @@ class Dashboard extends CI_Controller {
 	
 	public function index()
 	{
-		
-		$this->load->view('v_admin/header');
+		$this->load->view('v_admin/header_dashboard/header');
 		$this->load->view('v_admin/dashboardAdmin');
 		$this->load->view('v_admin/footer');
 	}
@@ -63,10 +64,11 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
+			if($l->status_approval=='Disetujui'){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
-			$delete = '	<a id="id-delete" name="delete" href="#"  class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-							  <i class="fa fa-times"></i>
-						</a>';
+			// $delete = '	<a id="id-delete" name="delete" href="#"  class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			// 				  <i class="fa fa-times"></i>
+			// 			</a>';
 			
 			
 			$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewAcceptedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
@@ -91,26 +93,29 @@ class Dashboard extends CI_Controller {
 			$no++;
 			$tanggal = date_create($l->tanggal);
 			$row = array();
-			foreach($departmentName as $d){
-			$row[] = $no;
-			$row[] = $l->nama_part;
-			$row[] = date_format($tanggal,"d/m/Y");
-			$row[] = date_format($tanggal,"H:i");
-			if ($l->kategori == 'urgent'){
-				$row[] = '<span class="badge badge-danger">urgent</span>';
-			}else if ($l->kategori == 'biasa'){
-				$row[] = '<span class="badge badge-warning">biasa</span>';
+			if($l->status_approval=='Disetujui'){
+				foreach($departmentName as $d){
+					$row[] = $no;
+					$row[] = $l->nama_part;
+					$row[] = date_format($tanggal,"d/m/Y");
+					$row[] = date_format($tanggal,"H:i");
+					if ($l->kategori == 'urgent'){
+						$row[] = '<span class="badge badge-danger">urgent</span>';
+					}else if ($l->kategori == 'biasa'){
+						$row[] = '<span class="badge badge-warning">biasa</span>';
+					}
+					$row[] = $d['department_name'];
+					
+					$row[] = $l->status_pengerjaan;
+					$row[] = 'waiting  ';
+					$row[] = $view.$report;
+					
+					}
 			}
-			$row[] = $d['department_name'];
 			
-			$row[] = $l->status_pengerjaan;
-			$row[] = 'waiting  ';
-			$row[] = $view.$delete.$report;
-			
-			}
 			
 			$data[] = $row;
-			
+		}
 		}
 		
 		$output = array(
@@ -137,7 +142,8 @@ class Dashboard extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['report'] = $this->m_proses->getReportPaper($id);
-		$data['processing'] = $this->m_proses->getProcessing($id);
+		$data['processing'] = $this->m_proses->getRoutingPlan($id);
+		$data['total'] = $this->m_proses->totalALL($id);
 		$this->load->view('v_admin/report',$data);
 	}
 
@@ -150,14 +156,16 @@ class Dashboard extends CI_Controller {
 		$ordercheck = $this->input->post('inputorder');
 		$hour = $this->input->post('hour');
 		$id_order = $this->input->post('id_order');
-		$no_order = $this->input->post('no_order');
+		// $no_order = $this->input->post('no_order');
 		$response_order = $this->input->post('response_order');
+		$total_hour = 0;
 		$total = 0;
 		for ($i=0;$i< sizeof($ordercheck);$i++)
 		{
 			$total_cost = $this->m_proses->getProcessById($ordercheck[$i]);
 			$result = $hour[$i] * $total_cost[0]['total_cost'];
 			$total += $result;
+			$total_hour += $hour[$i];
 			$data = array(
 				'id_proses' => $ordercheck[$i],
 				'hour'=> $hour[$i],
@@ -171,8 +179,35 @@ class Dashboard extends CI_Controller {
 		}
 		$total_cost_material = $this->m_routing->getTotalCostMaterialByIdOrder($id_order);
 		$total_all = $total + $total_cost_material[0]['total_cost_material'];
-		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all);
+		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all,$total_hour,$response_order);
 		
+		redirect(site_url('admin/dashboard/'));
+		//Tambah Sintaks Update No Order
+	}
+
+	public function acceptPIC()
+	{
+		//$id = $this->input->get('id');
+		
+		$id_order = $this->input->post('id_order');
+		// $no_order = $this->input->post('no_order');
+		$id_user = $this->session->userdata('id_user');
+		$approve = $this->input->post('pic_response');
+		$jenis_approval = $this->session->userdata('level');
+		$tanggal = "%Y-%M-%d %H:%i";
+		if ($approve == 'accept'){
+			$status_approval = 'Disetujui';
+		}else if ($approve == 'reject'){
+			$status_approval = 'Ditolak';
+		}
+		$data =array(
+			'id_order'=>$id_order,
+			'id_user'=>$id_user,
+			'status_approval'=>$status_approval,
+			'tanggal'=>mdate($tanggal),
+			'jenis_approval'=>$jenis_approval
+		);
+		$this->m_approval->addApprovalPic($data);
 		redirect(site_url('admin/dashboard/'));
 		//Tambah Sintaks Update No Order
 	}
@@ -184,13 +219,7 @@ class Dashboard extends CI_Controller {
 		
 	}
 
-	public function testing()
-	{
-		// $data['ambil'] = $this->m_proses->
-		$data['test'] = $this->m_proses->testing();
-		$this->load->view('v_form/test',$data);
-	}
-
+	
 	public function routingList()
 	{
 		$list = $this->m_proses->get_datatables_1();
@@ -307,15 +336,17 @@ class Dashboard extends CI_Controller {
 			$columnTitle = $this->m_proses->showDatabaseProcess();
 			$idOrder = $this->m_proses->getIdOrderProcess();
                 
-			// foreach ($columnTitle as $ct) {
-			// 	$detailProcess = $this->m_proses->getDataProcessing($idOrder[$i]['id_order'],$ct['id_proses']);
-			// 	if(!empty($detailProcess[0]['hour'])) {
-			// 		$row[] = $detailProcess[0]['hour'];
-			// 	} else {
-			// 		$row[]= "-";
-			// 	}
-			// }
-			$row[] = $l->total_actual;
+			foreach ($columnTitle as $ct) {
+				$detailProcess = $this->m_proses->getDataProcessing($idOrder[$i]['id_order'],$ct['id_proses']);
+				if(!empty($detailProcess[0]['hour'])) {
+					$row[] = $detailProcess[0]['hour'];
+				} else {
+					$row[]= "-";
+				}
+				
+			}
+			$row[] = $l->total_hour;
+			// $row[] = $l->total_actual;
 			$data[] = $row;
 			$i++;
 		}
@@ -329,6 +360,15 @@ class Dashboard extends CI_Controller {
 		//output to json format
 		echo json_encode($output);
 	}
+	public function testing()
+	{
+		// $data['ambil'] = $this->m_proses->
+		// $data['test'] = $this->m_proses->testing();
+		// $data['columnTitle'] = $this->m_proses->showDatabaseProcess();
+		$data['report'] = $this->m_proses->getReportPaper('K-08-3');
+		$this->load->view('v_form/test',$data);
+	}
+
 
 	
 }

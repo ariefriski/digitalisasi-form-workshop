@@ -39,6 +39,7 @@ class Login extends CI_Controller {
                 $id_department = $val->id_department;
                 $npk = $val->npk;
                 $department_name = $val->department_name;
+                $id_section = $val->id_section;
 
                 if($level=='user')
                 {
@@ -50,41 +51,87 @@ class Login extends CI_Controller {
                         'id_user' => $id_user,
                         'id_department' =>$id_department,
                         'npk' =>$npk,
-                        'department_name' =>$department_name
+                        'department_name' =>$department_name,
+                        'id_section'=>$id_section
                     );
                     
                     $this->session->set_userdata($data); /*Here  setting the user datas in session */
                     redirect(base_url('user/dashboard/'));
                 }
 
-                if($level=='kadept')
+                if($level=='kasie_user')
                 {
                     $data = array(
-                        'kadept_name' =>$name, 
-                        'kadept_password' => $password,
+                        'kasie_user_name' =>$name, 
+                        'kasie_user_password' => $password,
                         'level'=>$level,
-                        'kadept_is_logged_in' => true,
+                        'kasie_user_is_logged_in' => true,
                         'id_user' => $id_user,
-                        'id_department' => $id_department
+                        'id_department' => $id_department,
+                        'id_section'=>$id_section
                         );
                     
                     $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
-                    redirect(base_url('kadept/dashboard/'));
+                    redirect(base_url('kasie_user/dashboard/')); // ganti
                 }
 
-                if($level=='admin')
+
+                if($level=='kadept_user')
                 {
-                    $data = array( 
-                        'admin_name'=>$name,
-                        'admin_password'=>$password,
+                    $data = array(
+                        'kadept_user_name' =>$name, 
+                        'kadept_user_password' => $password,
                         'level'=>$level,
-                        'admin_is_logged_in'=>true,
+                        'kadept_user_is_logged_in' => true,
                         'id_user' => $id_user,
                         'id_department' => $id_department,
-                        // 'id_order' => $id_order
-                    );
-                    $this->session->set_userdata($data); /*Here  setting the User datas in session */
-                    redirect('admin/dashboard');
+                        
+                        );
+                    
+                    $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
+                    redirect(base_url('kadept_user/dashboard/'));//ganti
+                }
+
+                if($level=='admin_ws')
+                {
+                    $data = array(
+                        'admin_ws_name' =>$name, 
+                        'admin_ws_password' => $password,
+                        'level'=>$level,
+                        'admin_ws_is_logged_in'=>true,
+                        
+                        );
+                    
+                    $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
+                    redirect(base_url('admin/dashboard/'));//ganti
+                }
+
+                if($level=='kasie_ws')
+                {
+                    $data = array(
+                        'kasie_ws_name' =>$name, 
+                        'kasie_ws_password' => $password,
+                        'level'=>$level,
+                        'kasie_ws_is_logged_in' => true,
+                        'id_user' => $id_user
+                        );
+                    
+                    $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
+                    redirect(base_url('kadept/dashboard/'));//ganti
+                }
+
+                if($level=='kadept_ws')
+                {
+                    $data = array(
+                        'kadept_ws_name' =>$name, 
+                        'kadept_ws_password' => $password,
+                        'level'=>$level,
+                        'kadept_ws_is_logged_in' => true,
+                        'id_user' => $id_user
+                        );
+                    
+                    $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
+                    redirect(base_url('kadept/dashboard/'));//ganti
                 }
             }       
         }
@@ -95,33 +142,77 @@ class Login extends CI_Controller {
         } 
     }
 
-    public function kadept_logout()
+    public function kasie_user_logout()
     {
         $array_items = array(
-			'kadept_name', 
-			'kadept_password', 
+			'kasie_user_name', 
+			'kasie_user_password', 
 			'level',
-			'kadept_is_logged_in',
+			'kasie_user_is_logged_in',
 		);
 
         $this->session->unset_userdata($array_items);
-        $this->session->set_flashdata('msg', 'Kadept Signed Out Now!');
+        $this->session->set_flashdata('msg', 'Kasie User Signed Out Now!');
         redirect('login');
     }
 
-    public function admin_logout()
+    public function kadept_user_logout()
     {
         $array_items = array(
-			'admin_name', 
-			'admin_password', 
+			'kadept_user_name', 
+			'kadept_user_password', 
 			'level',
-			'admin_is_logged_in',
+			'kadept_user_is_logged_in',
 		);
 
         $this->session->unset_userdata($array_items);
-        $this->session->set_flashdata('msg', 'Admin Signed Out Now!');
+        $this->session->set_flashdata('msg', 'Kadept User Signed Out Now!');
         redirect('login');
     }
+
+    public function admin_ws_logout()
+    {
+        $array_items = array(
+			'admin_ws_name', 
+			'admin_ws_password', 
+			'level',
+			'admin_ws_is_logged_in',
+		);
+
+        $this->session->unset_userdata($array_items);
+        $this->session->set_flashdata('msg', 'Admin ws Signed Out Now!');
+        redirect('login');
+    }
+
+    public function kasie_ws_logout()
+    {
+        $array_items = array(
+			'kasie_ws_name', 
+			'kasie_ws_password', 
+			'level',
+			'kasie_ws_is_logged_in',
+		);
+
+        $this->session->unset_userdata($array_items);
+        $this->session->set_flashdata('msg', 'Kasie ws Signed Out Now!');
+        redirect('login');
+    }
+
+    public function kadept_ws_logout()
+    {
+        $array_items = array(
+			'kadept_ws_name', 
+			'kadept_ws_password', 
+			'level',
+			'kadept_ws_is_logged_in',
+		);
+
+        $this->session->unset_userdata($array_items);
+        $this->session->set_flashdata('msg', 'Kadept ws Signed Out Now!');
+        redirect('login');
+    }
+
+    
 
     public function user_logout()
     {

@@ -48,24 +48,24 @@
             <!-- END Sidebar -->
 
             <!-- Header -->
-            <header id="page-header">
-                <!-- Header Content -->
-                <div class="content-header">
-                    <!-- Left Section -->
-                    <div class="content-header-section">
-                        <!-- Toggle Sidebar -->
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <!-- <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="sidebar_toggle">
-                            <i class="fa fa-navicon"></i>
-                        </button> -->
-                        <!-- END Toggle Sidebar -->
-                    </div>
-                    <!-- END Left Section -->
+    <header id="page-header">
+        <!-- Header Content -->
+        <div class="content-header">
+            <!-- Left Section -->
+            <div class="content-header-section">
+                <!-- Toggle Sidebar -->
+                <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                <!-- <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="sidebar_toggle">
+                    <i class="fa fa-navicon"></i>
+                </button> -->
+                <!-- END Toggle Sidebar -->
+            </div>
+            <!-- END Left Section -->
 
-                    <!-- Right Section -->
+            <!-- Right Section -->
 
-                    <!-- END Right Section -->
-                </div>
-                <!-- END Header Content -->
-            </header>
+            <!-- END Right Section -->
+        </div>
+        <!-- END Header Content -->
+    </header>
             <!-- END Header -->

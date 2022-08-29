@@ -101,10 +101,19 @@ class M_routing extends CI_model
 		$this->db->insert('detail_estimate_routing',$data);
 	}
 
-	function updateEstimateRouting($id,$total_cost_process,$total_all)
+	function updEstimateRouting($id,$total_cost_material)
+	{
+		$this->db->set('total_cost_material',$total_cost_material);
+		$this->db->where('id_order',$id);
+		$this->db->update('detail_estimate_routing');
+	}
+
+	function updateEstimateRouting($id,$total_cost_process,$total_all,$total_hour,$response_order)
 	{
 		$this->db->set('total_cost_process',$total_cost_process);
 		$this->db->set('total_all',$total_all);
+		$this->db->set('total_hour',$total_hour);
+		$this->db->set('tempat_pembuatan',$response_order);
 		$this->db->where('id_order',$id);
 		$this->db->update('detail_estimate_routing');
 	}

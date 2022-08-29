@@ -6,4 +6,9 @@ class M_approval extends CI_model
     {
         $this->db->insert('approval',$data);
     }
+
+    function addApprovalPic($data)
+    {
+        $this->db->insert('approval',$data);
+    }
 }

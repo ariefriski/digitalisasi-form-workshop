@@ -38,13 +38,13 @@
             $(document).on('click','#accept',function(){
                 $("#reason").remove(); 
             });
-            $(document).on('click','#outhouse',function(){
-                $("#plan2").remove(); 
+            // $(document).on('click','#outhouse',function(){
+            //     $("#plan2").remove(); 
                 
 
             
                 
-            });
+            // });
 
             // $(document).on('click','#r_block',function(){
             //     alert("adada");
@@ -95,7 +95,7 @@
         
             
 
-            var table;
+var table;
 
     $(document).ready(function() {
 

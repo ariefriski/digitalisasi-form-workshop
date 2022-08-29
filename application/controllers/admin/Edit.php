@@ -12,7 +12,7 @@ class Edit extends CI_Controller {
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
 		$this->load->model('m_login');
-		if($this->session->userdata('admin_is_logged_in')=='') {
+		if($this->session->userdata('admin_ws_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
 			redirect('login');
 		}

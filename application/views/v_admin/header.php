@@ -63,7 +63,7 @@
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('admin_name')?></span>
+                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('admin_ws_name')?></span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
@@ -76,7 +76,7 @@
                                 <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/material">
                                     <i class="si si-pencil"></i> Edit Data Material
                                 </a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>login/admin_logout">
+                                <a class="dropdown-item" href="<?php echo base_url();?>login/admin_ws_logout">
                                     <i class="si si-logout mr-5"></i> Sign Out
                                 </a>
                             </div>
