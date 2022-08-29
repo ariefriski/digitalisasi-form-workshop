@@ -177,7 +177,22 @@
                                                 <span class="css-control-indicator"></span> Reject
                                             </label>
                                         </div>
+                                    </div>    
+                                    <div class="form-group row" >
+                                    <label class="col-8" for="example-text-input">PIC Workshop Approval</label>
+                                        <div class="col-6">
+                                            <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="radio" class="css-control-input" name="pic_response" id="accept" value="accept">
+                                                <span class="css-control-indicator"></span> Accept
+                                            </label>
+                                            
+                                            <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                                                <input type="radio" class="css-control-input" name="pic_response" id="reject" value="reject">
+                                                <span class="css-control-indicator"></span> Reject
+                                            </label>
                                         </div>
+                                    </div>    
+                                
                                         <div  id="reason1">
                                         <?php if($ar['alasan'] != NULL){ ?>
                                         <div class="form-group row" id="reason">
