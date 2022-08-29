@@ -80,22 +80,20 @@ class M_proses extends CI_model
         $this->db->group_by(array("process.nama_proses","process.total_cost","processing.hour"));
         return $this->db->get()->result_array();
     }
-//         // $this->db->select('IIF(order.lebar > 1,order.panjang * order.lebar * order.diameter ,3.14 * order.diameter /2 * order.diameter /2 * panjang) as Volume');
+        // $this->db->select('IIF(order.lebar > 1,order.panjang * order.lebar * order.diameter ,3.14 * order.diameter /2 * order.diameter /2 * panjang) as Volume');
         
 
 	private function _get_datatables_query_1()
     {
-        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg');
+        $this->db->select('order.nama_part, order.id_order, order.tempat_pembuatan, material.nama_material, 
+                        detail_estimate_routing.*,process.nama_proses, routing_plan.hour');
         $this->db->from('order');
-        $this->db->join('user','order.id_user = user.id_user');
-        $this->db->join('department','order.id_department = department.id_department');
-        $this->db->join('material','order.id_material=material.id_material');
-        
-     
-
-   
-
+        $this->db->join('material','material.id_material = order.id_material');
+        $this->db->join('detail_estimate_routing','detail_estimate_routing.id_order = order.id_order');
+        $this->db->join('routing_plan','order.id_order = routing_plan.id_order');
+        $this->db->join('process','process.id_proses = routing_plan.id_proses');
     }
+
 	function get_datatables_1()
 	{
 		$this->_get_datatables_query_1();

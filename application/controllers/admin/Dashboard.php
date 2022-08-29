@@ -196,9 +196,7 @@ class Dashboard extends CI_Controller {
 		$list = $this->m_proses->get_datatables_1();
 		$data = array();
 		$no = $_POST['start'];
-		foreach ($list as $l) {
-			$routingLiz = $this->m_proses->routingTable($l->id_order);
-			
+		foreach ($list as $l) {		
 		
 			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
 		
@@ -221,9 +219,12 @@ class Dashboard extends CI_Controller {
 			//Total
 			
 			$row[] = $l->nama_part;
-			$row[] = $l->no_order;
-			$row[] = $l->inhouse;
+			$row[] = $l->id_order;
+			$row[] = $l->tempat_pembuatan;
 			$row[] = $l->nama_material;
+			$row[] = $l->total_cost_material;
+			$row[] = $l->total_cost_process;
+			$row[] = $l->total_all;
 			
 			// $row[] = $l->total;
 			// $row[] = $l->total;

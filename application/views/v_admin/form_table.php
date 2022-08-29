@@ -15,62 +15,13 @@
 <table id="table-routing" class="table table-vcenter" >
         <thead>
             <tr>
-                <th>Part Name</th>
+                <th style="vertical-align : middle;">Part Name</th> 
                 <th>No.Order</th>
                 <th>IN/OUTHOUSE</th>
                 <th>Material</th>
                 <th>Cost Material</th>
                 <th>Cost Process</th>
                 <th>Total Cost</th>
-                <th colspan="4">Proses Design & CAM</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Proses</th>
-                <th colspan="2">Total</th>
-            </tr>
-            <tr>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th>&nbsp;</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">1</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">2</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">1</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">2</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">3</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">4</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">5</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">6</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">7</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">8</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">9</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">10</th>
-                <th style="text-align: center;">JAM</th>
-                <th style="text-align: center;">11</th>
-                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>

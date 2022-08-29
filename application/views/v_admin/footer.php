@@ -140,7 +140,7 @@
         // DATATABLE DASHBOARD
         table2 = $('#table-routing').DataTable({ 
             "scrollY": 200,
-           "scrollX": true,
+            "scrollX": true,
 
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
@@ -148,6 +148,7 @@
             "language": {
                 "infoFiltered": ""
             },
+            "ordering": false,
 
             // Load data for the table's content from an Ajax source
             "ajax": {
