@@ -5,13 +5,15 @@ class Dashboard extends CI_Controller {
 
 	function __construct() {
         parent::__construct();
+		$this->load->model('m_login');
         $this->load->model('m_order');
 		$this->load->model('m_routing');
 		$this->load->model('m_proses');
+		$this->load->model('m_approval');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
-		$this->load->model('m_login');
-		if($this->session->userdata('admin_is_logged_in')=='') {
+		
+		if($this->session->userdata('admin_ws_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
 			redirect('login');
 		}
@@ -21,7 +23,6 @@ class Dashboard extends CI_Controller {
 	
 	public function index()
 	{
-		
 		$this->load->view('v_admin/header');
 		$this->load->view('v_admin/dashboardAdmin');
 		$this->load->view('v_admin/footer');

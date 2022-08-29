@@ -63,14 +63,11 @@ class Dashboard extends CI_Controller {
         $this->load->library('upload', $config);
 		$this->upload->initialize($config);
 		$this->upload->do_upload($filename);
-		
-		
-
-		
-
+	
 		$id_order= $this->generateIdOrder();
 		$id_user = $this->input->post('id_user');
 		$id_department = $this->input->post('id_department');
+		$id_section = $this->input->post('id_section');
 		$order_type = $this->input->post('r_jenispekerjaan');
 		$kategori = $this->input->post('kategori');
 		$nama_part = $this->input->post('nama_part');
@@ -100,6 +97,7 @@ class Dashboard extends CI_Controller {
 			'id_order'=>$id_order,
 			'id_user'=>$id_user,
 			'id_department' =>$id_department,
+			'id_section'=>$id_section,
 			'order_type' => $order_type,
 			'kategori'=>$kategori,
 			'nama_part'=>$nama_part,
@@ -126,9 +124,6 @@ class Dashboard extends CI_Controller {
 			'id_order'=>$id_order,
 			'total_cost_material'=>$total_cost_material
 		);
-
-
-		// var_dump($total_cost_material);
 		
 		$this->m_order->addOrder($data_order);
 		$this->m_order->addDetailRawType($data_detail_raw_type);
@@ -192,10 +187,7 @@ class Dashboard extends CI_Controller {
 			'diameter'=>$diameter,
 			'volume'=>$volume,
 			'berat'=>$berat
-
 		);
-
-	
 		
 		$this->m_order->updateOrder($id,$data);
 		$this->m_order->updateDetailRawType($id,$data_detail_raw_type);
@@ -205,20 +197,13 @@ class Dashboard extends CI_Controller {
 
 	public function order_list()
 	{
-		$list = $this->m_order->get_datatables();
+		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			
-			
-			
-			
-			
 			$view = '<a type="button" style="width:20%;" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
-		
-			// ="'.base_url() . 'admin/response/viewResponseByTitle?id='.$l->id_checksheet.'
 		
 			if ($l->status_pengerjaan == 'Disetujui'){
 				$delete = '	<a id="id-delete" name="delete" href="#" style="width:20%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
@@ -249,9 +234,8 @@ class Dashboard extends CI_Controller {
 		}
 		
 		$output = array(
-						//"draw" => $_POST['draw'],
 						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsFiltered" => $this->m_order->count_filtered_user(),
 						"data" => $data,
 				);
 		//output to json format
@@ -273,7 +257,6 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_user/header');
 		$this->load->view('v_form/form_customer_response_detail',$data);
 		$this->load->view('v_user/footer');
-		
 	}
 
 	

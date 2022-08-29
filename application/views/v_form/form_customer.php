@@ -31,6 +31,7 @@
                         <input type="text" class="form-control" id="nomor_npk" name="db_nomor_npk" placeholder="<?=$this->session->userdata('npk')?>" disabled>
                         <input type="hidden" name= "id_user" value="<?=$this->session->userdata('id_user')?>">
                         <input type="hidden" name= "id_department" value="<?=$this->session->userdata('id_department')?>">
+                        <input type="hidden" name= "id_section" value="<?=$this->session->userdata('id_section')?>">
                     </div>
                 </div>
                 <div class="form-group row">

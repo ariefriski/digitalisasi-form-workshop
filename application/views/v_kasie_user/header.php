@@ -38,7 +38,6 @@
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
         <!-- END Stylesheets -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        
 
         <!-- LOAD CUSTOM DOM TO MANIPULATE ADD CHECKSHEET ext. IN WHOLE PAGE ROLE ADMIN -->
         
@@ -55,28 +54,14 @@
                     <!-- Left Section -->
                     <div class="content-header-section">
                         <!-- User Dropdown -->
-                        <a href="<?php echo base_url();?>admin/dashboard">Home</a>
-                        <!-- END User Dropdown -->
-                    </div>
-                    <div class="content-header-section">
-                        <!-- User Dropdown -->
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('admin_ws_name')?></span>
+                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('kasie_user_name')?></span>
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                            <a class="dropdown-item" href="<?php echo base_url();?>admin/dashboard/IO">
-                                    <i class="si si-list"></i> Input Order List
-                                </a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/proses">
-                                    <i class="si si-pencil"></i> Edit Data Proses
-                                </a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/material">
-                                    <i class="si si-pencil"></i> Edit Data Material
-                                </a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>login/admin_ws_logout">
+                                <a class="dropdown-item" href="<?php echo base_url();?>login/kasie_user_logout">
                                     <i class="si si-logout mr-5"></i> Sign Out
                                 </a>
                             </div>
