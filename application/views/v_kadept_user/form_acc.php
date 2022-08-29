@@ -166,7 +166,7 @@
                     </label>
                     <?php if($a['status_approval']!= NULL) { ?>
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <span class="css-control-indicator"></span> Accept By <?php echo $a['jenis_approval'] ?>
+                        <span class="css-control-indicator"></span> Signed By <?php echo $a['jenis_approval'] ?>
                     </label>
                     <?php } ?>
                 </div>

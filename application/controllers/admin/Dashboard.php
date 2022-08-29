@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('v_admin/header');
+		$this->load->view('v_admin/header_dashboard/header');
 		$this->load->view('v_admin/dashboardAdmin');
 		$this->load->view('v_admin/footer');
 	}
@@ -64,10 +64,11 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
+			if($l->status_approval=='Disetujui'){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
-			$delete = '	<a id="id-delete" name="delete" href="#"  class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-							  <i class="fa fa-times"></i>
-						</a>';
+			// $delete = '	<a id="id-delete" name="delete" href="#"  class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			// 				  <i class="fa fa-times"></i>
+			// 			</a>';
 			
 			
 			$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewAcceptedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
@@ -107,14 +108,14 @@ class Dashboard extends CI_Controller {
 					
 					$row[] = $l->status_pengerjaan;
 					$row[] = 'waiting  ';
-					$row[] = $view.$delete.$report;
+					$row[] = $view.$report;
 					
 					}
 			}
 			
 			
 			$data[] = $row;
-			
+		}
 		}
 		
 		$output = array(

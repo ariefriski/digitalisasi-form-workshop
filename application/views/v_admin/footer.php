@@ -95,7 +95,7 @@
         
             
 
-            var table;
+var table;
 
     $(document).ready(function() {
 
