@@ -178,7 +178,7 @@
                                             </label>
                                         </div>
                                     </div>    
-                                    <div class="form-group row" >
+                                    <!-- <div class="form-group row" >
                                     <label class="col-8" for="example-text-input">PIC Workshop Approval</label>
                                         <div class="col-6">
                                             <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
@@ -191,7 +191,7 @@
                                                 <span class="css-control-indicator"></span> Reject
                                             </label>
                                         </div>
-                                    </div>    
+                                    </div>     -->
                                 
                                         <div  id="reason1">
                                         <?php if($ar['alasan'] != NULL){ ?>

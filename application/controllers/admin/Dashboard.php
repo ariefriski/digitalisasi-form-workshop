@@ -184,6 +184,33 @@ class Dashboard extends CI_Controller {
 		redirect(site_url('admin/dashboard/'));
 		//Tambah Sintaks Update No Order
 	}
+
+	public function acceptPIC()
+	{
+		//$id = $this->input->get('id');
+		
+		$id_order = $this->input->post('id_order');
+		// $no_order = $this->input->post('no_order');
+		$id_user = $this->session->userdata('id_user');
+		$approve = $this->input->post('pic_response');
+		$jenis_approval = $this->session->userdata('level');
+		$tanggal = "%Y-%M-%d %H:%i";
+		if ($approve == 'accept'){
+			$status_approval = 'Disetujui';
+		}else if ($approve == 'reject'){
+			$status_approval = 'Ditolak';
+		}
+		$data =array(
+			'id_order'=>$id_order,
+			'id_user'=>$id_user,
+			'status_approval'=>$status_approval,
+			'tanggal'=>mdate($tanggal),
+			'jenis_approval'=>$jenis_approval
+		);
+		$this->m_approval->addApprovalPic($data);
+		redirect(site_url('admin/dashboard/'));
+		//Tambah Sintaks Update No Order
+	}
 	
 	public function table()
 	{
