@@ -103,10 +103,13 @@
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
-                                <a href="<?= base_url() . 'admin/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan</span></a>
+                                <a href="<?= base_url() . 'admin/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan PIC Workshop</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'kadept_user/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Sudah Disetujui</span></a>
+                                <a href="<?= base_url() . 'admin/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Menunggu Approve Kasie/Kadept</span></a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url() . 'admin/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Routing Plan</span></a>
                             </li>
                         </ul>
                     </div>

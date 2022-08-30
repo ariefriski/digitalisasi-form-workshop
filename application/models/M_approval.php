@@ -9,6 +9,6 @@ class M_approval extends CI_model
 
     function addApprovalPic($data)
     {
-        $this->db->insert('approval',$data);
+        $this->db->insert('approval_pic_workshop',$data);
     }
 }
