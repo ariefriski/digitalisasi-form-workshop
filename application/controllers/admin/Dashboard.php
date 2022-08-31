@@ -217,7 +217,7 @@ class Dashboard extends CI_Controller {
 	
 	public function routingList()
 	{
-		$list = $this->m_proses->get_datatables_1();
+		$list = $this->m_proses->get_datatables_routing_plan();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {	
