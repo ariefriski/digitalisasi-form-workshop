@@ -263,8 +263,6 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/header');
 		$this->load->view('v_admin/viewDetailResultRoute',$data);
 		$this->load->view('v_admin/footer');
-
-
 	}
 
 	public function inputList()
@@ -330,8 +328,5 @@ class Dashboard extends CI_Controller {
 		// $data['columnTitle'] = $this->m_proses->showDatabaseProcess();
 		$data['report'] = $this->m_proses->getReportPaper('K-08-3');
 		$this->load->view('v_form/test',$data);
-	}
-
-
-	
+	}	
 }
