@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		// $data['list'] = $this->m_order->getListForm();
-		$this->load->view('v_user/header');
+		$this->load->view('v_user/header_dashboard/header');
 		$this->load->view('v_user/dashboardUser');
 		$this->load->view('v_user/footer');
 	}
@@ -194,13 +194,14 @@ class Dashboard extends CI_Controller {
 		$this->m_routing->updEstimateRouting($id,$total_cost_material);
 		redirect(site_url('user/dashboard/'));
 	}
-
+//($l->status_approval_1=='Ditolak')||($l->status_approval_2=='Ditolak')||($l->status_approval=='Ditolak')
 	public function order_list()
 	{
 		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
+			if(($l->status_approval_1==NULL)&&($l->status_approval_2==NULL)&&($l->status_approval==NULL)){
 			$view = '<a type="button" style="width:20%;" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
@@ -231,8 +232,9 @@ class Dashboard extends CI_Controller {
 			 $row[] = $l->status_pengerjaan;
 			 $row[] = $view.$delete;
 			$data[] = $row;
-		}
 		
+		}
+	}
 		$output = array(
 						"recordsTotal" => $this->m_order->count_all(),
 						"recordsFiltered" => $this->m_order->count_filtered_user(),
