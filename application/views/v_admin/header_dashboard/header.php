@@ -111,6 +111,9 @@
                             <li>
                                 <a href="<?= base_url() . 'admin/response/route'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Input Order</span></a>
                             </li>
+                            <li>
+                                <a href="<?= base_url() . 'admin/response/onprocess'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Dalam Proses Pengerjaan</span></a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END Side Navigation -->
