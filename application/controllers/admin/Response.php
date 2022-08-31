@@ -95,7 +95,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if((($l->approve2 !=NULL)||($l->approve3 !=NULL))&&($l->tempat_pembuatan ==NULL)){
+			if(((($l->kategori =='urgent')&&($l->approve3 !=NULL))||(($l->kategori =='biasa')&&($l->approve2 !=NULL)))&&($l->tempat_pembuatan ==NULL)){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			
 			$view = '<a type="button" href="'.base_url() . 'admin/response/viewAcceptedResponse_rr?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
