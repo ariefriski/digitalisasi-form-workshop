@@ -121,5 +121,14 @@ class M_routing extends CI_model
 	{
 		return $this->db->get_where('detail_estimate_routing',array('id_order'=>$id))->result_array();
 	}
+
+	function getDataRoutingPlan($id)
+	{
+		$this->db->select('routing_plan.*, process.nama_proses');
+		$this->db->from('routing_plan');
+		$this->db->join('process', 'process.id_proses = routing_plan.id_proses');
+		$this->db->where('id_order',$id);
+		return $this->db->get()->result_array();
+	}
 }
 ?>

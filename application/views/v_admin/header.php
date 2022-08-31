@@ -44,8 +44,7 @@
         
     </head>
     <body>
-        
-<!--              -->
+    <div id="page-container" class="side-scroll page-header-modern main-content-boxed">
             <!-- END Sidebar -->
 
             <!-- Header -->

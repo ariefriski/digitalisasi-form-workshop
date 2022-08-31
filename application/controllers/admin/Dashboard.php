@@ -217,73 +217,25 @@ class Dashboard extends CI_Controller {
 	
 	public function routingList()
 	{
-		$list = $this->m_proses->get_datatables_1();
+		$list = $this->m_proses->get_datatables_routing_plan();
 		$data = array();
 		$no = $_POST['start'];
-		foreach ($list as $l) {
-			$routingLiz = $this->m_proses->routingTable($l->id_order);
-			
-		
-			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
-		
-			// if ($l->status_laporan == 'Disetujui'){
-			// 	$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }else{
-			// $delete = '	<a id="id-delete" name="delete" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }			
-				
+		foreach ($list as $l) {	
 			$no++;
 			
 			$row = array();
-			// $rl['status']; foreach($routingList as $rl){	
-			//PartName			
-			
-			//Total
 			
 			$row[] = $l->nama_part;
-			$row[] = $l->no_order;
-			$row[] = $l->inhouse;
+			$row[] = $l->id_order;
+			$row[] = $l->tempat_pembuatan;
 			$row[] = $l->nama_material;
+			$row[] = $l->total_cost_material;
+			$row[] = $l->total_cost_process;
+			$row[] = $l->total_all;
+			$row[] = '<a type="button" href="'.base_url() . 'admin/dashboard/detailResultRoute?id='.$l->id_order.'" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View">
+							<i class="fa fa-eye"></i>
+						</a>';
 			
-			// $row[] = $l->total;
-			// $row[] = $l->total;
-			// $row[] = '???';
-			// $row[] = 'design';
-			// $row[] = '???';
-			// $row[] = 'CAM';
-			
-			// $row[] = $l->MANUAL;
-			// $row[] = 'Manual';
-			// $row[] = $l->CNC;
-			// $row[] = 'CNC';
-			// $row[] = $l->MILLING;
-			// $row[] = 'Milling';
-			// $row[] = $l->BUBUT;
-			// $row[] = 'Bubut';
-			// $row[] = $l->GRINDING;
-			// $row[] = 'Grinding';
-			// $row[] = $l->SAWING;
-			// $row[] = 'Saw';
-			// $row[] = $l->DRILLING;
-			// $row[] = 'Drilling';
-			// $row[] = $l->MANMACHINING;
-			// $row[] = 'Man.Machining';
-			// $row[] = $l->WELDING;
-			// $row[] = 'Welding';
-			// $row[] = $l->MANFABRIKASI;
-			// $row[] = 'Man.Fabrikasi';
-			// $row[] = 'Inspeksi';
-			// $row[] = '???';
-			// }
-			// foreach($routingLiz as $rl){
-			// 	$row[] = $rl['hour'];
-			// 	$row[] = $rl['nama_proses'];
-			// }
-			// $row[] = $l->total_actual;
 			$data[] = $row;
 			
 		}
@@ -296,6 +248,21 @@ class Dashboard extends CI_Controller {
 				);
 		//output to json format
 		echo json_encode($output);
+	}
+
+	public function detailResultRoute()
+	{
+		$id_order = $this->input->get('id');
+
+		$dataRoutingPlan = $this->m_order->getOrderById($id_order);
+		$detailDataRoutingPlan = $this->m_routing->getDataRoutingPlan($id_order);
+
+		$data['dataRoutingPlan'] = $dataRoutingPlan;
+		$data['detailDataRoutingPlan'] = $detailDataRoutingPlan;
+
+		$this->load->view('v_admin/header');
+		$this->load->view('v_admin/viewDetailResultRoute',$data);
+		$this->load->view('v_admin/footer');
 	}
 
 	public function inputList()
@@ -361,8 +328,5 @@ class Dashboard extends CI_Controller {
 		// $data['columnTitle'] = $this->m_proses->showDatabaseProcess();
 		$data['report'] = $this->m_proses->getReportPaper('K-08-3');
 		$this->load->view('v_form/test',$data);
-	}
-
-
-	
+	}	
 }
