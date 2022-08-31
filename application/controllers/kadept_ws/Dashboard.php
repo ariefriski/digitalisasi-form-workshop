@@ -77,7 +77,7 @@ class Dashboard extends CI_Controller {
 		// $no_order = $this->input->post('no_order');
 		$id_user = $this->session->userdata('id_user');
 		$approve = $this->input->post('r_kadept');
-		
+		$alasan = $this->input->post('alasan');
 		$tanggal_2 = "%Y-%M-%d %H:%i";
 		$approve3 = 'Done';
 		if ($approve == 'accept'){
@@ -87,7 +87,8 @@ class Dashboard extends CI_Controller {
 		}
 		$data =array(
 			'tanggal_2'=>mdate($tanggal_2),
-			'jenis_approval_2'=>$jenis_approval_2
+			'jenis_approval_2'=>$jenis_approval_2,
+			'alasan_3'=>$alasan
 		);
 
 		$update = array(

@@ -95,43 +95,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if(($l->approve3 !=NULL)&&($l->tempat_pembuatan ==NULL)){
-			$departmentName = $this->m_order->getDepartmentName($l->id_department);
-			
-			$view = '<a type="button" href="'.base_url() . 'admin/response/viewAcceptedResponse_rr?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
-							<i class="fa fa-hand-o-up"></i>
-						</a>';	
-			
-			$report = 		'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaper?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
-							<i class="fa fa-save"></i>
-						</a>';	
-				
-			$no++;
-			$tanggal = date_create($l->tanggal);
-			$row = array();
-			if($l->status_approval_1=='Disetujui'){
-				foreach($departmentName as $d){
-					$row[] = $no;
-					$row[] = $l->nama_part;
-					$row[] = date_format($tanggal,"d/m/Y");
-					$row[] = date_format($tanggal,"H:i");
-					if ($l->kategori == 'urgent'){
-						$row[] = '<span class="badge badge-danger">urgent</span>';
-					}else if ($l->kategori == 'biasa'){
-						$row[] = '<span class="badge badge-warning">biasa</span>';
-					}
-					$row[] = $d['department_name'];
-					
-					$row[] = $l->status_pengerjaan;
-					$row[] = 'waiting  ';
-					$row[] = $view.$report;
-					
-					}
-			}
-			
-			
-			$data[] = $row;
-		}else if(($l->kategori == 'biasa')&&($l->approve2 !=NULL)){
+			if((($l->approve2 !=NULL)||($l->approve3 !=NULL))&&($l->tempat_pembuatan ==NULL)){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			
 			$view = '<a type="button" href="'.base_url() . 'admin/response/viewAcceptedResponse_rr?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">

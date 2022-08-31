@@ -109,7 +109,7 @@
                                 <a href="<?= base_url() . 'admin/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Menunggu Approve Kasie/Kadept</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'admin/response/route'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Routing Plan</span></a>
+                                <a href="<?= base_url() . 'admin/response/route'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Input Order</span></a>
                             </li>
                         </ul>
                     </div>

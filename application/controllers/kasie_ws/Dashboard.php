@@ -90,7 +90,7 @@ class Dashboard extends CI_Controller {
 			'id_order'=>$id_order,
 			'id_user'=>$id_user,
 			'status_approval'=>$status_approval,
-			'alasan'=>$alasan,
+			'alasan_3'=>$alasan,
 			'tanggal'=>mdate($tanggal),
 			'jenis_approval_1'=>$jenis_approval
 		);
