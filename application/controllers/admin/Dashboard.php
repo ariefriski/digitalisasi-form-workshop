@@ -64,12 +64,8 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if($l->status_approval=='Disetujui'){
+			if(($l->status_approval_1=='Disetujui')&&($l->approve1==NULL)){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
-			// $delete = '	<a id="id-delete" name="delete" href="#"  class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			
 			
 			$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewAcceptedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-hand-o-up"></i>
@@ -78,22 +74,11 @@ class Dashboard extends CI_Controller {
 			$report = 		'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaper?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-save"></i>
 						</a>';	
-			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
-		
-			// if ($l->status_laporan == 'Disetujui'){
-			// 	$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }else{
-			// $delete = '	<a id="id-delete" name="delete" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }			
 				
 			$no++;
 			$tanggal = date_create($l->tanggal);
 			$row = array();
-			if($l->status_approval=='Disetujui'){
+			if($l->status_approval_1=='Disetujui'){
 				foreach($departmentName as $d){
 					$row[] = $no;
 					$row[] = $l->nama_part;
@@ -134,7 +119,7 @@ class Dashboard extends CI_Controller {
 		$data['accept_response'] = $this->m_order->getResponseOrder($id);
 		$data['get_Routing'] = $this->m_routing->selectRouting();
 		$this->load->view('v_admin/header');
-		$this->load->view('v_form/form_response',$data);
+		$this->load->view('v_admin/form_response',$data);
 		$this->load->view('v_admin/footer');
 	}
 
@@ -193,8 +178,10 @@ class Dashboard extends CI_Controller {
 		// $no_order = $this->input->post('no_order');
 		$id_user = $this->session->userdata('id_user');
 		$approve = $this->input->post('pic_response');
+		$alasan = $this->input->post('alasan');
 		$jenis_approval = $this->session->userdata('level');
 		$tanggal = "%Y-%M-%d %H:%i";
+		$approve1 = 'Done';
 		if ($approve == 'accept'){
 			$status_approval = 'Disetujui';
 		}else if ($approve == 'reject'){
@@ -203,11 +190,19 @@ class Dashboard extends CI_Controller {
 		$data =array(
 			'id_order'=>$id_order,
 			'id_user'=>$id_user,
-			'status_approval'=>$status_approval,
+			'status_approval_2'=>$status_approval,
 			'tanggal'=>mdate($tanggal),
+			'alasan_2'=>$alasan,
 			'jenis_approval'=>$jenis_approval
 		);
+
+		$update = array(
+			'approve1'=>$approve1
+		);
+		
+
 		$this->m_approval->addApprovalPic($data);
+		$this->m_approval->updateApprovalPic($id_order,$update);
 		redirect(site_url('admin/dashboard/'));
 		//Tambah Sintaks Update No Order
 	}

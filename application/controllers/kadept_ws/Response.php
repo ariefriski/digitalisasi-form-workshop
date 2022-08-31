@@ -8,28 +8,27 @@ class Response extends CI_Controller {
         $this->load->model('m_order');
 		$this->load->model('m_login');
 		$this->load->model('m_approval');
-		if($this->session->userdata('kasie_user_is_logged_in')=='') {
+		if($this->session->userdata('kadept_ws_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
 			redirect('login');
 		}
     }
 
-
-	public function index()
+    public function index()
 	{
-		$this->load->view('v_kasie_user/header_dashboard/header');
-		$this->load->view('v_kasie_user/responseKasieUser');
-		$this->load->view('v_kasie_user/footer');
+		$this->load->view('v_kadept_ws/header_dashboard/header');
+		$this->load->view('v_kadept_ws/responseKadeptWs');
+		$this->load->view('v_kadept_ws/footer');
 	}
 
     public function order_list()
 	{
-		$list = $this->m_order->get_datatables_kasie_user();
+		$list = $this->m_order->get_datatables_1();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-		if($l->status_approval_1 != NULL){
-			$view ='<a type="button" href="'.base_url() . 'kasie_user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+            if(($l->status_approval_2=='Disetujui')&&($l->approve2=='Done')&&(($l->kategori=='urgent'))){
+			$view ='<a type="button" href="'.base_url() . 'kadept_ws/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
 			// }	
@@ -48,7 +47,7 @@ class Response extends CI_Controller {
 			$row[] = $l->status_pengerjaan;
 			$row[] = $view;
 			$data[] = $row;
-		}   
+            }
 		}
 		
 		$output = array(
@@ -65,11 +64,11 @@ class Response extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['accept'] = $this->m_order->getResponseOrder($id);
-		$this->load->view('v_kasie_user/header');
-		$this->load->view('v_kasie_user/form_acc_r',$data);
-		$this->load->view('v_kasie_user/footer');
+		$this->load->view('v_kadept_ws/header');
+		$this->load->view('v_kadept_ws/form_acc_r',$data);
+		$this->load->view('v_kadept_ws/footer');
 	}
 
-}
 
+}
 ?>

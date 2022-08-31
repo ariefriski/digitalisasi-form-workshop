@@ -103,13 +103,10 @@
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
-                                <a href="<?= base_url() . 'admin/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan PIC Workshop</span></a>
+                                <a href="<?= base_url() . 'kadept_ws/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'admin/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Menunggu Approve Kasie/Kadept</span></a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url() . 'admin/response/route'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Input Order</span></a>
+                                <a href="<?= base_url() . 'kadept_ws/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Sudah Disetujui</span></a>
                             </li>
                         </ul>
                     </div>
@@ -139,26 +136,17 @@
                 <div class="content-header-section">
                     <!-- User Dropdown -->
                     <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('admin_ws_name')?></span>
-                                <i class="fa fa-angle-down ml-5"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                            <a class="dropdown-item" href="<?php echo base_url();?>admin/dashboard/IO">
-                                    <i class="si si-list"></i> Input Order List
-                                </a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/proses">
-                                    <i class="si si-pencil"></i> Edit Data Proses
-                                </a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/material">
-                                    <i class="si si-pencil"></i> Edit Data Material
-                                </a>
-                                <a class="dropdown-item" href="<?php echo base_url();?>login/admin_ws_logout">
-                                    <i class="si si-logout mr-5"></i> Sign Out
-                                </a>
-                            </div>
-                        </div>
+                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('kadept_ws_name')?></span>
+                            <i class="fa fa-angle-down ml-5"></i>
+                        </button>
+                    <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
+                        <a class="dropdown-item" href="<?php echo base_url();?>login/kadept_ws_logout">
+                            <i class="si si-logout mr-5"></i> Sign Out
+                    </a>
+                    </div>
+                </div>
                         <!-- END User Dropdown -->
                     </div>
                     <!-- END Right Section -->
