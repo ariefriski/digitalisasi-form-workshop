@@ -1,50 +1,46 @@
-<style>
-    /* Ensure that the demo table scrolls */
-    th, td { border: 1px solid; }
-  /* Ensure that the demo table scrolls */
-    table{
-        width: 250%;
-    }
-</style>
-<div class="row">
-<div class="col-md-12">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <img src="<?php echo base_url().'assets/media/photos/cbi-logo.png';?>" alt="logo-cbi" width="50" height="50">
-<h2  style="text-align: center;">Input Order</h2>
-</div>
-</div>
-<table id="table-input-order" class="table table-vcenter" >
-   
-        <thead>
-            <tr>
-                <th>Tanggal</th>
-                <th>Urgent</th>
-                <th>Nomor Permintaan</th>
-                <th>Requestor</th>
-                <th>Dept</th>
-                <th>Mesin</th>
-                <th>Jumlah</th>
-                <th>Material</th>
-                <th>Item Pekerjaan</th>
-                <th>Status</th>
-                <th>COS MAT.</th>
-                <?php
-                    foreach ($columnTitle as $ct) {
-                        echo '
-                            <th>'.$ct['nama_proses'].'</th>
-                        ';
-                    }
-                ?>                
-             
-                <th>Total Actual</th>
-                
-                
-               
-            </tr>
-        </thead>
-        <tbody>
-                <tr>
+<!-- Main Container -->
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content" style="max-width:100%;">
+        <!-- Default Table Style -->
+        <h2 class="content-heading" style="text-align:center; font-weight:bold; font-size:28px;">Order List</h2>
 
-                </tr>
-        </tbody>
-</table>
+        <!-- Table -->
+        <div class="block">
+            <div class="block-content" style="padding-bottom: 20px;">
+                <table id="table-input-order" class="table table-vcenter text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Urgent</th>
+                        <th>No Order</th>
+                        <th>Request By</th>
+                        <th>Department</th>
+                        <th>Nama Part</th>
+                        <th>Jumlah</th>
+                        <th>Material</th>
+                        <th>Item Pekerjaan</th>
+                        <th>Status</th>
+                        <th>Cost Material</th>
+                        <th>Cost Process</th>
+                        <th>Cost Total</th>
+                        <?php
+                            foreach ($columnTitle as $ct) {
+                                echo '
+                                    <th>'.$ct['nama_proses'].'</th>
+                                ';
+                            }
+                        ?>                
+                    
+                        <th>Total Actual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>            
+</div>
+</main>
 
