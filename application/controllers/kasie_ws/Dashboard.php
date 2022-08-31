@@ -8,34 +8,36 @@ class Dashboard extends CI_Controller {
         $this->load->model('m_order');
 		$this->load->model('m_login');
 		$this->load->model('m_approval');
-		if($this->session->userdata('kasie_user_is_logged_in')=='') {
+		if($this->session->userdata('kasie_ws_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
 			redirect('login');
 		}
     }
 
-
-	public function index()
+    public function index()
 	{
-		$this->load->view('v_kasie_user/header_dashboard/header');
-		$this->load->view('v_kasie_user/dashboardKasieUser');
-		$this->load->view('v_kasie_user/footer');
+		$this->load->view('v_kasie_ws/header_dashboard/header');
+		$this->load->view('v_kasie_ws/dashboardKasieWs');
+		$this->load->view('v_kasie_ws/footer');
 	}
 
-	public function acceptForm(){
-		$this->load->view('v_kasie_user/header');
-		$this->load->view('v_kasie_user/form_acc');
-		$this->load->view('v_kasie_user/footer');
-	}
-	
-	public function order_list()
+    public function viewAcceptOrder()
 	{
-		$list = $this->m_order->get_datatables_kasie_user();
+		$id = $this->input->get('id');
+		$data['accept'] = $this->m_order->getResponseOrder($id);
+		$this->load->view('v_kasie_ws/header');
+		$this->load->view('v_kasie_ws/form_acc',$data);
+		$this->load->view('v_kasie_ws/footer');
+	}
+
+    public function order_list()
+	{
+		$list = $this->m_order->get_datatables_1();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-		if($l->status_approval_1==NULL){
-			$view ='<a type="button" href="'.base_url() . 'kasie_user/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+            if(($l->status_approval_2=='Disetujui')&&($l->approve2==NULL)){
+			$view ='<a type="button" href="'.base_url() . 'kasie_ws/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
 			// }	
@@ -54,7 +56,7 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->status_pengerjaan;
 			$row[] = $view;
 			$data[] = $row;
-		}   
+            }
 		}
 		
 		$output = array(
@@ -67,26 +69,18 @@ class Dashboard extends CI_Controller {
 		echo json_encode($output);
 	}
 
-	public function viewAcceptOrder()
+    public function acceptKasieWs()
 	{
-		$id = $this->input->get('id');
-		$data['accept'] = $this->m_order->getResponseOrder($id);
-		$this->load->view('v_kasie_user/header');
-		$this->load->view('v_kasie_user/form_acc',$data);
-		$this->load->view('v_kasie_user/footer');
-	}
-
-	public function acceptOrder()
-	{
-		$id_order = $this->input->get('id');
-		$approve = $this->input->post('r_order_response');
-		$alasan = $this->input->post('alasan');
+		//$id = $this->input->get('id');
+		
+		$id_order = $this->input->post('id_order');
+		// $no_order = $this->input->post('no_order');
 		$id_user = $this->session->userdata('id_user');
-		$tanggal = "%Y-%M-%d %H:%i";
-		$approve1 = NULL;
-		$approve2 = NULL;
-		$approve3 = NULL;
+		$approve = $this->input->post('r_kasie');
 		$jenis_approval = $this->session->userdata('level');
+		$alasan = $this->input->post('alasan');
+		$tanggal = "%Y-%M-%d %H:%i";
+		$approve2 = 'Done';
 		if ($approve == 'accept'){
 			$status_approval = 'Disetujui';
 		}else if ($approve == 'reject'){
@@ -95,13 +89,23 @@ class Dashboard extends CI_Controller {
 		$data =array(
 			'id_order'=>$id_order,
 			'id_user'=>$id_user,
-			'status_approval_1'=>$status_approval,
-			'alasan' =>$alasan,
+			'status_approval'=>$status_approval,
+			'alasan'=>$alasan,
 			'tanggal'=>mdate($tanggal),
-			'jenis_approval'=>$jenis_approval
-		
+			'jenis_approval_1'=>$jenis_approval
 		);
-		$this->m_approval->addApproval($data);
-		redirect(site_url('kasie_user/dashboard/'));
+
+		$update = array(
+			'approve2'=>$approve2
+		);
+		
+
+		$this->m_approval->addApprovalKasieWs($data);
+		$this->m_approval->updateApprovalKasieWs($id_order,$update);
+		redirect(site_url('kasie_ws/dashboard/'));
+		//Tambah Sintaks Update No Order
 	}
+
 }
+
+?>

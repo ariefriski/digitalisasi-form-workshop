@@ -28,8 +28,8 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-		if($l->status_approval != NULL){
-			$view ='<a type="button" href="'.base_url() . 'kadept_user/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+		if($l->status_approval_1 != NULL){
+			$view ='<a type="button" href="'.base_url() . 'kadept_user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
 			// }	
@@ -59,6 +59,15 @@ class Response extends CI_Controller {
 				);
 		//output to json format
 		echo json_encode($output);
+	}
+
+	public function viewAcceptOrder_r()
+	{
+		$id = $this->input->get('id');
+		$data['accept'] = $this->m_order->getResponseOrder($id);
+		$this->load->view('v_kadept_user/header');
+		$this->load->view('v_kadept_user/form_acc_r',$data);
+		$this->load->view('v_kadept_user/footer');
 	}
 
 }

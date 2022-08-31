@@ -57,7 +57,7 @@ class M_order extends CI_model
     
     private function _get_datatables_kasie_user()
     {
-        $this->db->select('order.*,approval.status_approval');
+        $this->db->select('order.*,approval.status_approval_1');
         $this->db->from('order');
         $this->db->join('approval','order.id_order=approval.id_order','left');
     
@@ -112,7 +112,7 @@ class M_order extends CI_model
     
     private function _get_datatables_kadept_user()
     {
-        $this->db->select('order.*,approval.status_approval');
+        $this->db->select('order.*,approval.status_approval_1');
         $this->db->from('order');
         $this->db->join('approval','order.id_order=approval.id_order','left');
 
@@ -212,9 +212,14 @@ class M_order extends CI_model
 
     private function _get_datatables_query_1()
     {
-        $this->db->select('order.*,approval.status_approval');
+        $this->db->select('order.*,approval_pic_workshop.status_approval_2,approval_pic_workshop.alasan_2,approval.status_approval_1,approval.approve1,approval.approve2,approval.approve3,approval_final.jenis_approval_2,
+        approval_final.status_approval,detail_estimate_routing.tempat_pembuatan');
         $this->db->from('order');
-        $this->db->join('approval','order.id_order=approval.id_order');        
+        $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
+        $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order','left');
+        $this->db->join('approval','order.id_order=approval.id_order');   
+             
         
         $i = 0;
 	
@@ -283,14 +288,20 @@ class M_order extends CI_model
     public function getResponseOrder($id)
     {
         $this->db->select('order.*,department.department_name,user.npk,user.name,material.nama_material,
-        detail_raw_type.*,approval.status_approval,approval.jenis_approval,approval.alasan,detail_estimate_routing.tempat_pembuatan');
+        detail_raw_type.id_raw_type,detail_raw_type.panjang,detail_raw_type.lebar,detail_raw_type.diameter,detail_raw_type.volume,
+        detail_raw_type.berat,approval.alasan,approval.jenis_approval,approval.status_approval_1,approval.tanggal,
+        approval.approve1,approval.approve2,approval.approve3,detail_estimate_routing.tempat_pembuatan,
+        approval_final.status_approval,approval_final.jenis_approval_1,approval_final.alasan_3,approval_final.tanggal_2,approval_final.jenis_approval_2
+        ,approval_pic_workshop.status_approval_2,approval_pic_workshop.alasan_2');
         $this->db->from('order');
         $this->db->join('department','order.id_department=department.id_department');
         $this->db->join('user','order.id_user=user.id_user');
         $this->db->join('material','order.id_material=material.id_material');
         $this->db->join('detail_raw_type','detail_raw_type.id_order=order.id_order');
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->join('approval_final','approval_final.id_order=order.id_order','left');
         $this->db->join('approval','approval.id_order=order.id_order','left');
+        $this->db->join('approval_pic_workshop','approval_pic_workshop.id_order=order.id_order','left');
         $this->db->where('order.id_order',$id);
         return $this->db->get()->result_array();
     }

@@ -150,28 +150,89 @@
 </div>
         <div class="block">
         <div class="block-content">
-    
+        
         <?php foreach($accept as $a) { ?>
-            <form action="<?php echo base_url()?>kadept/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
+            <form action="<?php echo base_url()?>kadept_ws/dashboard/acceptKadeptWs" method="post">
+            <input type="hidden" name="id_order" value="<?php echo $a['id_order']; ?>" >
             <div class="form-group row" >
-            
                     <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
                     <div class="col-6">
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept">
+                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($a['status_approval']=='Disetujui') echo 'checked'?> disabled>
                         <span class="css-control-indicator"></span> Accept
                     </label>
-                    <!-- foto -->
-                
-
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject">
+                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($a['status_approval']=='Ditolak') echo 'checked'?> disabled>
                         <span class="css-control-indicator"></span> Reject
                     </label>
+                    <?php if($a['status_approval']!= NULL) { ?>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <span class="css-control-indicator"></span> Signed By <?php echo $a['jenis_approval'] ?>
+                    </label>
+                    <?php } ?>
                 </div>
-                </div>
-                <div  id="reason1">
+                <label class="col-8" for="example-text-input">PIC Workshop Approval</label>
+                <div class="col-6">
+                        <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="pic_response" id="accept" value="accept" <?php if($a['status_approval_2']=='Disetujui') echo 'checked'?> disabled>
+                        <span class="css-control-indicator"></span> Accept
+                    </label>
                     
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="pic_response" id="reject" value="reject" <?php if($a['status_approval_2']=='Ditolak') echo 'checked'?> disabled>
+                        <span class="css-control-indicator"></span> Reject
+                    </label>
+                  
+                </div>
+                <label class="col-8" for="example-text-input">Kasie Workshop Approval</label>
+                    <div class="col-6">
+                    <?php if($a['approve2']!= NULL) { ?>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="r_kasie" id="accept" value="accept" <?php if($a['status_approval']=='Disetujui') echo 'checked'?> disabled>
+                        <span class="css-control-indicator"></span> Accept
+                    </label>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="r_kasie" id="reject" value="reject" <?php if($a['status_approval']=='Ditolak') echo 'checked'?> disabled>
+                        <span class="css-control-indicator"></span> Reject
+                    </label>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <span class="css-control-indicator"></span> Signed By <?php echo $a['jenis_approval_1'] ?>
+                    </label>
+                    <?php }else{?>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="r_kasie" id="accept" value="accept" >
+                        <span class="css-control-indicator"></span> Accept
+                    </label>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="r_kasie" id="reject" value="reject" >
+                        <span class="css-control-indicator"></span> Reject
+                    </label>
+                    <?php } ?>
+                </div>
+                <?php if($a['jenis_approval']!=NULL){ ?>
+                    <label class="col-8" for="example-text-input">Kadept Workshop Approval</label>
+                    <div class="col-6">
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="r_kadept" id="accept" value="accept" <?php if($a['jenis_approval_2']!=NULL) echo 'checked'?> disabled >
+                        <span class="css-control-indicator"></span> Accept
+                    </label>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="radio" class="css-control-input" name="r_kadept" id="reject" value="reject" <?php if($a['jenis_approval_2']==NULL) echo 'checked'?> disabled> 
+                        <span class="css-control-indicator"></span> Reject
+                    </label>
+                 <?php }?>
+            </div>
+                <div  id="reason1">
+                <?php if($a['alasan_3'] != NULL){ ?>
+                <div class="form-group row" id="reason">
+                    <label class="col-12" for="example-textarea-input">*Alasan Reject</label>
+                <div class="col-12">
+                    <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..." disabled>
+                    <?php echo $a['alasan_3'];?>
+                    </textarea>
+                </div>
+                </div>
+                    <?php } ?> 
                 </div>
                 <div class="form-group row">
                 <button class="btn btn-success" id="submit_btn">

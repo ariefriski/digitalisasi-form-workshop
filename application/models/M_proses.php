@@ -84,14 +84,14 @@ class M_proses extends CI_model
 	private function _get_datatables_query_1()
     {
         $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
-        detail_estimate_routing.total_hour,approval.status_approval');
+        detail_estimate_routing.total_hour,approval.status_approval_1');
         $this->db->from('order');
         $this->db->join('user','order.id_user = user.id_user');
         $this->db->join('department','order.id_department = department.id_department');
         $this->db->join('material','order.id_material=material.id_material');
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
         $this->db->join('approval','order.id_order=approval.id_order');
-        $this->db->where('approval.status_approval','Disetujui');
+        $this->db->where('approval.status_approval_1','Disetujui');
         $where = "detail_estimate_routing.total_hour is NOT NULL";
         $this->db->where($where);
 

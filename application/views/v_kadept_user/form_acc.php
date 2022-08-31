@@ -154,6 +154,7 @@
         <?php foreach($accept as $a) { ?>
             <form action="<?php echo base_url()?>kadept_user/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
             <div class="form-group row" >
+                
                     <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
                     <div class="col-6">
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">

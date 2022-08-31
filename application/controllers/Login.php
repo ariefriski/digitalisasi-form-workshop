@@ -114,10 +114,11 @@ class Login extends CI_Controller {
                         'level'=>$level,
                         'kasie_ws_is_logged_in' => true,
                         'id_user' => $id_user
+                        
                         );
                     
                     $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
-                    redirect(base_url('kadept/dashboard/'));//ganti
+                    redirect(base_url('kasie_ws/dashboard/'));//ganti
                 }
 
                 if($level=='kadept_ws')
@@ -131,7 +132,7 @@ class Login extends CI_Controller {
                         );
                     
                     $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
-                    redirect(base_url('kadept/dashboard/'));//ganti
+                    redirect(base_url('kadept_ws/dashboard/'));//ganti
                 }
             }       
         }

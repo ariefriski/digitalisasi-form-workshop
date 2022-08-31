@@ -150,33 +150,34 @@
 </div>
         <div class="block">
         <div class="block-content">
-    
+        
         <?php foreach($accept as $a) { ?>
-            <form action="<?php echo base_url()?>kadept/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
-            <div class="form-group row" >
+            <form action="<?php echo base_url()?>kasie_user/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
             
+            <div class="form-group row" >
                     <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
                     <div class="col-6">
+                    
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept">
+                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($a['status_approval_1']=='Disetujui') echo 'checked'?> disabled>
                         <span class="css-control-indicator"></span> Accept
                     </label>
-                    <!-- foto -->
-                
-
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject">
+                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($a['status_approval_1']=='Ditolak') echo 'checked'?> disabled>
                         <span class="css-control-indicator"></span> Reject
                     </label>
+                    <?php if($a['status_approval_1']!= NULL) { ?>
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <span class="css-control-indicator"></span> Signed By <?php echo $a['jenis_approval'] ?>
+                    </label>
+                    <?php } ?>
                 </div>
                 </div>
                 <div  id="reason1">
                     
                 </div>
                 <div class="form-group row">
-                <button class="btn btn-success" id="submit_btn">
-                    <i class="si si-check"></i>&nbsp;Kirim
-                </button>
+                
                 </div>
                 <?php } ?>
             </form>

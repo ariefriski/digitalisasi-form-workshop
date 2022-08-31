@@ -36,7 +36,7 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-		if($l->status_approval==NULL){
+		if($l->status_approval_1==NULL){
 			$view ='<a type="button" href="'.base_url() . 'kadept_user/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -94,7 +94,7 @@ class Dashboard extends CI_Controller {
 		$data =array(
 			'id_order'=>$id_order,
 			'id_user'=>$id_user,
-			'status_approval'=>$status_approval,
+			'status_approval_1'=>$status_approval,
 			'alasan' =>$alasan,
 			'tanggal'=>mdate($tanggal),
 			'jenis_approval'=>$jenis_approval

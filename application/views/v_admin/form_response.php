@@ -164,17 +164,16 @@
             
             <form action="<?php echo base_url()?>admin/dashboard/acceptPIC" method="post" enctype="multipart/form-data" >
             <input type="hidden" name="id_order" value="<?php echo $ar['id_order']; ?>" >
-            
             <div class="form-group row" >
                     <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
                     <div class="col-6">
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($ar['status_approval']=='Disetujui') echo 'checked'?> disabled>
+                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($ar['status_approval_1']=='Disetujui') echo 'checked'?> disabled>
                         <span class="css-control-indicator"></span> Accept
                     </label>
                     
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($ar['status_approval']=='Ditolak') echo 'checked'?> disabled>
+                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($ar['status_approval_1']=='Ditolak') echo 'checked'?> disabled>
                         <span class="css-control-indicator"></span> Reject
                     </label>
                 </div>
@@ -183,17 +182,7 @@
             <div class="form-group row" >
             <label class="col-8" for="example-text-input">PIC Workshop Approval</label>
                 <div class="col-6">
-                    <?php if($ar['approve1']!=NULL){ ?>
-                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="pic_response" id="accept" value="accept" <?php if($ar['status_approval']=='Disetujui') echo 'checked'?> disabled>
-                        <span class="css-control-indicator"></span> Accept
-                    </label>
                     
-                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="pic_response" id="reject" value="reject" <?php if($ar['status_approval']=='Ditolak') echo 'checked'?> disabled>
-                        <span class="css-control-indicator"></span> Reject
-                    </label>
-                    <?php }else{?>
                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
                         <input type="radio" class="css-control-input" name="pic_response" id="accept" value="accept" >
                         <span class="css-control-indicator"></span> Accept
@@ -208,18 +197,9 @@
             </div>    
         
                 <div  id="reason1">
-                <?php if($ar['alasan'] != NULL){ ?>
-                <div class="form-group row" id="reason">
-                    <label class="col-12" for="example-textarea-input">*Alasan Reject</label>
-                <div class="col-12">
-                    <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..." disabled>
-                    <?php echo $ar['alasan'];?>
-                    </textarea>
+                 
                 </div>
-                </div>
-                    <?php } ?>    
-                </div>
-                <?php if($ar['status_approval']=='Disetujui') {?>
+                <?php if($ar['status_approval_1']=='Disetujui') {?>
                     <?php if($ar['id_order']== NULL){?>
                     <div class="form-group row">
                             <label class="col-8" for="example-text-input">Nomor Order</label>
@@ -227,9 +207,10 @@
                             <input type="text" class="form-control" id="no_order" name="no_order" placeholder="Nomor Order" required>
                     </div>
                     </div>
-                        <?php } ?>     
-                    <!-- <div class="form-group row">
-                    <?php if($ar['tempat_pembuatan']==NULL){ ?>
+                        <?php } ?>   
+                      
+                    <div class="form-group row">
+                    <?php if(($ar['kategori']=='urgent')&&($ar['approve3']=='Done')){ ?>
                     <label class="col-8" for="example-text-input">Process Order</label>
                     <div class="col-6">
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
@@ -242,25 +223,11 @@
                         <span class="css-control-indicator"></span> Outhouse
                     </label>
                 </div>
-                <?php } else{?>
-                    <label class="col-8" for="example-text-input">Process Order</label>
-                    <div class="col-6">
-                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="response_order" id="inhouse" value="inhouse" <?php if($ar['tempat_pembuatan']=='inhouse') echo 'checked'?> disabled >
-                        <span class="css-control-indicator"></span> Inhouse
-                    </label>
-                    
-                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="response_order" id="outhouse" value="outhouse" <?php if($ar['tempat_pembuatan']=='outhouse') echo 'checked'?> disabled>
-                        <span class="css-control-indicator"></span> Outhouse
-                    </label>
-                    <?php }?>
-                </div> -->
-                <?php } else if ($ar['status_approval']=='Ditolak'){?>
-                    <?php echo 'Request Di Tolak';?>
-                <?php }else{ ?>
-                    <?php echo 'Request Menunggu Approve';?>
+                    </div>
                 <?php } ?>
+                </div>
+               
+                <?php } ?> 
                 <div id="plan1">
                     
                 </div>
@@ -271,9 +238,6 @@
                 </div>
         </form>
         </div>
-        <?php 
-        } 
-    ?>
     </div>
                             
                             
