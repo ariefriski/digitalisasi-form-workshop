@@ -266,6 +266,18 @@ class M_order extends CI_model
         return $this->db->get('order')->result();
     }
 
+    function getOrderById($id)
+    {
+        $this->db->select(' order.nama_part, order.id_order, material.nama_material, 
+                            detail_estimate_routing.*');
+        $this->db->from('order');
+        $this->db->join('material','material.id_material = order.id_material');
+        $this->db->join('detail_estimate_routing','detail_estimate_routing.id_order = order.id_order');
+        $this->db->where('order.id_order', $id);
+        $this->db->where('detail_estimate_routing.tempat_pembuatan IS NOT NULL');
+        return $this->db->get()->result_array();
+    }
+
     public function getRowOrder($id)
     {
         return $this->db->get_where('order',array('id_order'=>$id))->num_rows();

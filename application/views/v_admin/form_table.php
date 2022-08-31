@@ -1,32 +1,36 @@
-<style>
-    /* Ensure that the demo table scrolls */
-    th, td { border: 1px solid; }
-  /* Ensure that the demo table scrolls */
-    table{
-        width: 250%;
-    }
-</style>
-<div class="row">
-<div class="col-md-12">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <img src="<?php echo base_url().'assets/media/photos/cbi-logo.png';?>" alt="logo-cbi" width="50" height="50">
-<h2  style="text-align: center;">ROUTING PLAN</h2>
+<!-- Main Container -->
+<main id="main-container">
+<!-- Page Content -->
+<div class="content">
+    <!-- Default Table Style -->
+    <h2 class="content-heading" style="text-align:center; font-weight:bold;">Routing Plan</h2>
+
+    <!-- Table -->
+    <div class="block">
+        <!-- <div class="block-header block-header-default">
+            <h3 class="block-title">Routing Plan</h3>
+        </div> -->
+        <div class="block-content" style="padding-bottom: 20px;">
+            <table id="table-routing" class="table table-vcenter" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Part Name</th> 
+                        <th>No.Order</th>
+                        <th>IN/OUTHOUSE</th>
+                        <th>Material</th>
+                        <th>Cost Material</th>
+                        <th>Cost Process</th>
+                        <th>Total Cost</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>            
 </div>
-</div>
-<table id="table-routing" class="table table-vcenter" >
-        <thead>
-            <tr>
-                <th style="vertical-align : middle;">Part Name</th> 
-                <th>No.Order</th>
-                <th>IN/OUTHOUSE</th>
-                <th>Material</th>
-                <th>Cost Material</th>
-                <th>Cost Process</th>
-                <th>Total Cost</th>
-            </tr>
-        </thead>
-        <tbody>
-                
-        </tbody>
-</table>
+</main>
 
 

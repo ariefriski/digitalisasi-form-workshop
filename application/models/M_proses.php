@@ -82,13 +82,12 @@ class M_proses extends CI_model
 
 	private function _get_datatables_query_1()
     {
-        $this->db->select('order.nama_part, order.id_order, order.tempat_pembuatan, material.nama_material, 
-                        detail_estimate_routing.*,process.nama_proses, routing_plan.hour');
+        $this->db->select(' order.nama_part, order.id_order, material.nama_material, 
+                            detail_estimate_routing.*');
         $this->db->from('order');
         $this->db->join('material','material.id_material = order.id_material');
         $this->db->join('detail_estimate_routing','detail_estimate_routing.id_order = order.id_order');
-        $this->db->join('routing_plan','order.id_order = routing_plan.id_order');
-        $this->db->join('process','process.id_proses = routing_plan.id_proses');
+        $this->db->where('detail_estimate_routing.tempat_pembuatan IS NOT NULL');
     }
 
 	function get_datatables_1()
