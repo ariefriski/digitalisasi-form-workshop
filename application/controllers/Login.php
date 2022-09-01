@@ -13,7 +13,6 @@ class Login extends CI_Controller {
         $this->load->view('login'); 
     }
 
-
     /**
     * check the username and the password with the database
     * @return void
@@ -134,6 +133,20 @@ class Login extends CI_Controller {
                     $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
                     redirect(base_url('kadept_ws/dashboard/'));//ganti
                 }
+
+                if($level=='user_ws')
+                {
+                    $data = array(
+                        'user_ws_name' =>$name, 
+                        'user_ws_password' => $password,
+                        'level'=>$level,
+                        'user_ws_is_logged_in'=>true,
+                        
+                        );
+                    
+                    $this->session->set_userdata($data); /*Here  setting the Admin datas in session */
+                    redirect(base_url('user_ws/dashboard/'));//ganti
+                }
             }       
         }
         else // incorrect username or password
@@ -222,6 +235,20 @@ class Login extends CI_Controller {
             'user_password' ,
             'level',
             'user_is_logged_in'
+        );
+
+        $this->session->unset_userdata($array_items);
+        $this->session->set_flashdata('msg', 'user Signed Out Now!');
+        redirect('login');       
+    }
+
+    public function user_ws_logout()
+    {
+        $array_items = array(   
+		    'user_ws_name',
+            'user_ws_password' ,
+            'level',
+            'user_ws_is_logged_in'
         );
 
         $this->session->unset_userdata($array_items);

@@ -12,19 +12,6 @@ class M_proses extends CI_model
         $this->db->insert('routing_plan',$data);
     }
 
-// /
-	
-
-    // public function getRoutingList($id)
-    // {
-    //     $this->db->select('routing.*');
-    //     $this->db->from('routing');
-    //     // $this->db->where('id_order',$id);
-    //     $query = $this->db->get();
-    //     return $query->result_array();
-    // }
-
-
 	public function count_all()
     {
         $this->db->from($this->table);
@@ -91,8 +78,7 @@ class M_proses extends CI_model
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
         $this->db->join('approval','order.id_order=approval.id_order');
         $this->db->where('approval.status_approval_1','Disetujui');
-        $where = "detail_estimate_routing.total_hour is NOT NULL";
-        $this->db->where($where);
+        $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
     }
 
 	function get_datatables_1()
