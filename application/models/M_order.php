@@ -339,6 +339,16 @@ class M_order extends CI_model
         $this->db->from($this->table);
 		return $this->db->count_all_results();
     }
+
+    public function count_all_user($id)
+    {
+        $this->db->select('order.id_order,order.is_user,approval.status_approval_1');
+        $this->db->from('order');
+        $this->db->join('approval','order.id_order=approval.id_order','left');
+        $this->db->where('order.id_user',$id);
+		return $this->db->count_all_results();
+    }
+
     public function count_filtered()
     {
         $this->_get_datatables_kasie_user();

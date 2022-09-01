@@ -200,7 +200,7 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if(($l->status_approval_1==NULL)&&($l->status_approval_2==NULL)&&($l->status_approval==NULL)){
+			if(($l->status_approval_1==NULL)||($l->status_approval_2==NULL)||($l->status_approval==NULL)){
 			$view = '<a type="button" style="width:20%;" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
@@ -235,8 +235,8 @@ class Dashboard extends CI_Controller {
 		}
 	}
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered_user(),
+						"recordsFiltered" => $this->m_order->count_all_user($l->id_user),
+						"recordsTotal" => $this->m_order->count_filtered_user(),
 						"data" => $data,
 				);
 		//output to json format
