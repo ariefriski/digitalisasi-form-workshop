@@ -20,13 +20,13 @@
 <div class="col-md-12">
     <div class="block-header block-header-default">
             <h3 class="block-title" style="text-align: center;">1. FORM PERMINTAAN (di isi oleh user)</h3> 
-        
+            
             <?php foreach($response as $r) { ?>
-                <?php if($r['status_approval'] == 'Disetujui') { ?>
+                <?php if($r['status_approval_1'] == 'Disetujui') { ?>
                     <?php echo '<button class="btn btn-info" id="edit-button" disabled >
                     <i class="si si-pencil"></i>&nbsp;Edit
                 </button>' ?>
-                <?php } else if ($r['status_approval'] == 'Ditolak') {?>
+                <?php } else if ($r['status_approval_1'] == 'Ditolak') {?>
                     <?php echo '<button class="btn btn-info" id="edit-button" disabled >
                     <i class="si si-pencil"></i>&nbsp;Edit
                 </button>' ?>

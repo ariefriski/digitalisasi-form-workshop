@@ -20,7 +20,6 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		// $data['list'] = $this->m_order->getListForm();
 		$this->load->view('v_user/header_dashboard/header');
 		$this->load->view('v_user/dashboardUser');
 		$this->load->view('v_user/footer');

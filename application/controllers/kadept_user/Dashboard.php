@@ -17,8 +17,6 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		// $data['count1'] = count($this->m_checksheet->getSumRowsChecksheet());
-		// $data['count'] = count($this->m_response->getSumRowsResponse());
 		$this->load->view('v_kadept_user/header_dashboard/header');
 		$this->load->view('v_kadept_user/dashboardKadeptUser');
 		$this->load->view('v_kadept_user/footer');

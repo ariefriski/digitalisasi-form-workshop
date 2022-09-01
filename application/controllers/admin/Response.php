@@ -54,10 +54,7 @@ class Response extends CI_Controller {
 			$view = '<a type="button" href="'.base_url() . 'admin/response/viewAcceptedResponse_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-hand-o-up"></i>
 						</a>';	
-			
-			$report = 		'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaper?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
-							<i class="fa fa-save"></i>
-						</a>';	
+		
 				
 			$no++;
 			$tanggal = date_create($l->tanggal);
@@ -77,7 +74,7 @@ class Response extends CI_Controller {
 					
 					$row[] = $l->status_pengerjaan;
 					$row[] = 'waiting  ';
-					$row[] = $view.$report;
+					$row[] = $view;
 					
 					}
 			}
@@ -110,9 +107,7 @@ class Response extends CI_Controller {
 							<i class="fa fa-hand-o-up"></i>
 						</a>';	
 			
-			$report = 		'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaper?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
-							<i class="fa fa-save"></i>
-						</a>';	
+			
 				
 			$no++;
 			$tanggal = date_create($l->tanggal);
@@ -132,7 +127,7 @@ class Response extends CI_Controller {
 					
 					$row[] = $l->status_pengerjaan;
 					$row[] = 'waiting  ';
-					$row[] = $view.$report;
+					$row[] = $view;
 					
 					}
 			}

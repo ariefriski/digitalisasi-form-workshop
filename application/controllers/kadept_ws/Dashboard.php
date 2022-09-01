@@ -99,7 +99,6 @@ class Dashboard extends CI_Controller {
 		$this->m_approval->updateApprovalFinal($id_order,$data);
 		$this->m_approval->updateApprovalKdWs($id_order,$update);
 		redirect(site_url('kadept_ws/dashboard/'));
-		//Tambah Sintaks Update No Order
 	}
 
 }

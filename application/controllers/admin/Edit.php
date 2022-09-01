@@ -80,26 +80,14 @@ class Edit extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			//$order = $this->m_order->getRoutingList($l->id_order);
-			
-		
-			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
-		
-			// if ($l->status_laporan == 'Disetujui'){
-			// 	$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }else{
 			$delete = '	<a id="id-delete"  href="javascript:;" style="width:30%;" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-hapus">
 							  <i class="fa fa-times item_delete" data="'.$l->id_proses.'"></i>
 						</a>';
-						//'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'
-			// }	
 			$edit = '<a  href="javascript:;" "class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-edit">
 							<i class="fa fa-pencil item_edit" data="'.$l->id_proses.'"></i>
 						</a>';
+
 			$no++;
-			
 			$row = array();
 			// $rl['status']; foreach($routingList as $rl){	
 			//Tanggal			
@@ -134,21 +122,10 @@ class Edit extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			//$order = $this->m_order->getRoutingList($l->id_order);
-			
-		
-			// '.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'
-		
-			// if ($l->status_laporan == 'Disetujui'){
-			// 	$delete = '	<a id="id-delete" name="delete" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-			// 				  <i class="fa fa-times"></i>
-			// 			</a>';
-			// }else{
 			$delete = '	<a id="id-delete"  href="javascript:;" style="width:30%;" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-hapus">
 							  <i class="fa fa-times item_delete" data="'.$l->id_material.'"></i>
 						</a>';
-						//'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'
-			// }	
+
 			$edit = '<a  href="javascript:;" "class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-edit">
 							<i class="fa fa-pencil item_edit" data="'.$l->id_material.'"></i>
 						</a>';

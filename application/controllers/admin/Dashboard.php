@@ -70,11 +70,7 @@ class Dashboard extends CI_Controller {
 			$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewAcceptedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-hand-o-up"></i>
 						</a>';	
-			
-			$report = 		'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaper?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
-							<i class="fa fa-save"></i>
-						</a>';	
-				
+							
 			$no++;
 			$tanggal = date_create($l->tanggal);
 			$row = array();
@@ -93,7 +89,7 @@ class Dashboard extends CI_Controller {
 					
 					$row[] = $l->status_pengerjaan;
 					$row[] = 'waiting  ';
-					$row[] = $view.$report;
+					$row[] = $view;
 					
 					}
 			}
@@ -104,7 +100,6 @@ class Dashboard extends CI_Controller {
 		}
 		
 		$output = array(
-						//"draw" => $_POST['draw'],
 						"recordsTotal" => $this->m_order->count_all(),
 						"recordsFiltered" => $this->m_order->count_filtered(),
 						"data" => $data,
@@ -132,9 +127,6 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/report',$data);
 	}
 
-	
-
-	
 	public function inputOrder()
 	{
 		//$id = $this->input->get('id');
@@ -157,7 +149,6 @@ class Dashboard extends CI_Controller {
 				'id_order'=>$id_order,
 				'estimate_cost_process'=>$result
 			);
-			// $this->m_order->updateOrderNoPict($id_order,$data2);
 			 $this->m_proses->addInputOrder($data);
 			 
 			
@@ -167,15 +158,11 @@ class Dashboard extends CI_Controller {
 		$this->m_routing->updateEstimateRouting($id_order,$total,$total_all,$total_hour,$response_order);
 		
 		redirect(site_url('admin/dashboard/'));
-		//Tambah Sintaks Update No Order
 	}
 
 	public function acceptPIC()
 	{
-		//$id = $this->input->get('id');
-		
 		$id_order = $this->input->post('id_order');
-		// $no_order = $this->input->post('no_order');
 		$id_user = $this->session->userdata('id_user');
 		$approve = $this->input->post('pic_response');
 		$alasan = $this->input->post('alasan');
@@ -204,16 +191,7 @@ class Dashboard extends CI_Controller {
 		$this->m_approval->addApprovalPic($data);
 		$this->m_approval->updateApprovalPic($id_order,$update);
 		redirect(site_url('admin/dashboard/'));
-		//Tambah Sintaks Update No Order
 	}
-	
-	public function table()
-	{
-		
-		$this->load->view('v_form/form_table');
-		
-	}
-
 	
 	public function routingList()
 	{
@@ -321,12 +299,5 @@ class Dashboard extends CI_Controller {
 		//output to json format
 		echo json_encode($output);
 	}
-	public function testing()
-	{
-		// $data['ambil'] = $this->m_proses->
-		// $data['test'] = $this->m_proses->testing();
-		// $data['columnTitle'] = $this->m_proses->showDatabaseProcess();
-		$data['report'] = $this->m_proses->getReportPaper('K-08-3');
-		$this->load->view('v_form/test',$data);
-	}	
+
 }

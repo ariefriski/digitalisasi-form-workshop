@@ -51,7 +51,6 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						//"draw" => $_POST['draw'],
 						"recordsTotal" => $this->m_order->count_all(),
 						"recordsFiltered" => $this->m_order->count_filtered(),
 						"data" => $data,

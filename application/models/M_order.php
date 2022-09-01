@@ -312,7 +312,7 @@ class M_order extends CI_model
         $this->db->from('order');
         $this->db->join('department','order.id_department=department.id_department');
         $this->db->join('user','order.id_user=user.id_user');
-        $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('material','order.id_material=material.id_material','left');
         $this->db->join('detail_raw_type','detail_raw_type.id_order=order.id_order');
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
         $this->db->join('approval_final','approval_final.id_order=order.id_order','left');
@@ -321,6 +321,8 @@ class M_order extends CI_model
         $this->db->where('order.id_order',$id);
         return $this->db->get()->result_array();
     }
+
+    
 
     public function getDepartmentName($id)
     {

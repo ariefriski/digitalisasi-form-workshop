@@ -74,7 +74,6 @@ class Dashboard extends CI_Controller {
 		//$id = $this->input->get('id');
 		
 		$id_order = $this->input->post('id_order');
-		// $no_order = $this->input->post('no_order');
 		$id_user = $this->session->userdata('id_user');
 		$approve = $this->input->post('r_kasie');
 		$jenis_approval = $this->session->userdata('level');
@@ -103,7 +102,6 @@ class Dashboard extends CI_Controller {
 		$this->m_approval->addApprovalKasieWs($data);
 		$this->m_approval->updateApprovalKasieWs($id_order,$update);
 		redirect(site_url('kasie_ws/dashboard/'));
-		//Tambah Sintaks Update No Order
 	}
 
 }

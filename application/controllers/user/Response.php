@@ -20,7 +20,6 @@ class Response extends CI_Controller {
 
 	public function index()
 	{
-		// $data['list'] = $this->m_order->getListForm();
 		$this->load->view('v_user/header_dashboard/header');
 		$this->load->view('v_user/responseUser');
 		$this->load->view('v_user/footer');
@@ -56,7 +55,6 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						//"draw" => $_POST['draw'],
 						"recordsTotal" => $this->m_order->count_all(),
 						"recordsFiltered" => $this->m_order->count_filtered(),
 						"data" => $data,
@@ -103,7 +101,6 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						//"draw" => $_POST['draw'],
 						"recordsTotal" => $this->m_order->count_all(),
 						"recordsFiltered" => $this->m_order->count_filtered(),
 						"data" => $data,
@@ -121,8 +118,6 @@ class Response extends CI_Controller {
 		$this->load->view('v_user/form_response_rr',$data);
 		$this->load->view('v_user/footer');
 	}
-
-
 
 }
 ?>
