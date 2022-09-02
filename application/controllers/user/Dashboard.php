@@ -235,7 +235,7 @@ class Dashboard extends CI_Controller {
 		}
 	}
 		$output = array(
-						"recordsFiltered" => $this->m_order->count_all_user($l->id_user),
+						"recordsFiltered" => $this->m_order->count_all(),
 						"recordsTotal" => $this->m_order->count_filtered_user(),
 						"data" => $data,
 				);

@@ -12,19 +12,6 @@ class M_proses extends CI_model
         $this->db->insert('routing_plan',$data);
     }
 
-// /
-	
-
-    // public function getRoutingList($id)
-    // {
-    //     $this->db->select('routing.*');
-    //     $this->db->from('routing');
-    //     // $this->db->where('id_order',$id);
-    //     $query = $this->db->get();
-    //     return $query->result_array();
-    // }
-
-
 	public function count_all()
     {
         $this->db->from($this->table);
@@ -83,7 +70,7 @@ class M_proses extends CI_model
 	private function _get_datatables_query_1()
     {
         $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
-        detail_estimate_routing.total_hour,approval.status_approval_1');
+        detail_estimate_routing.total_hour,approval.status_approval_1,detail_estimate_routing.*');
         $this->db->from('order');
         $this->db->join('user','order.id_user = user.id_user');
         $this->db->join('department','order.id_department = department.id_department');
@@ -91,8 +78,7 @@ class M_proses extends CI_model
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
         $this->db->join('approval','order.id_order=approval.id_order');
         $this->db->where('approval.status_approval_1','Disetujui');
-        $where = "detail_estimate_routing.total_hour is NOT NULL";
-        $this->db->where($where);
+        $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
     }
 
 	function get_datatables_1()
@@ -122,6 +108,7 @@ class M_proses extends CI_model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
 
     function routingTable($id)
     {

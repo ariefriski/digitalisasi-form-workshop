@@ -103,11 +103,11 @@
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
-                                <a href="<?= base_url() . 'kadept_user/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan</span></a>
+                                <a href="<?= base_url() . 'user_ws/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Order List</span></a>
                             </li>
-                            <li>
-                                <a href="<?= base_url() . 'kadept_user/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Sudah Disetujui</span></a>
-                            </li>
+                            <!-- <li>
+                                <a href="<?= base_url() . 'user_ws/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ditolak</span></a>
+                            </li> -->
                         </ul>
                     </div>
                     <!-- END Side Navigation -->
@@ -137,14 +137,14 @@
                     <!-- User Dropdown -->
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-user d-sm-none"></i>
-                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('kadept_user_name')?></span>
+                            <i class="fa fa-user d-sm-none"></i>
+                                <span class="d-none d-sm-inline-block"><?=$this->session->userdata('user_ws_name')?></span>
                             <i class="fa fa-angle-down ml-5"></i>
                         </button>
                     <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                        <a class="dropdown-item" href="<?php echo base_url();?>login/kadept_user_logout">
+                        <a class="dropdown-item" href="<?php echo base_url();?>login/user_ws_logout">
                             <i class="si si-logout mr-5"></i> Sign Out
-                    </a>
+                        </a>
                     </div>
                 </div>
                         <!-- END User Dropdown -->

@@ -263,13 +263,13 @@ class Dashboard extends CI_Controller {
 			$row[] = $l->name;
 			$row[] = $l->department_name;
 			$row[] = $l->nama_part;
-			$row[] = $l->jumlah;
-			
-			$row[] = $l->nama_material;
-			  
+			$row[] = $l->jumlah;			
+			$row[] = $l->nama_material;			  
 			$row[] = $l->order_type;
 			$row[] = $l->status_pengerjaan;
-			$row[] = $l->price_kg;
+			$row[] = 'Rp '.number_format($l->total_cost_material, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->total_cost_process, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->total_all, 0, ',', '.');
 			
 			
 			$columnTitle = $this->m_proses->showDatabaseProcess();

@@ -90,7 +90,7 @@
                             <div class="content-header-item">
                                 <a class="link-effect font-w700" href="<?= base_url() . 'home' ?>">
                                     <i class="si si-fire text-primary"></i>
-                                    <span class="font-size-xl text-dual-primary-dark">Check</span><span class="font-size-xl text-primary">sheet</span>
+                                    <span class="font-size-xl text-dual-primary-dark">Work</span><span class="font-size-xl text-primary">shop</span>
                                 </a>
                             </div>
                             <!-- END Logo -->

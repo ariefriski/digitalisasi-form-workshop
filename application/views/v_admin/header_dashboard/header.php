@@ -90,7 +90,7 @@
                             <div class="content-header-item">
                                 <a class="link-effect font-w700" href="<?= base_url() . 'home' ?>">
                                     <i class="si si-fire text-primary"></i>
-                                    <span class="font-size-xl text-dual-primary-dark">Check</span><span class="font-size-xl text-primary">sheet</span>
+                                    <span class="font-size-xl text-dual-primary-dark">Work</span><span class="font-size-xl text-primary">shop</span>
                                 </a>
                             </div>
                             <!-- END Logo -->
@@ -113,6 +113,9 @@
                             </li>
                             <li>
                                 <a href="<?= base_url() . 'admin/response/onprocess'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Dalam Proses Pengerjaan</span></a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url() . '#'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Finish</span></a>
                             </li>
                         </ul>
                     </div>
@@ -149,7 +152,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
                             <a class="dropdown-item" href="<?php echo base_url();?>admin/dashboard/IO">
-                                    <i class="si si-list"></i> Input Order List
+                                    <i class="si si-list"></i> Order List
                                 </a>
                                 <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/proses">
                                     <i class="si si-pencil"></i> Edit Data Proses
