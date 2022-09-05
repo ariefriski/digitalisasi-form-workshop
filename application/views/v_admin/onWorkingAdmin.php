@@ -9,7 +9,7 @@
             
         </div>
         <div class="block-content">
-            <table id="table-response" class="table table-vcenter">
+            <table id="table-working" class="table table-vcenter">
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>
@@ -19,7 +19,6 @@
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Kategori</th>
                         <th>Departement</th>
                         <th>Status Pengerjaan</th>
-                        <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

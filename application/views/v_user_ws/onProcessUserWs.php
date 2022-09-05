@@ -15,10 +15,9 @@
             </div>
         </div>
         <div class="block-content">
-            <table id="table-dashboard" class="table table-vcenter text-nowrap">
+            <table id="table-onprocess" class="table table-vcenter text-nowrap">
                 <thead>
                     <tr>
-                        <!-- <th>Tanggal</th> -->
                         <th style="width: 10%;" >Urgent</th>
                         <th  style="width: 20%;">No Order</th>
                         <th  style="width: 20%;">Nama Part</th>

@@ -112,7 +112,7 @@
                                 <a href="<?= base_url() . 'user/response/onProcess'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Dalam Proses Pengerjaan</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'user/response/onProcess'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Finish</span></a>
+                                <a href="<?= base_url() . 'user/response/finish'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Finish</span></a>
                             </li>
                         </ul>
                     </div>

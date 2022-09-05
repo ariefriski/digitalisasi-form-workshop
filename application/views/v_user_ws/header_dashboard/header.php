@@ -103,11 +103,14 @@
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
-                                <a href="<?= base_url() . 'user_ws/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Order List</span></a>
+                                <a href="<?= base_url() . 'user_ws/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">List harus dikerjakan</span></a>
                             </li>
-                            <!-- <li>
-                                <a href="<?= base_url() . 'user_ws/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ditolak</span></a>
-                            </li> -->
+                            <li>
+                                <a href="<?= base_url() . 'user_ws/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Dalam Proses Pengerjaan</span></a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url() . 'user_ws/response/finish'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Selesai Pengerjaan</span></a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END Side Navigation -->

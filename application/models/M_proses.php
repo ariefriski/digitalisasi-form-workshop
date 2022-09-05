@@ -49,6 +49,21 @@ class M_proses extends CI_model
         $this->db->where('order.id_order',$id);
         return $this->db->get()->result_array();
     }
+    public function getReportPaperActual($id)
+    {
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
+        detail_actual_routing.total_cost_process,detail_estimate_routing.total_cost_material,detail_actual_routing.total_all,detail_estimate_routing.tempat_pembuatan,
+        detail_raw_type.berat,detail_raw_type.volume');
+        $this->db->from('order');
+        $this->db->join('user','order.id_user=user.id_user');
+        $this->db->join('department','order.id_department=department.id_department');
+        $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->join('detail_actual_routing','order.id_order=detail_actual_routing.id_order');
+        $this->db->join('detail_raw_type','order.id_order=detail_raw_type.id_order');
+        $this->db->where('order.id_order',$id);
+        return $this->db->get()->result_array();
+    }
 
     public function getRoutingPlan($id)
     {
@@ -59,10 +74,27 @@ class M_proses extends CI_model
         return $this->db->get()->result_array();
     }
 
+    public function getRoutingActual($id)
+    {
+        $this->db->select('process.nama_proses,process.total_cost, routing_actual.id_proses,routing_actual.hour,routing_actual.actual_cost_process');
+        $this->db->from('process');
+        $this->db->join('routing_actual','process.id_proses=routing_actual.id_proses');
+        $this->db->where('routing_actual.id_order',$id);
+        return $this->db->get()->result_array();
+    }
+
     function totalALL($id)
     {
         $this->db->select('total_all');
         $this->db->from('detail_estimate_routing');
+        $this->db->where('id_order',$id);
+        return $this->db->get()->result_array();
+    }
+
+    function totalALLActual($id)
+    {
+        $this->db->select('total_all');
+        $this->db->from('detail_actual_routing');
         $this->db->where('id_order',$id);
         return $this->db->get()->result_array();
     }
@@ -208,4 +240,19 @@ class M_proses extends CI_model
     {
         return $this->db->get_where('process',array('id_proses'=>$id))->result_array();
     }
+
+    function addJadwal($data)
+    {
+        $this->db->insert('scheduling',$data);
+    }
+
+    function updatePengerjaan($id_order,$update_status_pengerjaan)
+    {
+        $this->db->set('status_pengerjaan',$update_status_pengerjaan);
+		$this->db->where('id_order',$id_order);
+		$this->db->update('order');
+    }
+
+
+    
 }

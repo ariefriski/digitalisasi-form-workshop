@@ -197,34 +197,34 @@
     });
 
 
-    $('#show_data').on('click', '.item_edit', function() {
-				var id_proses = $(this).attr('data');
-				$.ajax({
-					type: "GET",
-					url: "<?php echo base_url('admin/edit/showModalById') ?>",
-					dataType: "JSON",
-					data: {
-						id_proses: id_proses,
-                        
-					},
-					success: function(data) {
-						$.each(data, function(id_proses, nama_proses) {
-							$('#modal-edit').modal('show');
-							$('[name="id_proses_edit"]').val(data.id_proses);
-                            $('[name="nama_proses_edit"]').val(data.nama_proses);
-                            $('[name="harga_perjam_edit"]').val(data.harga_perjam);
-                            $('[name="harga_perjam_manusia_edit"]').val(data.harga_perjam_manusia);
-							$('[name="consumable_edit"]').val(data.consumable);
-                            $('[name="listrik_edit"]').val(data.listrik);
-                            $('[name="harga_mesin_edit"]').val(data.harga_mesin);
-                            $('[name="total_cost_edit"]').val(data.total_cost);
-                        });  
-                        
-					}
-				});
-				return false;
-                
-			});
+$('#show_data').on('click', '.item_edit', function() {
+    var id_proses = $(this).attr('data');
+    $.ajax({
+        type: "GET",
+        url: "<?php echo base_url('admin/edit/showModalById') ?>",
+        dataType: "JSON",
+        data: {
+            id_proses: id_proses,
+            
+        },
+        success: function(data) {
+            $.each(data, function(id_proses, nama_proses) {
+                $('#modal-edit').modal('show');
+                $('[name="id_proses_edit"]').val(data.id_proses);
+                $('[name="nama_proses_edit"]').val(data.nama_proses);
+                $('[name="harga_perjam_edit"]').val(data.harga_perjam);
+                $('[name="harga_perjam_manusia_edit"]').val(data.harga_perjam_manusia);
+                $('[name="consumable_edit"]').val(data.consumable);
+                $('[name="listrik_edit"]').val(data.listrik);
+                $('[name="harga_mesin_edit"]').val(data.harga_mesin);
+                $('[name="total_cost_edit"]').val(data.total_cost);
+            });  
+            
+        }
+    });
+    return false;
+    
+});
 
             $('#show_data').on('click', '.item_delete', function() {
 				var id_proses = $(this).attr('data');

@@ -1,13 +1,15 @@
-            <!-- Footer -->
-            <footer id="page-footer" class="opacity-0">
+<footer id="page-footer" class="opacity-0">
                 <div class="content py-20 font-size-xs clearfix">
                     <div class="float-right">
-                        Crafted with <i class="fa fa-heart text-pulse"></i>
+                        Crafted with d <i class="fa fa-heart text-pulse"></i>
+                    </div>
+                    <div class="float-left">
+                        <a class="font-w600" href="https://1.envato.market/95j" target="_blank">Codebase 3.0</a> &copy; <span class="js-year-copy">2022</span>
                     </div>
                 </div>
-            </footer>
-            <!-- END Footer -->
-        </div>
+</footer>
+</div>
+        
         <!-- END Page Container -->
         <script src="<?=base_url() . 'assets/js/codebase.core.min.js'?>"></script>
 
@@ -20,7 +22,9 @@
         <script src="<?=base_url() .'assets/js/plugins/magnific-popup/jquery.magnific-popup.min.js'?>"></script>
         <!-- Page JS Code -->
         <script src="<?=base_url() . 'assets/js/pages/be_tables_datatables.min.js'?>"></script>
-
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script src="<?=base_url() . 'assets/js/pages/momentjs-business.js'?>"></script>
         <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN -->
         <script>
             $(document).on('click','#reject',function(){
@@ -38,22 +42,7 @@
             $(document).on('click','#accept',function(){
                 $("#reason").remove(); 
             });
-            // $(document).on('click','#outhouse',function(){
-            //     $("#plan2").remove(); 
-                
-
-            
-                
-            // });
-
-            // $(document).on('click','#r_block',function(){
-            //     alert("adada");
-            // });
-
-
-            // if($('#r_block').is(':checked')){
-            //     alert("ADADA");
-            // }
+        
             $('#rawradio').click(function(){
              if (($('#r_block').is(':checked'))||($('#r_cylinder').is(':checked'))||($('#r_fabrikasi').is(':checked'))) {
                 $("#dimensi").empty().append(`
@@ -79,34 +68,14 @@
                 $("#dimensi2").remove();
                 $("input[type=radio][name=raw_type]").prop('checked', false);
             });
-
-            // $(document).on('checked','#routing1',function(){
-            //     $("#hour1").empty().append(`
-            //     <input type="text" class="form-control"  name="hour_1" placeholder="0">
-            //     `);
-            // })
-
-         
-            
-           
-
-        
-           
-        
-            
-
 var table;
 
     $(document).ready(function() {
 
         // DATATABLE DASHBOARD
         table = $('#table-dashboard').DataTable({ 
-            "scrollY": 200,
-           "scrollX": true,
-
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
-            "order": [], //Initial no order.
             "language": {
                 "infoFiltered": ""
             },
@@ -381,11 +350,105 @@ $(document).ready(function() {
     });
 });
 
+var table8;
 
-</script>
+$(document).ready(function() {
 
+    // DATATABLE DASHBOARD
+    table8 = $('#table-finish').DataTable({ 
         
-    </body>
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+        "language": {
+            "infoFiltered": ""
+        },
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('admin/response/finish_list')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+});
+
+var table9;
+
+$(document).ready(function() {
+
+    // DATATABLE DASHBOARD
+    table8 = $('#table-working').DataTable({ 
+        
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+        "language": {
+            "infoFiltered": ""
+        },
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('admin/response/working_list')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+});
+
+
+
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left',
+    isInvalidDate: function(date) {
+    if (date.day()>=1 && date.day()<=5 )
+      return false;
+    return true;
+  }
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+
+
+
+
+function pagereload(){
+location.reload();
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click', '.id-jadwal', function() {
+    var id_order = $(this).data('id');
+    $("#id_order").val(id_order);
+});
+});
+</script>
+        
+</body>
+
 
     
 </html>

@@ -166,12 +166,15 @@ class M_order extends CI_model
     
     private function _get_datatables_user()
     {
-        $this->db->select('order.*,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval,detail_estimate_routing.tempat_pembuatan');
+        $this->db->select('order.*,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval,detail_estimate_routing.tempat_pembuatan,
+        scheduling.total_day');
         $this->db->from('order');
         $this->db->join('approval','order.id_order=approval.id_order','left');
         $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
         $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order','left');
+        $this->db->join('scheduling','order.id_order=scheduling.id_order','left');   
+        
         if ($this->session->userdata('level') == 'user' ) {
 			$this->db->where('order.id_department',$this->session->id_department);
             $this->db->where('order.id_section',$this->session->id_section);
@@ -217,12 +220,15 @@ class M_order extends CI_model
     private function _get_datatables_query_1()
     {
         $this->db->select('order.*,approval_pic_workshop.status_approval_2,approval_pic_workshop.alasan_2,approval.status_approval_1,approval.approve1,approval.approve2,approval.approve3,approval_final.jenis_approval_2,
-        approval_final.status_approval,detail_estimate_routing.tempat_pembuatan');
+        approval_final.status_approval,detail_estimate_routing.tempat_pembuatan,scheduling.total_day,
+        scheduling.start_date,scheduling.end_date');
         $this->db->from('order');
         $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
         $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order','left');
         $this->db->join('approval','order.id_order=approval.id_order');   
+        $this->db->join('scheduling','order.id_order=scheduling.id_order','left');  
+       
              
         
         $i = 0;

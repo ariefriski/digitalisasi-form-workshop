@@ -18,7 +18,6 @@
                         <th>Jam</th>
                         <th class="d-none d-sm-table-cell" style="width: 15%;">Kategori</th>
                         <th>Departement</th>
-                        <th>Status Laporan</th>
                         <th>Status Pengerjaan</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
                     </tr>

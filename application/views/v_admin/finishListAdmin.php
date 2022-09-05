@@ -9,7 +9,7 @@
             
         </div>
         <div class="block-content">
-            <table id="table-response" class="table table-vcenter">
+            <table id="table-finish" class="table table-vcenter">
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>

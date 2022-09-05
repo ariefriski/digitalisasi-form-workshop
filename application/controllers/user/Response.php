@@ -25,6 +25,13 @@ class Response extends CI_Controller {
 		$this->load->view('v_user/footer');
 	}
 
+	public function finish()
+	{
+		$this->load->view('v_user/header_dashboard/header');
+		$this->load->view('v_user/finishListUser');
+		$this->load->view('v_user/footer');
+	}
+
     public function order_list()
 	{
 		$list = $this->m_order->get_datatables_user();
@@ -96,6 +103,41 @@ class Response extends CI_Controller {
 			}
 			$row[] = $l->status_pengerjaan;
 			$row[] = $view;
+			$data[] = $row;
+            }
+		}
+		
+		$output = array(
+						"recordsTotal" => $this->m_order->count_all(),
+						"recordsFiltered" => $this->m_order->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+
+	public function finish_list()
+	{
+		$list = $this->m_order->get_datatables_user();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $l) {
+            if($l->status_pengerjaan=='Finish'){
+			$no++;
+			$tanggal = date_create($l->tanggal);
+			$row = array();
+			$row[] = $no;
+			$row[] = $l->nama_part;
+			$row[] = date_format($tanggal,"d/m/Y");
+			$row[] = date_format($tanggal,"H:i");
+			if ($l->kategori == 'urgent'){
+				$row[] = '<span class="badge badge-danger">urgent</span>';
+			}else if ($l->kategori == 'biasa'){
+				$row[] = '<span class="badge badge-warning">biasa</span>';
+			}
+			$row[] = $l->status_pengerjaan;
+			
 			$data[] = $row;
             }
 		}

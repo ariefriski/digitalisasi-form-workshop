@@ -22,74 +22,104 @@
         <script src="<?=base_url() . 'assets/js/pages/be_tables_datatables.min.js'?>"></script>
 
         <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN -->
-        <script>
-            var table;
+<script>
+var table;
 
-            $(document).ready(function() {
+$(document).ready(function() {
 
-                // DATATABLE DASHBOARD
-                table = $('#table-dashboard').DataTable({
-                    "scrollX": true,
-                    "ordering": false,
-                    "processing": true, //Feature control the processing indicator.
-                    "serverSide": true, //Feature control DataTables' server-side processing mode.
-                    "order": [], //Initial no order.
-                    "language": {
-                        "infoFiltered": ""
-                    },
+    // DATATABLE DASHBOARD
+    table = $('#table-dashboard').DataTable({
+        "ordering": false,
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "language": {
+            "infoFiltered": ""
+        },
 
-                    // Load data for the table's content from an Ajax source
-                    "ajax": {
-                        "url": "<?php echo site_url('user_ws/dashboard/order_list')?>",
-                        "type": "POST"
-                    },
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('user_ws/dashboard/order_list')?>",
+            "type": "POST"
+        },
 
-                    //Set column definition initialisation properties.
-                    "columnDefs": [
-                    { 
-                        "targets": [0], //first column / numbering column
-                        "orderable": false, //set not orderable
-                        // "defaultContent": "-",
-                        // "targets": "_all"
-                    },
-                    ],
-                });
-            });
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+});
 
-            var table2;
+var table2;
 
-            $(document).ready(function() {
+$(document).ready(function() {
 
                 // DATATABLE DASHBOARD
-                table2 = $('#table-response').DataTable({ 
+table2 = $('#table-onprocess').DataTable({ 
 
-                    "processing": true, //Feature control the processing indicator.
-                    "serverSide": true, //Feature control DataTables' server-side processing mode.
-                    "order": [], //Initial no order.
-                    "language": {
-                        "infoFiltered": ""
-                    },
+    "processing": true, //Feature control the processing indicator.
+    "serverSide": true, //Feature control DataTables' server-side processing mode.
+    "order": [], //Initial no order.
+    "language": {
+        "infoFiltered": ""
+    },
 
-                    // Load data for the table's content from an Ajax source
-                    "ajax": {
-                        "url": "<?php echo site_url('user/response/order_list')?>",
-                        "type": "POST"
-                    },
+    // Load data for the table's content from an Ajax source
+    "ajax": {
+        "url": "<?php echo site_url('user_ws/response/order_list')?>",
+        "type": "POST"
+    },
 
-                    //Set column definition initialisation properties.
-                    "columnDefs": [
-                    { 
-                        "targets": [0], //first column / numbering column
-                        "orderable": false, //set not orderable
-                        // "defaultContent": "-",
-                        // "targets": "_all"
-                    },
-                    ],
-                });
-            });
+    //Set column definition initialisation properties.
+    "columnDefs": [
+    { 
+        "targets": [0], //first column / numbering column
+        "orderable": false, //set not orderable
+        // "defaultContent": "-",
+        // "targets": "_all"
+    },
+    ],
+});
+});
+
+var table3;
+
+$(document).ready(function() {
+
+    // DATATABLE DASHBOARD
+    table3 = $('#table-finish').DataTable({ 
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+        "language": {
+            "infoFiltered": ""
+        },
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('user_ws/response/finish_list')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+});
 
 
-        </script>
+</script>
 
         
     </body>

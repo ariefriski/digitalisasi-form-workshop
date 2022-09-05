@@ -88,7 +88,6 @@ class Dashboard extends CI_Controller {
 					$row[] = $d['department_name'];
 					
 					$row[] = $l->status_pengerjaan;
-					$row[] = 'waiting  ';
 					$row[] = $view;
 					
 					}
@@ -118,13 +117,22 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/footer');
 	}
 
-	public function viewReportPaper()
+	public function viewReportPaperPlan()
 	{
 		$id = $this->input->get('id');
 		$data['report'] = $this->m_proses->getReportPaper($id);
 		$data['processing'] = $this->m_proses->getRoutingPlan($id);
 		$data['total'] = $this->m_proses->totalALL($id);
 		$this->load->view('v_admin/report',$data);
+	}
+
+	public function viewReportPaperActual()
+	{
+		$id = $this->input->get('id');
+		$data['report'] = $this->m_proses->getReportPaperActual($id);
+		$data['processing'] = $this->m_proses->getRoutingActual($id);
+		$data['total'] = $this->m_proses->totalALLActual($id);
+		$this->load->view('v_admin/reportActual',$data);
 	}
 
 	public function inputOrder()

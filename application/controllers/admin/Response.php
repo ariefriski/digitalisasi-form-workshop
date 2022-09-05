@@ -27,15 +27,22 @@ class Response extends CI_Controller {
 		$this->load->view('v_admin/footer');
 	}
 
-	public function route()
+	public function finish()
 	{
 		$this->load->view('v_admin/header_dashboard/header');
-		$this->load->view('v_admin/routeAdmin');
+		$this->load->view('v_admin/finishListAdmin');
+		$this->load->view('v_admin/footer');
+	}
+	public function working()
+	{
+		$this->load->view('v_admin/header_dashboard/header');
+		$this->load->view('v_admin/onWorkingAdmin');
 		$this->load->view('v_admin/footer');
 	}
 
 	public function onprocess()
 	{
+		
 		$this->load->view('v_admin/header_dashboard/header');
 		$this->load->view('v_admin/onProcessAdmin');
 		$this->load->view('v_admin/footer');
@@ -71,9 +78,7 @@ class Response extends CI_Controller {
 						$row[] = '<span class="badge badge-warning">biasa</span>';
 					}
 					$row[] = $d['department_name'];
-					
 					$row[] = $l->status_pengerjaan;
-					$row[] = 'waiting  ';
 					$row[] = $view;
 					
 					}
@@ -124,9 +129,7 @@ class Response extends CI_Controller {
 						$row[] = '<span class="badge badge-warning">biasa</span>';
 					}
 					$row[] = $d['department_name'];
-					
-					$row[] = $l->status_pengerjaan;
-					$row[] = 'waiting  ';
+					$row[] = $l->status_pengerjaan;	
 					$row[] = $view;
 					
 					}
@@ -149,20 +152,24 @@ class Response extends CI_Controller {
 
 	public function process_list_route()
 	{
-		$list = $this->m_order->get_datatables_user();
+		$list = $this->m_order->get_datatables_1();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&($l->status_approval=='Disetujui')&&($l->tempat_pembuatan!=NULL)){
+			if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&($l->status_approval=='Disetujui')&&($l->tempat_pembuatan!=NULL)&&($l->total_day==NULL)){//
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			
-			$view = '<a type="button" href="'.base_url() . 'admin/response/viewOnProcess?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+			$view = '<a type="button" href="'.base_url() . 'admin/response/viewOnProcess?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response" >
 							<i class="fa fa-hand-o-up"></i>
 						</a>';	
 			
-			$report = 		'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaper?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+			$report = 	'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaperPlan?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response" >
 							<i class="fa fa-save"></i>
-						</a>';	
+						</a>';
+			
+			$schedulling = '<a type="button" href="#modal-jadwal" class="btn btn-sm btn-secondary id-jadwal" data-toggle="modal" data-id="'.$l->id_order.'">
+								<i class="si si-calendar"></i>
+							</a>';
 				
 			$no++;
 			$tanggal = date_create($l->tanggal);
@@ -181,8 +188,106 @@ class Response extends CI_Controller {
 					$row[] = $d['department_name'];
 					
 					$row[] = $l->status_pengerjaan;
-					$row[] = 'waiting  ';
-					$row[] = $view.$report;
+					$row[] = $view.$report.$schedulling;
+					
+					}
+			}
+			
+			
+			$data[] = $row;
+		}
+		}
+		
+		$output = array(
+						//"draw" => $_POST['draw'],
+						"recordsTotal" => $this->m_order->count_all(),
+						"recordsFiltered" => $this->m_order->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+	public function finish_list()
+	{
+		$list = $this->m_order->get_datatables_1();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $l) {
+			if($l->status_pengerjaan == 'Finish'){//
+			$departmentName = $this->m_order->getDepartmentName($l->id_department);
+			
+			$report = 	'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaperPlan?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Report Plan" >
+							<i class="fa fa-save"></i>
+						</a>';
+			
+			$report2 = 	'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaperActual?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Report Actual" >
+							<i class="fa fa-save"></i>
+						</a>';
+				
+			$no++;
+			$tanggal = date_create($l->tanggal);
+			$row = array();
+			if($l->status_approval_1=='Disetujui'){
+				foreach($departmentName as $d){
+					$row[] = $no;
+					$row[] = $l->nama_part;
+					$row[] = date_format($tanggal,"d/m/Y");
+					$row[] = date_format($tanggal,"H:i");
+					if ($l->kategori == 'urgent'){
+						$row[] = '<span class="badge badge-danger">urgent</span>';
+					}else if ($l->kategori == 'biasa'){
+						$row[] = '<span class="badge badge-warning">biasa</span>';
+					}
+					$row[] = $d['department_name'];
+					
+					$row[] = $l->status_pengerjaan;
+					$row[] = $report.$report2;
+					
+					}
+			}
+			
+			
+			$data[] = $row;
+		}
+		}
+		
+		$output = array(
+						//"draw" => $_POST['draw'],
+						"recordsTotal" => $this->m_order->count_all(),
+						"recordsFiltered" => $this->m_order->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+	public function working_list()
+	{
+		$list = $this->m_order->get_datatables_1();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $l) {
+			if($l->status_pengerjaan == 'On Working'){//
+			$departmentName = $this->m_order->getDepartmentName($l->id_department);
+			
+			$no++;
+			$tanggal = date_create($l->tanggal);
+			$row = array();
+			if($l->status_approval_1=='Disetujui'){
+				foreach($departmentName as $d){
+					$row[] = $no;
+					$row[] = $l->nama_part;
+					$row[] = date_format($tanggal,"d/m/Y");
+					$row[] = date_format($tanggal,"H:i");
+					if ($l->kategori == 'urgent'){
+						$row[] = '<span class="badge badge-danger">urgent</span>';
+					}else if ($l->kategori == 'biasa'){
+						$row[] = '<span class="badge badge-warning">biasa</span>';
+					}
+					$row[] = $d['department_name'];
+					
+					$row[] = $l->status_pengerjaan;
 					
 					}
 			}
@@ -231,6 +336,32 @@ class Response extends CI_Controller {
 		$this->load->view('v_admin/viewOnProcess',$data);
 		$this->load->view('v_admin/footer');
 	}
+
+	function addJadwal()
+	{
+		$jadwal = $this->input->post('daterange');
+		$id_order = $this->input->post('id_order');
+		$dates = explode(" - ", $jadwal);
+		$start= mdate($dates[0]);
+		$end= mdate($dates[1]);
+		$start_date = new DateTime($start);
+		$end_date = new DateTime($end);
+		$update_status_pengerjaan = 'On Scheduling';
+		$data = array(
+			'id_order'=>$id_order,
+			'start_date'=>$start,
+			'end_date'=>$end,
+			'total_day'=>$start_date->diff($end_date)->format("%d")
+		);		
+
+		
+
+		
+		$this->m_proses->addJadwal($data);
+		$this->m_proses->updatePengerjaan($id_order,$update_status_pengerjaan);
+		redirect(site_url('admin/response/onprocess'));
+	}
+
 
 }
 ?>
