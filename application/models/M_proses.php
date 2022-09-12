@@ -23,6 +23,14 @@ class M_proses extends CI_model
 		$query = $this->db->get();
 		return $query->num_rows();
     }
+
+    public function count_filtered_2()
+    {
+        $this->_get_datatables_query_2  ();
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
+
     public function count_all_1()
     {
         $this->db->from('process');
@@ -113,6 +121,22 @@ class M_proses extends CI_model
         $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
     }
 
+    function printData()
+    {
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
+        detail_estimate_routing.total_hour,approval.status_approval_1,detail_estimate_routing.*');
+        $this->db->from('order');
+        $this->db->join('user','order.id_user = user.id_user');
+        $this->db->join('department','order.id_department = department.id_department');
+        $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->join('approval','order.id_order=approval.id_order');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
+        $query = $this->db->get();
+		return $query->result();
+    }
+
 	function get_datatables_1()
 	{
 		$this->_get_datatables_query_1();
@@ -172,8 +196,17 @@ class M_proses extends CI_model
 
     private function _get_datatables_query_2()
     {
-        $this->db->select('*');
-        $this->db->from('process');
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
+        detail_actual_routing.total_hour,approval.status_approval_1,detail_actual_routing.*,detail_estimate_routing.total_cost_material');
+        $this->db->from('order');
+        $this->db->join('user','order.id_user = user.id_user');
+        $this->db->join('department','order.id_department = department.id_department');
+        $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_actual_routing','order.id_order=detail_actual_routing.id_order');
+        $this->db->join('approval','order.id_order=approval.id_order');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('detail_actual_routing.total_hour is NOT NULL');
     }
 	function get_datatables_2()
 	{
@@ -227,6 +260,10 @@ class M_proses extends CI_model
     function getDataProcessing($id_order, $id_proses) {
         return $this->db->get_where('routing_plan',array('id_order'=>$id_order,'id_proses'=>$id_proses))->result_array();
     }
+
+    function getDataProcessingActual($id_order, $id_proses) {
+        return $this->db->get_where('routing_actual',array('id_order'=>$id_order,'id_proses'=>$id_proses))->result_array();
+    }
     
     function getIdOrderProcess() {
         // $this->db->distinct();
@@ -235,6 +272,14 @@ class M_proses extends CI_model
         return $this->db->query($sql)->result_array();
 
     }
+    function getIdOrderProcessActual() {
+        // $this->db->distinct();
+        // return $this->db->get('processing')->result_array();
+        $sql = "select distinct id_order from routing_actual";
+        return $this->db->query($sql)->result_array();
+
+    }
+
 
     function getProcessById($id)
     {
@@ -252,6 +297,20 @@ class M_proses extends CI_model
 		$this->db->where('id_order',$id_order);
 		$this->db->update('order');
     }
+
+    private function _get_datatables_query_3()
+    {
+        $this->db->select('*');
+        $this->db->from('process');
+    }
+	function get_datatables_3()
+	{
+		$this->_get_datatables_query_3();
+		if($_POST['length'] != -1)
+		$this->db->limit($_POST['length'], $_POST['start']);
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 
     

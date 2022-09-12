@@ -28,12 +28,14 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/footer');
 	}
 
-	public function resultroute()
+	public function ditolakApprove()
 	{
-		$this->load->view('v_admin/header');
-		$this->load->view('v_admin/form_table');
+		$this->load->view('v_admin/header_dashboard/header');
+		$this->load->view('v_admin/ditolakApprove');
 		$this->load->view('v_admin/footer');
 	}
+
+
 
 	public function IO()
 	{
@@ -44,6 +46,14 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/footer');
 	}
 	
+	public function IOActual()
+	{
+		//
+		$data['columnTitle'] = $this->m_proses->showDatabaseProcess();
+		$this->load->view('v_admin/header');
+		$this->load->view('v_admin/input_order_actual',$data);
+		$this->load->view('v_admin/footer');
+	}
 	
 	public function response()
 	{
@@ -114,6 +124,16 @@ class Dashboard extends CI_Controller {
 		$data['get_Routing'] = $this->m_routing->selectRouting();
 		$this->load->view('v_admin/header');
 		$this->load->view('v_admin/form_response',$data);
+		$this->load->view('v_admin/footer');
+	}
+
+	public function viewRejectedResponse()
+	{
+		$id = $this->input->get('id');
+		$data['accept_response'] = $this->m_order->getResponseOrder($id);
+		$data['get_Routing'] = $this->m_routing->selectRouting();
+		$this->load->view('v_admin/header');
+		$this->load->view('v_admin/form_response_reject',$data);
 		$this->load->view('v_admin/footer');
 	}
 
@@ -201,40 +221,7 @@ class Dashboard extends CI_Controller {
 		redirect(site_url('admin/dashboard/'));
 	}
 	
-	public function routingList()
-	{
-		$list = $this->m_proses->get_datatables_routing_plan();
-		$data = array();
-		$no = $_POST['start'];
-		foreach ($list as $l) {	
-			$no++;
-			
-			$row = array();
-			
-			$row[] = $l->nama_part;
-			$row[] = $l->id_order;
-			$row[] = $l->tempat_pembuatan;
-			$row[] = $l->nama_material;
-			$row[] = $l->total_cost_material;
-			$row[] = $l->total_cost_process;
-			$row[] = $l->total_all;
-			$row[] = '<a type="button" href="'.base_url() . 'admin/dashboard/detailResultRoute?id='.$l->id_order.'" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View">
-							<i class="fa fa-eye"></i>
-						</a>';
-			
-			$data[] = $row;
-			
-		}
-		
-		$output = array(
-						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_proses->count_all(),
-						"recordsFiltered" => $this->m_proses->count_filtered(),
-						"data" => $data,
-				);
-		//output to json format
-		echo json_encode($output);
-	}
+	
 
 	public function detailResultRoute()
 	{
@@ -308,4 +295,114 @@ class Dashboard extends CI_Controller {
 		echo json_encode($output);
 	}
 
+	public function inputListActual()
+	{
+		$list = $this->m_proses->get_datatables_2();
+		$data = array();
+		$no = $_POST['start'];
+		$i = 0;
+		foreach ($list as $l) {
+			if($l->status_pengerjaan=='Finish'){
+			$no++;
+			$row = array();
+			
+			$tanggal = date_create($l->tanggal);
+			$row[] = date_format($tanggal,"d/m/Y");
+			//Urgent
+			
+			$row[] = $l->kategori;
+			$row[] = $l->id_order;
+			$row[] = $l->name;
+			$row[] = $l->department_name;
+			$row[] = $l->nama_part;
+			$row[] = $l->jumlah;			
+			$row[] = $l->nama_material;			  
+			$row[] = $l->order_type;
+			$row[] = $l->status_pengerjaan;
+			$row[] = 'Rp '.number_format($l->total_cost_material, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->total_cost_process, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->total_all, 0, ',', '.');
+			
+			
+			$columnTitle = $this->m_proses->showDatabaseProcess();
+			$idOrder = $this->m_proses->getIdOrderProcessActual();
+                
+			foreach ($columnTitle as $ct) {
+				$detailProcess = $this->m_proses->getDataProcessingActual($idOrder[$i]['id_order'],$ct['id_proses']);
+				if(!empty($detailProcess[0]['hour'])) {
+					$row[] = $detailProcess[0]['hour'];
+				} else {
+					$row[]= "-";
+				}
+				
+			}
+			$row[] = $l->total_hour;
+			// $row[] = $l->total_actual;
+			$data[] = $row;
+			$i++;
+		}
+		}
+		
+		$output = array(
+						//"draw" => $_POST['draw'],
+						"recordsTotal" => $this->m_proses->count_all(),
+						"recordsFiltered" => $this->m_proses->count_filtered_2(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+	public function ditolak()
+	{
+		$list = $this->m_order->get_datatables_1();
+		$data = array();
+		$no = $_POST['start'];
+		$i = 0;
+		foreach ($list as $l) {
+			if(($l->status_approval=='Ditolak')||($l->status_approval_2=='Ditolak')){
+				$departmentName = $this->m_order->getDepartmentName($l->id_department);
+			
+				$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewRejectedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+								<i class="fa fa-eye"></i>
+							</a>';	
+								
+				$no++;
+				$tanggal = date_create($l->tanggal);
+				$row = array();
+				if($l->status_approval_1=='Disetujui'){
+					foreach($departmentName as $d){
+						$row[] = $no;
+						$row[] = $l->nama_part;
+						$row[] = date_format($tanggal,"d/m/Y");
+						$row[] = date_format($tanggal,"H:i");
+						if ($l->kategori == 'urgent'){
+							$row[] = '<span class="badge badge-danger">urgent</span>';
+						}else if ($l->kategori == 'biasa'){
+							$row[] = '<span class="badge badge-warning">biasa</span>';
+						}
+						$row[] = $d['department_name'];
+						
+						$row[] = $l->status_pengerjaan;
+						$row[] = $view;
+						
+						}
+				}
+				
+				
+				$data[] = $row;
+		}
+		}
+		
+		$output = array(
+						//"draw" => $_POST['draw'],
+						"recordsTotal" => $this->m_proses->count_all(),
+						"recordsFiltered" => $this->m_proses->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
 }
+?>

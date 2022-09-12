@@ -108,6 +108,9 @@
                             <li>
                                 <a href="<?= base_url() . 'kadept_user/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Sudah Disetujui</span></a>
                             </li>
+                            <li>
+                                <a href="<?= base_url() . 'kadept_user/response/reject'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ditolak</span></a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END Side Navigation -->

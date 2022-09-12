@@ -39,9 +39,10 @@ class Response extends CI_Controller {
 		$no = $_POST['start'];
 		foreach ($list as $l) {
             if(($l->status_approval_1=='Ditolak')||($l->status_approval_2=='Ditolak')||($l->status_approval=='Ditolak')){
-			$view ='<a type="button" href="'.base_url() . 'kasie_ws/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
-						<i class="fa fa-eye"></i>
-					</a>'; 
+			$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+							<i class="fa fa-times"></i>
+		  				</a>';
+			
 			// }	
 			$no++;
 			$tanggal = date_create($l->tanggal);
@@ -55,15 +56,15 @@ class Response extends CI_Controller {
 			}else if ($l->kategori == 'biasa'){
 				$row[] = '<span class="badge badge-warning">biasa</span>';
 			}
-			$row[] = $l->status_pengerjaan;
-			$row[] = $view;
+			
+			$row[] = $delete;
 			$data[] = $row;
             }
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_filtered(),
+						"recordsFiltered" => $this->m_order->count_all(),
 						"data" => $data,
 				);
 		//output to json format
@@ -84,7 +85,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&($l->status_approval=='Disetujui')&&($l->tempat_pembuatan!=NULL)){
+            if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&($l->status_approval=='Disetujui')&&($l->tempat_pembuatan=='inhouse'&&($l->status_pengerjaan=='On Working'))){
 			$view ='<a type="button" href="'.base_url() . 'user/response/viewAcceptedResponse_rr?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -108,8 +109,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_filtered(),
+						"recordsFiltered" => $this->m_order->count_all(),
 						"data" => $data,
 				);
 		//output to json format
@@ -143,8 +144,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_filtered(),
+						"recordsFiltered" => $this->m_order->count_all(),
 						"data" => $data,
 				);
 		//output to json format

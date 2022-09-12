@@ -41,4 +41,6 @@ class M_approval extends CI_model
         $this->db->where('id_order',$id);
         $this->db->update('approval',$data);
     }
+
+  
 }

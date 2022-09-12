@@ -21,9 +21,8 @@
                         <th style="width: 10%;" >Urgent</th>
                         <th  style="width: 20%;">No Order</th>
                         <th  style="width: 20%;">Nama Part</th>
-                        <th  style="width: 25%;">Tanggal Mulai Rencana</th>
-                        <th  style="width: 25%;">Tanggal Selesai Rencana</th>
-                        <th  style="width: 20%;">Action</th>
+                        <th  style="width: 25%;">Tanggal Mulai Pengerjaan</th>
+                        <th  style="width: 20%;">Tombol Selesai</th>
                     </tr>
                 </thead>
                 <tbody>

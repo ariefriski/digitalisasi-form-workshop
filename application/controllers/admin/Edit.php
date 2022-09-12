@@ -76,7 +76,7 @@ class Edit extends CI_Controller {
 
 	public function editProsesTable()
 	{
-		$list = $this->m_proses->get_datatables_2();
+		$list = $this->m_proses->get_datatables_3();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
@@ -108,8 +108,8 @@ class Edit extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_proses->count_all_1(),
-						"recordsFiltered" => $this->m_proses->count_filtered_1(),
+						"recordsTotal" => $this->m_proses->count_all(),
+						"recordsFiltered" => $this->m_proses->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format

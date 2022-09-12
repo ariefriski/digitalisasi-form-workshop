@@ -136,6 +136,38 @@ $(document).ready(function() {
         ],
     });
 });
+
+var table_reject;
+
+$(document).ready(function() {
+
+    // DATATABLE DASHBOARD
+    table_reject = $('#table-reject').DataTable({ 
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+        "language": {
+            "infoFiltered": ""
+        },
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('kadept_ws/response/tolak_list')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+});
 </script>
 
         

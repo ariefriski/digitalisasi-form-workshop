@@ -152,7 +152,7 @@
         <div class="block-content">
         
         <?php foreach($accept as $a) { ?>
-            <form action="<?php echo base_url()?>kasie_user/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
+            <form action="<?php echo base_url()?>kadept_user/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
             
             <div class="form-group row" >
                     <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
@@ -174,7 +174,16 @@
                 </div>
                 </div>
                 <div  id="reason1">
-                    
+                <?php if($a['alasan'] != NULL){ ?>
+                <div class="form-group row" id="reason">
+                    <label class="col-12" for="example-textarea-input">*Alasan Reject</label>
+                <div class="col-12">
+                    <textarea class="form-control" id="alasan" name="alasan" rows="6" placeholder="Alasan..." disabled>
+                    <?php echo $a['alasan'];?>
+                    </textarea>
+                </div>
+                </div>
+                    <?php } ?>   
                 </div>
                 <div class="form-group row">
                 

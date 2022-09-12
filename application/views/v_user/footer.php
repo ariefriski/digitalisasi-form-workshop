@@ -109,6 +109,7 @@ table = $('#table-dashboard').DataTable({
     "language": {
         "infoFiltered": ""
     },
+    //"bInfo":false,
 
     // Load data for the table's content from an Ajax source
     "ajax": {
@@ -141,7 +142,7 @@ table2 = $('#table-response').DataTable({
     "language": {
         "infoFiltered": ""
     },
-
+    //"bInfo":false,
     // Load data for the table's content from an Ajax source
     "ajax": {
         "url": "<?php echo site_url('user/response/order_list')?>",
@@ -173,7 +174,7 @@ table3 = $('#table-onprocess').DataTable({
     "language": {
         "infoFiltered": ""
     },
-
+    //"bInfo":false,
     // Load data for the table's content from an Ajax source
     "ajax": {
         "url": "<?php echo site_url('user/response/onprocess_list')?>",
@@ -205,7 +206,7 @@ table4 = $('#table-finish').DataTable({
     "language": {
         "infoFiltered": ""
     },
-
+   // "bInfo":false,
     // Load data for the table's content from an Ajax source
     "ajax": {
         "url": "<?php echo site_url('user/response/finish_list')?>",

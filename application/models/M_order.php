@@ -101,6 +101,11 @@ class M_order extends CI_model
 
     }
 
+    function searchIdOrder($formatIdOrder)
+    {
+        $this->db->get_where('order',array('id_order'=>$formatIdOrder))->num_rows();
+    }
+
     function get_datatables_kadept_user()
 	{
 		$this->_get_datatables_kadept_user();
@@ -164,10 +169,12 @@ class M_order extends CI_model
 		return $query->result();
 	}
     
+    // ($l->status_approval_1==NULL)||($l->status_approval_2==NULL)||($l->status_approval==NULL)
+    
     private function _get_datatables_user()
     {
         $this->db->select('order.*,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval,detail_estimate_routing.tempat_pembuatan,
-        scheduling.total_day');
+        scheduling.total_day,approval.approve1,approval.approve2,approval.approve3');
         $this->db->from('order');
         $this->db->join('approval','order.id_order=approval.id_order','left');
         $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
@@ -221,13 +228,15 @@ class M_order extends CI_model
     {
         $this->db->select('order.*,approval_pic_workshop.status_approval_2,approval_pic_workshop.alasan_2,approval.status_approval_1,approval.approve1,approval.approve2,approval.approve3,approval_final.jenis_approval_2,
         approval_final.status_approval,detail_estimate_routing.tempat_pembuatan,scheduling.total_day,
-        scheduling.start_date,scheduling.end_date');
+        scheduling.start_date,scheduling.end_date,working_order.start_working,working_order.end_working,
+        approval_final.jenis_approval_1,approval_final.jenis_approval_2');
         $this->db->from('order');
         $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
         $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order','left');
-        $this->db->join('approval','order.id_order=approval.id_order');   
-        $this->db->join('scheduling','order.id_order=scheduling.id_order','left');  
+        $this->db->join('scheduling','order.id_order=scheduling.id_order','left');
+        $this->db->join('approval','order.id_order=approval.id_order','left');   
+        $this->db->join('working_order','order.id_order=working_order.id_order','left');
        
              
         
@@ -346,18 +355,50 @@ class M_order extends CI_model
 		return $this->db->count_all_results();
     }
 
-    public function count_all_user($id)
+    
+
+    public function count_all_user_onprocess()
     {
-        $this->db->select('order.id_order,order.is_user,approval.status_approval_1');
+        $this->db->select('order.id_order,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval,
+        detail_estimate_routing.tempat_pembuatan');
+        $this->db->from('order');
+        $this->db->join('approval','order.id_order=approval.id_order',);
+        $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order');
+        $this->db->join('approval_final','order.id_order=approval_final.id_order');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval','Disetujui');
+        $this->db->where('detail_estimate_routing.tempat_pembuatan','inhouse');
+		return $this->db->count_all_results();
+    }
+
+    
+
+    public function count_all_user_reject()
+    {
+        $this->db->select('order.id_order,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval');
         $this->db->from('order');
         $this->db->join('approval','order.id_order=approval.id_order','left');
-        $this->db->where('order.id_user',$id);
+        $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
+        $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
+        $this->db->or_where('approval.status_approval_1','Ditolak');
+        $this->db->or_where('approval_pic_workshop.status_approval_2','Ditolak');
+        $this->db->or_where('approval_final.status_approval','Ditolak');
+		return $this->db->count_all_results();
+    }
+
+    public function count_all_user_finish()
+    {
+        $this->db->select('order.status_pengerjaan');
+        $this->db->from('order');
+        $this->db->where('order.status_pengerjaan','Finish');
 		return $this->db->count_all_results();
     }
 
     public function count_filtered()
     {
-        $this->_get_datatables_kasie_user();
+        $this->_get_datatables_user();
 		$query = $this->db->get();
 		return $query->num_rows();
     }
@@ -374,6 +415,8 @@ class M_order extends CI_model
 		$query = $this->db->get();
 		return $query->num_rows();
     }
+
+    
 
     public function addDetailRawType($data)
     {
@@ -399,7 +442,7 @@ class M_order extends CI_model
         $this->db->select('id_order');
         $this->db->from('order');
         $this->db->where('MONTH(tanggal)', date("n"));
-        $this->db->order_by('tanggal', 'DESC');
+        $this->db->order_by('created_at', 'DESC');
         $this->db->limit(1);
         return $this->db->get()->result_array();
     }
@@ -410,5 +453,89 @@ class M_order extends CI_model
 		$this->db->where('id_order',$id);
 		$this->db->update('order');
     }
+
+
+    //#######################
+    public function count_all_user_dashboard()
+    {
+        $this->db->select('order.*,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval,detail_estimate_routing.tempat_pembuatan,
+        scheduling.total_day,approval.approve1,approval.approve2,approval.approve3');
+        $this->db->from('order');
+        $this->db->join('approval','order.id_order=approval.id_order','left');
+        $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
+        $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order','left');
+        $this->db->join('scheduling','order.id_order=scheduling.id_order','left');   
+        $this->db->where('order.status_pengerjaan','WAITING');
+        $this->db->where('approval.status_approval_1',NULL);
+        $this->db->where('approval_pic_workshop.status_approval_2',NULL);
+        $this->db->where('approval_final.status_approval',NULL);
+        $this->db->where('order.id_department',$this->session->id_department);
+        $this->db->where('order.id_section',$this->session->id_section);
+   
+			
+        
+		return $this->db->count_all_results();
+    }
+
+    private function _get_datatables_user_page()
+    {
+        $this->db->select('order.*,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval');
+        $this->db->from('order');
+        $this->db->join('approval','order.id_order=approval.id_order','left');
+        $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
+        $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
+        $this->db->where('order.status_pengerjaan','WAITING');
+        $this->db->where('approval.status_approval_1 !=','Ditolak');
+        $this->db->where('approval.status_approval_1 !=','NULL');
+        // $this->db->where('approval_pic_workshop.status_approval_2 !=','Ditolak');
+        // $this->db->where('approval_final.status_approval !=','Ditolak');
+        // if ($this->session->userdata('level') == 'user' ) {
+		
+        //   //  $this->db->where('order.id_section',$this->session->id_section);
+		// }
+        
+        $i = 0;
+	
+		foreach ($this->column_search as $item) // loop column 
+		{
+			if($_POST['search']['value']) // if datatable send POST for search
+			{
+				
+				if($i===0) // first loop
+				{
+					$this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+					$this->db->like($item, $_POST['search']['value']);
+				}
+				else
+				{
+					$this->db->or_like($item, $_POST['search']['value']);
+				}
+
+				if(count($this->column_search) - 1 == $i) //last loop
+					$this->db->group_end(); //close bracket
+			}
+			$i++;
+            if(isset($_POST['orderr'])) // here order processing
+		    {
+			$this->db->order_by($this->column_order[$_POST['orderr']['0']['column']], $_POST['orderr']['0']['dir']);
+		    } 
+		    else if(isset($this->orderr))
+		    {
+			$orderr = $this->orderr;
+			$this->db->order_by(key($orderr), $orderr[key($orderr)]);
+		    }
+		}
+
+
+    }
+
+    public function count_filtered_user_dashboard()
+    {
+        $this->_get_datatables_user_page();
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
+    
 }
 ?>

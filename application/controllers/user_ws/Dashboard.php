@@ -44,6 +44,8 @@ class Dashboard extends CI_Controller {
 		$id_proses = $this->input->post('arr_id_proses');
 		$hour_proses = $this->input->post('arr_hour_proses');
 
+		$end_working = date('Y-m-d', now());
+
 		$arrIdProcess = explode(',', $id_proses);
 		$arrHourProcess = explode(',', $hour_proses);
 		$update_status_pengerjaan = 'Finish';
@@ -73,9 +75,9 @@ class Dashboard extends CI_Controller {
 		);
 		$this->m_routing_actual->inputDetailActualRouting($data2);
 		$this->m_proses->updatePengerjaan($id_order,$update_status_pengerjaan);
+		$this->m_routing_actual->updateEndWorking($id_order,$end_working);
 
-
-		redirect(site_url('user_ws/dashboard/'));
+		redirect(site_url('user_ws/response/finish'));
 	}
 	
 	public function order_list()
@@ -109,7 +111,7 @@ class Dashboard extends CI_Controller {
 
 	
 
-			$row[] = $work.$detail_order;		
+			$row[] = $detail_order.$work;		
 			$data[] = $row;
 			$i++;
 		}
@@ -127,10 +129,16 @@ class Dashboard extends CI_Controller {
 
 	public function startProcess()
 	{
+		$now = date('Y-m-d', now());
 		$id_order = $this->input->get('id');
 		$update_status_pengerjaan = 'On Working';
+		
+		$data = array(
+			'id_order'=>$id_order,
+			'start_working'=>$now
+		);
 		$this->m_proses->updatePengerjaan($id_order,$update_status_pengerjaan);
-
+		$this->m_routing_actual->inputStartWorkingDate($data);
 		redirect(site_url('user_ws/response/'));
 	}
 

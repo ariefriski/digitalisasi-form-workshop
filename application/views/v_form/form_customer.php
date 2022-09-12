@@ -7,6 +7,7 @@
 <h2 class="content-heading" style="text-align: center;">ORDER PEMBUATAN REPAIR MODIFIKASI <br> KOMPONEN MESIN PERALATAN <br> <p style="font-size:small;">SEKSI WORKSHOP</p></h2>
 </div>
 </div>
+
 <div class="col-md-6">
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>

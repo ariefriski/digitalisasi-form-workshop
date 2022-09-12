@@ -51,7 +51,6 @@ class Response extends CI_Controller {
 			$row[] = $l->id_order;
 			$row[] = $l->nama_part;
 			$row[] = $l->start_date;
-			$row[] = $l->end_date;
 			$row[] = '<a href="'.base_url() . 'user_ws/dashboard/input_working_order?id='.$l->id_order.'" type="button" title="Selesai" class="btn btn-success mr-5 mb-5">
 						<i class="fa fa-check"></i>
 					  </a>';
@@ -88,8 +87,8 @@ class Response extends CI_Controller {
 			$row[] = $l->kategori;
 			$row[] = $l->id_order;
 			$row[] = $l->nama_part;
-			$row[] = $l->start_date;
-			$row[] = $l->end_date;
+			$row[] = $l->start_working;
+			$row[] = $l->end_working;
 			$row[] = $l->status_pengerjaan;
 			// $row[] = '<a href="'.base_url() . 'user_ws/dashboard/input_working_order?id='.$l->id_order.'" type="button" title="Selesai" class="btn btn-success mr-5 mb-5">
 			// 			<i class="fa fa-check"></i>

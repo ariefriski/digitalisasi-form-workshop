@@ -29,10 +29,10 @@ class Dashboard extends CI_Controller {
 	{
 		$getLastNumberOrder = $this->m_order->getLastIdOrder();
 		$last = $getLastNumberOrder[0]['id_order'];
-
 		$lastNumberOrder = explode("-",$last);
 		$currentNumberOrder = (int)$lastNumberOrder[2] + 1;
 
+		
 		$sumRowOrder = $this->m_order->sumRowsOrder();
 		$startNumberOrder = 1;
 
@@ -47,7 +47,6 @@ class Dashboard extends CI_Controller {
 
 	public function createForm(){
 		$data['material']=$this->m_proses->selectMaterial();
-		
 		$this->load->view('v_user/header');
 		$this->load->view('v_form/form_customer',$data);
 		$this->load->view('v_user/footer');
@@ -76,7 +75,7 @@ class Dashboard extends CI_Controller {
 		$lebar	=$this->input->post('lebar');
 		$diameter = $this->input->post('diameter');
 		$material =$this->input->post('material');
-		
+		$approve1='new';
 		$status_pengerjaan = 'WAITING';
 		$tanggal = "%Y-%M-%d %H:%i";
 		$image = $this->upload->data('file_name');
@@ -200,20 +199,18 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if(($l->status_approval_1==NULL)||($l->status_approval_2==NULL)||($l->status_approval==NULL)){
+			
+			if($l->status_pengerjaan=='WAITING' && (($l->status_approval_1!='Ditolak')&&($l->status_approval_2!='Ditolak')&&($l->status_approval!='Ditolak'))){
 			$view = '<a type="button" style="width:20%;" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
 		
-			if ($l->status_pengerjaan == 'Disetujui'){
-				$delete = '	<a id="id-delete" name="delete" href="#" style="width:20%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-							  <i class="fa fa-times"></i>
-						</a>';
-			}else{
+			
+			
 			$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
 							  <i class="fa fa-times"></i>
 						</a>';
-			}			
+						
 		
 			$no++;
 			$tanggal = date_create($l->tanggal);
@@ -233,10 +230,11 @@ class Dashboard extends CI_Controller {
 			$data[] = $row;
 		
 		}
-	}
+		
+		}
 		$output = array(
-						"recordsFiltered" => $this->m_order->count_all(),
-						"recordsTotal" => $this->m_order->count_filtered_user(),
+						"recordsFiltered" => $this->m_order->count_filtered_user_dashboard(),
+						"recordsTotal" => $this->m_order->count_all_user_dashboard(),
 						"data" => $data,
 				);
 		//output to json format

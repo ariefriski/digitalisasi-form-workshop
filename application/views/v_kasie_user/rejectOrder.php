@@ -8,14 +8,12 @@
             <h3 class="block-title">List Form Order</h3>
             <div class="block-options">
                 <div class="block-options-item">
-                <a href="<?php echo base_url(); ?>user/dashboard/createForm" type="button" class="btn btn-success mr-5 mb-5">
-                    <i class="fa fa-plus mr-5"></i>Add Order
-                </a>
+
                 </div>
             </div>
         </div>
         <div class="block-content">
-            <table id="table-response" class="table table-vcenter">
+            <table id="table-reject" class="table table-vcenter">
                 <thead>
                     <tr>
                         <th class="text-center" style="width: 50px;">#</th>

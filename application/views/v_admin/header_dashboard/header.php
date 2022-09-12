@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Order Form Digital</title>
+        <title>Digitalisasi Workshop</title>
 
         <meta name="description" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -33,8 +33,12 @@
         <!-- Fonts and Codebase framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,400i,600,700">
         <link rel="stylesheet" id="css-main" href="<?=base_url() . 'assets/css/codebase.min.css'?>">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-        <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+
+         <!--EXPORT  -->
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />
+         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
         <!-- END Stylesheets -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -106,6 +110,9 @@
                                 <a href="<?= base_url() . 'admin/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan PIC Workshop</span></a>
                             </li>
                             <li>
+                                <a href="<?= base_url() . 'admin/dashboard/ditolakApprove'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Ditolak</span></a>
+                            </li>
+                            <li>
                                 <a href="<?= base_url() . 'admin/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Menunggu Approve Kasie/Kadept</span></a>
                             </li>
                             <li>
@@ -115,12 +122,17 @@
                                 <a href="<?= base_url() . 'admin/response/onprocess'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Schedulling</span></a>
                             </li>
                             <li>
+                                <a href="<?= base_url() . 'admin/response/waitingworking'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Wait for Working</span></a>
+                            </li>
+                            <li>
                                 <a href="<?= base_url() . 'admin/response/working'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">On Working</span></a>
                             </li>
                             <li>
                                 <a href="<?= base_url() . 'admin/response/finish'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Finish</span></a>
                             </li>
                         </ul>
+                 
+                        
                     </div>
                     <!-- END Side Navigation -->
                 </div>
@@ -154,8 +166,12 @@
                                 <i class="fa fa-angle-down ml-5"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right min-width-200" aria-labelledby="page-header-user-dropdown">
-                            <a class="dropdown-item" href="<?php echo base_url();?>admin/dashboard/IO">
-                                    <i class="si si-list"></i> Order List
+                                <a class="dropdown-item" href="<?php echo base_url();?>admin/dashboard/IO">
+                                    <i class="si si-list"></i> Order List Plan
+                                </a>
+                               
+                                <a class="dropdown-item" href="<?php echo base_url();?>admin/dashboard/IOActual">
+                                    <i class="si si-list"></i> Order List Actual
                                 </a>
                                 <a class="dropdown-item" href="<?php echo base_url();?>admin/edit/proses">
                                     <i class="si si-pencil"></i> Edit Data Proses

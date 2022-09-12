@@ -25,6 +25,16 @@
         <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         <script src="<?=base_url() . 'assets/js/pages/momentjs-business.js'?>"></script>
+        <!-- EXPORT -->
+   
+        
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
         <!-- LOAD JS TO SETTING DATATABLE WHOLE PAGE IN ROLE ADMIN -->
         <script>
             $(document).on('click','#reject',function(){
@@ -151,11 +161,15 @@ var table;
             "ordering":false,
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
-            "order": [], //Initial no order.
             "language": {
                 "infoFiltered": ""
             },
             "searching" : false,
+            dom: 'Bfrtip',
+            buttons: [
+                'excel'
+             ],  
+            
             // Load data for the table's content from an Ajax source
             "ajax": {
                 "url": "<?php echo site_url('admin/dashboard/inputList')?>",
@@ -177,6 +191,47 @@ var table;
 
         
     });
+
+var table10;
+
+$(document).ready(function() {
+
+    // DATATABLE DASHBOARD
+    table10 = $('#table-input-order-actual').DataTable({ 
+        "scrollX": true,
+        "ordering":false,
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "language": {
+            "infoFiltered": ""
+        },
+        "searching" : false,
+        dom: 'Bfrtip',
+        buttons: [
+            'excel'
+            ],  
+        
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('admin/dashboard/inputListActual')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+
+    
+
+    
+});
 
 
 var table3;
@@ -210,11 +265,6 @@ $(document).ready(function() {
         },
         ],
     });
-
-    
- 
-
-    
 });
 
 var table4;
@@ -416,6 +466,44 @@ $(document).ready(function() {
     });
 });
 
+var table11;
+
+$(document).ready(function() {
+
+    // DATATABLE DASHBOARD
+    table11 = $('#table-wait').DataTable({ 
+        
+        "ordering":false,
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "language": {
+            "infoFiltered": ""
+        },
+        "searching" : false,
+
+        
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('admin/response/waiting_working')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
+
+    
+
+    
+});
+
 
 
 $(function() {
@@ -429,6 +517,39 @@ $(function() {
   }, function(start, end, label) {
     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
   });
+});
+
+var table13;
+
+$(document).ready(function() {
+
+    // DATATABLE DASHBOARD
+    table13 = $('#table-ditolak').DataTable({ 
+        
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+        "language": {
+            "infoFiltered": ""
+        },
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('admin/dashboard/ditolak')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [0], //first column / numbering column
+            "orderable": false, //set not orderable
+            // "defaultContent": "-",
+            // "targets": "_all"
+        },
+        ],
+    });
 });
 
 

@@ -21,6 +21,13 @@ class Response extends CI_Controller {
 		$this->load->view('v_kasie_ws/footer');
 	}
 
+	public function reject()
+	{
+		$this->load->view('v_kasie_ws/header_dashboard/header');
+		$this->load->view('v_kasie_ws/rejectOrder');
+		$this->load->view('v_kasie_ws/footer');
+	}
+
     public function order_list()
 	{
 		$list = $this->m_order->get_datatables_1();
@@ -47,6 +54,43 @@ class Response extends CI_Controller {
 			$row[] = $l->status_pengerjaan;
 			$row[] = $view;
 			$data[] = $row;
+            }
+		}
+		
+		$output = array(
+						"recordsTotal" => $this->m_order->count_all(),
+						"recordsFiltered" => $this->m_order->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+	public function tolak_list()
+	{
+		$list = $this->m_order->get_datatables_1();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $l) {
+            if($l->status_approval=='Ditolak'){
+				$view ='<a type="button" href="'.base_url() . 'kasie_user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+							<i class="fa fa-eye"></i>
+						</a>';	
+				$no++;
+				$tanggal = date_create($l->tanggal);
+				$row = array();
+				$row[] = $no;
+				$row[] = $l->nama_part;
+				$row[] = date_format($tanggal,"d/m/Y");
+				$row[] = date_format($tanggal,"H:i");
+				if ($l->kategori == 'urgent'){
+					$row[] = '<span class="badge badge-danger">urgent</span>';
+				}else if ($l->kategori == 'biasa'){
+					$row[] = '<span class="badge badge-warning">biasa</span>';
+				}
+				
+				$row[] = $view;
+				$data[] = $row;
             }
 		}
 		
