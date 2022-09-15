@@ -14,14 +14,38 @@ class M_proses extends CI_model
 
 	public function count_all()
     {
-        $this->db->from($this->table);
+        $this->db->from('process');
 		return $this->db->count_all_results();
     }
     public function count_filtered()
     {
-        $this->_get_datatables_query_1();
+        $this->_get_datatables_process();
 		$query = $this->db->get();
 		return $query->num_rows();
+    }
+
+    public function count_all_material()
+    {
+        $this->db->from('material');
+		return $this->db->count_all_results();
+    }
+    public function count_filtered_material()
+    {
+        $this->_get_datatables_material();
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
+
+    private function _get_datatables_process()
+    {
+        $this->db->select('*');
+        $this->db->from('process');
+    }
+
+    private function _get_datatables_material()
+    {
+        $this->db->select('*');
+        $this->db->from('material');
     }
 
     public function count_filtered_2()
@@ -107,19 +131,7 @@ class M_proses extends CI_model
         return $this->db->get()->result_array();
     }
 
-	private function _get_datatables_query_1()
-    {
-        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
-        detail_estimate_routing.total_hour,approval.status_approval_1,detail_estimate_routing.*');
-        $this->db->from('order');
-        $this->db->join('user','order.id_user = user.id_user');
-        $this->db->join('department','order.id_department = department.id_department');
-        $this->db->join('material','order.id_material=material.id_material');
-        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
-        $this->db->join('approval','order.id_order=approval.id_order');
-        $this->db->where('approval.status_approval_1','Disetujui');
-        $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
-    }
+	
 
     function printData()
     {
@@ -137,14 +149,7 @@ class M_proses extends CI_model
 		return $query->result();
     }
 
-	function get_datatables_1()
-	{
-		$this->_get_datatables_query_1();
-		if($_POST['length'] != -1)
-		$this->db->limit($_POST['length'], $_POST['start']);
-		$query = $this->db->get();
-		return $query->result();
-	}
+	
 
     private function _get_datatables_query_routing_plan()
     {
@@ -216,6 +221,79 @@ class M_proses extends CI_model
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+    public function count_all_actual()
+    {
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
+        detail_actual_routing.total_hour,approval.status_approval_1,detail_actual_routing.*,detail_estimate_routing.total_cost_material');
+        $this->db->from('order');
+        $this->db->join('user','order.id_user = user.id_user');
+        $this->db->join('department','order.id_department = department.id_department');
+        $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_actual_routing','order.id_order=detail_actual_routing.id_order');
+        $this->db->join('approval','order.id_order=approval.id_order');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('detail_actual_routing.total_hour is NOT NULL');
+		return $this->db->count_all_results();
+    }
+    public function count_filtered_actual()
+    {
+        $this->_get_datatables_query_2();
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('detail_actual_routing.total_hour is NOT NULL');
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
+
+    private function _get_datatables_query_1()
+    {
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
+        detail_estimate_routing.total_hour,approval.status_approval_1,detail_estimate_routing.*');
+        $this->db->from('order');
+        $this->db->join('user','order.id_user = user.id_user');
+        $this->db->join('department','order.id_department = department.id_department');
+        $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->join('approval','order.id_order=approval.id_order');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
+    }
+
+    function get_datatables_1()
+	{
+		$this->_get_datatables_query_1();
+		if($_POST['length'] != -1)
+		$this->db->limit($_POST['length'], $_POST['start']);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+    public function count_all_plan()
+    {
+        $this->db->select('order.*,user.name,department.department_name,material.nama_material,material.price_kg,
+        detail_actual_routing.total_hour,approval.status_approval_1,detail_actual_routing.*,detail_estimate_routing.total_cost_material');
+        $this->db->from('order');
+        $this->db->join('user','order.id_user = user.id_user');
+        $this->db->join('department','order.id_department = department.id_department');
+        $this->db->join('material','order.id_material=material.id_material');
+        $this->db->join('detail_actual_routing','order.id_order=detail_actual_routing.id_order');
+        $this->db->join('approval','order.id_order=approval.id_order');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
+		return $this->db->count_all_results();
+    }
+    public function count_filtered_plan()
+    {
+        $this->_get_datatables_query_1();
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('detail_estimate_routing.total_hour is NOT NULL');
+		$query = $this->db->get();
+		return $query->num_rows();
+    }
+
+    
 
     function addProses($data)
     {

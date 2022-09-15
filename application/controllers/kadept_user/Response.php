@@ -30,11 +30,11 @@ class Response extends CI_Controller {
 
     public function order_list()
 	{
-		$list = $this->m_order->get_datatables_kadept_user();
+		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-		if($l->status_approval_1 != NULL){
+		if($l->status_approval_1 =='Disetujui'){
 			$view ='<a type="button" href="'.base_url() . 'kadept_user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -59,8 +59,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kadept_user_response(),
+						"recordsFiltered" => $this->m_order->count_filtered_kadept_user_response(),
 						"data" => $data,
 				);
 		//output to json format
@@ -69,7 +69,7 @@ class Response extends CI_Controller {
 	
 	public function tolak_list()
 	{
-		$list = $this->m_order->get_datatables_kadept_user();
+		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
@@ -98,8 +98,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kadept_user_tolak(),
+						"recordsFiltered" => $this->m_order->count_filtered_kadept_user_tolak(),
 						"data" => $data,
 				);
 		//output to json format

@@ -32,7 +32,7 @@
                             }
                         ?>                
                     
-                        <th>Total Actual</th>
+                        <th>Total Plan</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -70,10 +70,9 @@ class Response extends CI_Controller {
 		$list = $this->m_order->get_datatables_1();
 		$data = array();
 		$no = $_POST['start'];
-		foreach ($list as $l) {
-			if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&($l->status_approval!='Ditolak')&&((($l->approve2==NULL)||(($l->approve3==NULL))))&&($l->status_pengerjaan=='WAITING')){
+		foreach ($list as $l) { //&&($l->status_approval!='Ditolak')
+			if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&((($l->kategori=='urgent')&&(($l->approve4==NULL)))||(($l->kategori=='biasa')&&(($l->approve3==NULL))))&&($l->status_pengerjaan=='WAITING')){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
-			
 			$view = '<a type="button" href="'.base_url() . 'admin/response/viewAcceptedResponse_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-hand-o-up"></i>
 						</a>';	
@@ -107,8 +106,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_admin_ws_wait_aprove(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_wait_aprove(),
 						"data" => $data,
 				);
 		//output to json format
@@ -121,7 +120,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if(((($l->kategori =='urgent')&&($l->approve3 !=NULL))||(($l->kategori =='biasa')&&($l->approve2 !=NULL)))&&($l->tempat_pembuatan ==NULL)){
+			if(((($l->kategori =='urgent')&&($l->approve4 !=NULL))||(($l->kategori =='biasa')&&($l->approve3 !=NULL)))&&($l->tempat_pembuatan == NULL)){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			
 			$view = '<a type="button" href="'.base_url() . 'admin/response/viewAcceptedResponse_rr?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
@@ -158,8 +157,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_admin_ws_input(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_input(),
 						"data" => $data,
 				);
 		//output to json format
@@ -216,8 +215,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_admin_ws_schedulling(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_schedulling(),
 						"data" => $data,
 				);
 		//output to json format
@@ -270,53 +269,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
-						"data" => $data,
-				);
-		//output to json format
-		echo json_encode($output);
-	}
-
-	public function working_list()
-	{
-		$list = $this->m_order->get_datatables_1();
-		$data = array();
-		$no = $_POST['start'];
-		foreach ($list as $l) {
-			if($l->status_pengerjaan == 'On Working'){//
-			$departmentName = $this->m_order->getDepartmentName($l->id_department);
-			
-			$no++;
-			$tanggal = date_create($l->tanggal);
-			$row = array();
-			if($l->status_approval_1=='Disetujui'){
-				foreach($departmentName as $d){
-					$row[] = $no;
-					$row[] = $l->nama_part;
-					$row[] = date_format($tanggal,"d/m/Y");
-					$row[] = date_format($tanggal,"H:i");
-					if ($l->kategori == 'urgent'){
-						$row[] = '<span class="badge badge-danger">urgent</span>';
-					}else if ($l->kategori == 'biasa'){
-						$row[] = '<span class="badge badge-warning">biasa</span>';
-					}
-					$row[] = $d['department_name'];
-					
-					$row[] = $l->status_pengerjaan;
-					
-					}
-			}
-			
-			
-			$data[] = $row;
-		}
-		}
-		
-		$output = array(
-						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_admin_ws_finish(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_finish(),
 						"data" => $data,
 				);
 		//output to json format
@@ -346,7 +300,7 @@ class Response extends CI_Controller {
 					$row[] = $no;
 					$row[] = $l->nama_part;
 					$row[] = date_format($tanggal,"d/m/Y");
-					$row[] = date_format($tanggal,"H:i");
+					$row[] = $l->total_day;	
 					if ($l->kategori == 'urgent'){
 						$row[] = '<span class="badge badge-danger">urgent</span>';
 					}else if ($l->kategori == 'biasa'){
@@ -368,14 +322,61 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_admin_ws_waiting_for_working(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_waiting_for_working(),
 						"data" => $data,
 				);
 		//output to json format
 		echo json_encode($output);
 	}
 
+
+	public function working_list()
+	{
+		$list = $this->m_order->get_datatables_1();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $l) {
+			if(($l->status_pengerjaan == 'On Working')){//
+			$departmentName = $this->m_order->getDepartmentName($l->id_department);
+			
+			$no++;
+			$tanggal = date_create($l->tanggal);
+			$row = array();
+			if($l->status_approval_1=='Disetujui'){
+				foreach($departmentName as $d){
+					$row[] = $no;
+					$row[] = $l->nama_part;
+					$row[] = date_format($tanggal,"d/m/Y");
+					$row[] = date_format($tanggal,"H:i");
+					if ($l->kategori == 'urgent'){
+						$row[] = '<span class="badge badge-danger">urgent</span>';
+					}else if ($l->kategori == 'biasa'){
+						$row[] = '<span class="badge badge-warning">biasa</span>';
+					}
+					$row[] = $d['department_name'];
+					
+					$row[] = $l->status_pengerjaan;
+					
+					}
+			}
+			
+			
+			$data[] = $row;
+		}
+		}
+		
+		$output = array(
+						//"draw" => $_POST['draw'],
+						"recordsTotal" => $this->m_order->count_all_admin_ws_working(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_working(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
+	}
+
+	
 	public function viewAcceptedResponse_r()
 	{
 		$id = $this->input->get('id');

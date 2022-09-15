@@ -10,6 +10,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('m_routing');
 		$this->load->model('m_proses');
 		$this->load->model('m_material');
+		$this->load->model('m_approval');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
 		if($this->session->userdata('user_is_logged_in')=='') {
@@ -75,9 +76,15 @@ class Dashboard extends CI_Controller {
 		$lebar	=$this->input->post('lebar');
 		$diameter = $this->input->post('diameter');
 		$material =$this->input->post('material');
-		$approve1='new';
 		$status_pengerjaan = 'WAITING';
 		$tanggal = "%Y-%M-%d %H:%i";
+
+		//aprroval
+		$approve1='new';
+		$status_approval=NULL;
+		$alasan=NULL;
+		$jenis_approval=NULL;
+		//image
 		$image = $this->upload->data('file_name');
 		if($lebar==0){
 			$volume = 3.14 * (($diameter/2) * ($diameter/2)) * $panjang;
@@ -122,10 +129,21 @@ class Dashboard extends CI_Controller {
 			'id_order'=>$id_order,
 			'total_cost_material'=>$total_cost_material
 		);
+
+		$data =array(
+			'id_order'=>$id_order,
+			'id_user'=>$id_user,
+			'status_approval_1'=>$status_approval,
+			'alasan' =>$alasan,
+			'tanggal'=>mdate($tanggal),
+			'jenis_approval'=>$jenis_approval,
+			'approve1'=>$approve1
+		);
 		
 		$this->m_order->addOrder($data_order);
 		$this->m_order->addDetailRawType($data_detail_raw_type);
 		$this->m_routing->addEstimateRouting($data_estimate_routing);
+		$this->m_approval->addApproval($data);
 		redirect(site_url('user/dashboard/'));
 	}
 
@@ -200,7 +218,7 @@ class Dashboard extends CI_Controller {
 		$no = $_POST['start'];
 		foreach ($list as $l) {
 			
-			if($l->status_pengerjaan=='WAITING' && (($l->status_approval_1!='Ditolak')&&($l->status_approval_2!='Ditolak')&&($l->status_approval!='Ditolak'))){
+			if($l->status_pengerjaan=='WAITING' && $l->alasan==NULL && $l->alasan_2==NULL && $l->alasan_3==NULL && ((($l->approve1=='new')||($l->approve1=='ok'))||(($l->approve2=='ok')&&($l->approve3=='ok'))) ){
 			$view = '<a type="button" style="width:20%;" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
@@ -252,6 +270,7 @@ class Dashboard extends CI_Controller {
 	{
 		$id = $this->input->get('id');
 		$data['response'] = $this->m_order->getResponseOrder($id);
+		$data['tracker'] = $this->m_order->getDataForTracker($id);
 		$data['material']=$this->m_proses->selectMaterial();
 		$this->load->view('v_user/header');
 		$this->load->view('v_form/form_customer_response_detail',$data);

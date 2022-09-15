@@ -61,8 +61,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_proses->count_all(),
-						"recordsFiltered" => $this->m_proses->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_user_ws_response(),
+						"recordsFiltered" => $this->m_order->count_filtered_user_ws_response(),
 						"data" => $data,
 				);
 		//output to json format
@@ -100,8 +100,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_proses->count_all(),
-						"recordsFiltered" => $this->m_proses->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_user_ws_finish(),
+						"recordsFiltered" => $this->m_order->count_filtered_user_ws_finish(),
 						"data" => $data,
 				);
 		//output to json format

@@ -40,7 +40,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <!-- LOAD CUSTOM DOM TO MANIPULATE ADD CHECKSHEET ext. IN WHOLE PAGE ROLE ADMIN -->
-        
+        <style>
+            .orderStatus { padding: 10px; overflow: hidden; }
+            .orderStatus .row { padding: 0; margin: 0; display: flex; padding: 5px; width: 100%; }
+            .orderStatus .row .col { display: block; flex: 1 1 0; padding: 5px; width: 100%; line-height: 12px; position: relative; text-align: center; padding-top: 15px; color: #aaa; }
+            .orderStatus .row .col:before { content: ''; width: 100%; height: 5px; background: #ccc; top: 0px; left: 0; position: absolute; margin: 0 0 0 -50%; }
+            .orderStatus .row .col.done:before { background: #56B500; }
+            .orderStatus .row .col:first-child:before { background: none; }
+            .orderStatus .row .col:after { position: absolute; width: 20px; height: 20px; content: "\f3fd"; color: #eee; font-size: 24px; line-height: 20px; background: #ccc; left: 50%; top: 0; z-index: 999; border-radius: 50%; margin: -8px 0 0 -10px; font-family: "Ionicons"; }
+            .orderStatus .row .col.done:after { position: absolute; width: 20px; height: 20px; content: "\f3fd"; color: #fff; font-size: 24px; line-height: 20px; background: #56B500; left: 50%; top: 0; z-index: 999; border-radius: 50%; margin: -8px 0 0 -10px; font-family: "Ionicons"; }
+            .orderStatus .row .col.done { color: #3d8f10 }
+        </style>
     </head>
     <body>
         

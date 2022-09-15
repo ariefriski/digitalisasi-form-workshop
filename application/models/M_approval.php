@@ -7,6 +7,13 @@ class M_approval extends CI_model
         $this->db->insert('approval',$data);
     }
 
+    function updateApproval($id,$data)
+    {
+        $this->db->where('id_order',$id);
+        $this->db->update('approval',$data);
+        
+    }
+
     function addApprovalPic($data)
     {
         $this->db->insert('approval_pic_workshop',$data);
@@ -42,5 +49,5 @@ class M_approval extends CI_model
         $this->db->update('approval',$data);
     }
 
-  
+    
 }

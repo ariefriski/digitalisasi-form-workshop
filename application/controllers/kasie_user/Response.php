@@ -32,7 +32,7 @@ class Response extends CI_Controller {
 
     public function order_list()
 	{
-		$list = $this->m_order->get_datatables_kasie_user();
+		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
@@ -61,8 +61,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsFiltered" => $this->m_order->count_filtered_kasie_user_response(),
+						"recordsTotal" => $this->m_order->count_all_kasie_user_response(),
 						"data" => $data,
 				);
 		//output to json format
@@ -71,7 +71,7 @@ class Response extends CI_Controller {
 
 	public function tolak_list()
 	{
-		$list = $this->m_order->get_datatables_kasie_user();
+		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
@@ -100,8 +100,8 @@ class Response extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsFiltered" => $this->m_order-> count_filtered_kasie_user_tolak(),
+						"recordsTotal" => $this->m_order->count_all_kasie_user_tolak(),
 						"data" => $data,
 				);
 		//output to json format

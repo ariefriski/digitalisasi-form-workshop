@@ -7,6 +7,31 @@
 <h2 class="content-heading" style="text-align: center;">ORDER PEMBUATAN REPAIR MODIFIKASI <br> KOMPONEN MESIN PERALATAN <br> <p style="font-size:small;">SEKSI WORKSHOP</p></h2>
 </div>
 </div>
+<div class="orderStatus">
+  <ul class="row">
+  <?php foreach($tracker as $t){?>
+        <?php if($t['kategori']=='urgent'){ ?>
+    <li class="<?php if($t['approve1']=='new'){echo 'col done';}else{echo 'col done';}?>">Order dibuat</li>
+    <li class="<?php if($t['approve1']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie/kadept user</li>
+    <li class="<?php if($t['approve2']=='ok'){echo 'col done';}else{echo 'col';}?>">Approved PIC Workshop</li>
+    <li class="<?php if($t['approve3']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie_ws </li>
+    <li class="<?php if($t['approve4']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kadept_ws</li>
+    <li class="<?php if($t['tempat_pembuatan']!=NULL){echo 'col done';}else{echo 'col';}?>">Routing Plan</li>
+    <li class="<?php if($t['status_pengerjaan']=='On Working'){echo 'col done';}else{echo 'col';}?>">On Working</li>
+    <li class="<?php if($t['status_pengerjaan']=='Finish'){echo 'col done';}else{echo 'col';}?>">Finish</li>
+        <?php }else if($t['kategori']=='biasa'){ ?>
+    <li class="<?php if($t['approve1']=='new'){echo 'col done';}else{echo 'col done';}?>">Order dibuat</li>
+    <li class="<?php if($t['approve1']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie/kadept user</li>
+    <li class="<?php if($t['approve2']=='ok'){echo 'col done';}else{echo 'col';}?>">Approved PIC Workshop</li>
+    <li class="<?php if($t['approve3']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie_ws </li>
+    <li class="<?php if($t['tempat_pembuatan']!=NULL){echo 'col done';}else{echo 'col';}?>">Routing Plan</li>
+    <li class="<?php if($t['status_pengerjaan']=='On Working'){echo 'col done';}else{echo 'col';}?>">On Working</li>
+    <li class="<?php if($t['status_pengerjaan']=='Finish'){echo 'col done';}else{echo 'col';}?>">Finish</li>
+            <?php }?> 
+    <?php }?>
+        
+  </ul>
+</div>
 <div class="col-md-6">
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>
@@ -19,8 +44,7 @@
 <div class="row">
 <div class="col-md-12">
     <div class="block-header block-header-default">
-            <h3 class="block-title" style="text-align: center;">1. FORM PERMINTAAN (di isi oleh user)</h3> 
-            
+            <h3 class="block-title" style="text-align: center;">1. FORM PERMINTAAN (di isi oleh user)</h3>         
             <?php foreach($response as $r) { ?>
                 <?php if($r['status_approval_1'] == 'Disetujui') { ?>
                     <?php echo '<button class="btn btn-info" id="edit-button" disabled >
@@ -148,10 +172,15 @@
                 </div>
                 
                 <div class="form-group row">
-                    <label class="col-12" for="example-text-input">Material</label>
-                    <div class="col-md-4" id="selectmaterial">
-                        <input type="text" class="form-control" id="material" name="material" value="<?php echo $r['nama_material'];?>" disabled="">
-                    </div>
+                  <label class="col-12" for="example-text-input">Material</label>
+                    <select class="form-control col-md-3" id="material" name="material" disabled>
+                        <?php foreach($response as $r){ ?>
+                            <option value="<?php echo $r['id_material']; ?>"selected><?php echo $r['nama_material']; ?></option>
+                        <?php }?>
+                        <?php foreach($material as $m){ ?>
+                            <option value="<?php echo $m['id_material']; ?>"><?php echo $m['nama_material']; ?></option>
+                        <?php } ?>                
+                     </select>
                 </div>
                 <div class="form-group row">
                     <label class="col-8" for="example-text-input">Gambar Keterangan</label>
@@ -215,14 +244,8 @@
         $("#cancel_raw").removeAttr('disabled');
         $("#cancel-button").removeAttr('disabled');
         $("#ganti_btn").removeAttr('disabled');
-        $("#material").remove(); 
-        $("#selectmaterial").empty().append (`
-        <select class="form-control col-md-4" id="material" name="material">
-                    <?php foreach($material as $m){ ?>
-            <option value="<?php echo $m['id_material']; ?>"><?php echo $m['nama_material']; ?> </option>
-                    <?php } ?>                
-        </select>
-        `);
+        $("#material").removeAttr('disabled'); 
+    
   });
   $('#cancel-button').click(function(){
     location.reload(true);

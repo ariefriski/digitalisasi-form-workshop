@@ -36,7 +36,7 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->kategori=='urgent')&&($l->approve2=='Done')&&($l->jenis_approval_2==NULL)&&($l->status_approval=='Disetujui')){
+            if(($l->kategori=='urgent')&&($l->approve2=='ok')&&($l->jenis_approval_2==NULL)&&($l->status_approval=='Disetujui')){
 			$view ='<a type="button" href="'.base_url() . 'kadept_ws/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -61,8 +61,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kadept_ws(),
+						"recordsFiltered" => $this->m_order->count_filtered_kadept_ws(),
 						"data" => $data,
 				);
 		//output to json format
@@ -79,7 +79,7 @@ class Dashboard extends CI_Controller {
 		$approve = $this->input->post('r_kadept');
 		$alasan = $this->input->post('alasan');
 		$tanggal_2 = "%Y-%M-%d %H:%i";
-		$approve3 = 'Done';
+		$approve4 = 'ok';
 		if ($approve == 'accept'){
 			$jenis_approval_2 = $this->session->userdata('level');
 		}else if ($approve == 'reject'){
@@ -92,7 +92,7 @@ class Dashboard extends CI_Controller {
 		);
 
 		$update = array(
-			'approve3'=>$approve3
+			'approve4'=>$approve4
 		);
 		
 

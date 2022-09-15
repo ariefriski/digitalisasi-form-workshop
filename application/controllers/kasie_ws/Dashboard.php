@@ -36,7 +36,7 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->status_approval_2=='Disetujui')&&($l->approve2==NULL)){
+            if(($l->status_approval_2=='Disetujui')&&($l->approve2=='ok')&&($l->approve3==NULL)){
 			$view ='<a type="button" href="'.base_url() . 'kasie_ws/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -61,8 +61,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kasie_ws(),
+						"recordsFiltered" => $this->m_order->count_filtered_kasie_ws(),
 						"data" => $data,
 				);
 		//output to json format
@@ -79,28 +79,31 @@ class Dashboard extends CI_Controller {
 		$jenis_approval = $this->session->userdata('level');
 		$alasan = $this->input->post('alasan');
 		$tanggal = "%Y-%M-%d %H:%i";
-		$approve2 = 'Done';
+		
 		if ($approve == 'accept'){
-			$status_approval = 'Disetujui';
-		}else if ($approve == 'reject'){
-			$status_approval = 'Ditolak';
+			$status_approval ='Disetujui';
+			$approve3 = 'ok';
+		}else if ($approve == 'reject'){ 
+			$status_approval ='Ditolak';
+			$approve3 = 'no';
+			
 		}
 		$data =array(
 			'id_order'=>$id_order,
 			'id_user'=>$id_user,
 			'status_approval'=>$status_approval,
 			'alasan_3'=>$alasan,
-			'tanggal'=>mdate($tanggal),
+			'tanggal_2'=>mdate($tanggal),
 			'jenis_approval_1'=>$jenis_approval
 		);
 
 		$update = array(
-			'approve2'=>$approve2
+			'approve3'=>$approve3
 		);
 		
 
 		$this->m_approval->addApprovalKasieWs($data);
-		$this->m_approval->updateApprovalKasieWs($id_order,$update);
+		$this->m_approval->updateApproval($id_order,$update);
 		redirect(site_url('kasie_ws/dashboard/'));
 	}
 

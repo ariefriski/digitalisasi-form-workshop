@@ -74,7 +74,7 @@ class Dashboard extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-			if(($l->status_approval_1=='Disetujui')&&($l->approve1==NULL)){
+			if(($l->status_approval_1=='Disetujui')&&($l->approve2==NULL)){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			
 			$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewAcceptedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
@@ -109,8 +109,8 @@ class Dashboard extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_admin_ws_dashboard(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_dashboard(),
 						"data" => $data,
 				);
 		//output to json format
@@ -196,28 +196,29 @@ class Dashboard extends CI_Controller {
 		$alasan = $this->input->post('alasan');
 		$jenis_approval = $this->session->userdata('level');
 		$tanggal = "%Y-%M-%d %H:%i";
-		$approve1 = 'Done';
 		if ($approve == 'accept'){
-			$status_approval = 'Disetujui';
+			$status_approval_2 = 'Disetujui';
+			$approve2 = 'ok';
 		}else if ($approve == 'reject'){
-			$status_approval = 'Ditolak';
+			$status_approval_2 = 'Ditolak';
+			$approve2 = 'no';
 		}
 		$data =array(
 			'id_order'=>$id_order,
 			'id_user'=>$id_user,
-			'status_approval_2'=>$status_approval,
+			'status_approval_2'=>$status_approval_2,
 			'tanggal'=>mdate($tanggal),
 			'alasan_2'=>$alasan,
 			'jenis_approval'=>$jenis_approval
 		);
 
 		$update = array(
-			'approve1'=>$approve1
+			'approve2'=>$approve2
 		);
 		
 
 		$this->m_approval->addApprovalPic($data);
-		$this->m_approval->updateApprovalPic($id_order,$update);
+		$this->m_approval->updateApproval($id_order,$update);
 		redirect(site_url('admin/dashboard/'));
 	}
 	
@@ -287,8 +288,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_proses->count_all(),
-						"recordsFiltered" => $this->m_proses->count_filtered(),
+						"recordsTotal" => $this->m_proses->count_all_plan(),
+						"recordsFiltered" => $this->m_proses->count_filtered_plan(),
 						"data" => $data,
 				);
 		//output to json format
@@ -345,8 +346,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_proses->count_all(),
-						"recordsFiltered" => $this->m_proses->count_filtered_2(),
+						"recordsTotal" => $this->m_proses->count_all_actual(),
+						"recordsFiltered" => $this->m_proses->count_filtered_actual(),
 						"data" => $data,
 				);
 		//output to json format
@@ -360,7 +361,7 @@ class Dashboard extends CI_Controller {
 		$no = $_POST['start'];
 		$i = 0;
 		foreach ($list as $l) {
-			if(($l->status_approval=='Ditolak')||($l->status_approval_2=='Ditolak')){
+			if(($l->status_approval=='Ditolak')||($l->status_approval_2=='Ditolak')||($l->alasan_3!=NULL)){
 				$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			
 				$view = '<a type="button" href="'.base_url() . 'admin/dashboard/viewRejectedResponse?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
@@ -396,8 +397,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_proses->count_all(),
-						"recordsFiltered" => $this->m_proses->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_admin_ws_reject(),
+						"recordsFiltered" => $this->m_order->count_filtered_admin_ws_reject(),
 						"data" => $data,
 				);
 		//output to json format

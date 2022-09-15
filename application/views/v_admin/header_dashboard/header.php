@@ -107,28 +107,56 @@
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
-                                <a href="<?= base_url() . 'admin/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan PIC Workshop</span></a>
+                                <a href="<?= base_url() . 'admin/dashboard'?>"><span class="sidebar-mini-hide">Menunggu Persetujuan PIC Workshop</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'admin/dashboard/ditolakApprove'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Ditolak</span></a>
+                                <a href="<?= base_url() . 'admin/dashboard/ditolakApprove'?>"><span class="sidebar-mini-hide">Ditolak</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'admin/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Menunggu Approve Kasie/Kadept</span></a>
+                                <a href="<?= base_url() . 'admin/response'?>"><span class="sidebar-mini-hide">Menunggu Approve Kasie/Kadept</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'admin/response/route'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Input Order</span></a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" ><span class="sidebar-mini-hide">Proses</span></a>
+                                <ul>
+                                    <li>
+                                        <a href="<?= base_url() . 'admin/response/route'?>"><span class="sidebar-mini-hide">Ready Input Order</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url() . 'admin/response/onprocess'?>"><span class="sidebar-mini-hide">Ready Schedulling</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url() . 'admin/response/waitingworking'?>"><span class="sidebar-mini-hide">Wait for Working</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url() . 'admin/response/working'?>"><span class="sidebar-mini-hide">On Working</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url() . 'admin/response/finish'?>"><span class="sidebar-mini-hide">Finish</span></a>
+                                    </li>    
+                                </ul>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'admin/response/onprocess'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ready Schedulling</span></a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url() . 'admin/response/waitingworking'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Wait for Working</span></a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url() . 'admin/response/working'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">On Working</span></a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url() . 'admin/response/finish'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Finish</span></a>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">Grafik</a>
+                                    <ul>
+                                        <li>
+                                            <a href="<?= base_url() . 'admin/response/chartRunningCost'?>">Running Cost</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url() . 'admin/response/chartRunningHourMachine'?>">Running Hour Machine</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url() . 'admin/response/chartTotalRunningCost'?>">Total Running Cost</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url() . 'admin/response/quantityJobOrder'?>">Quantity Job Order</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url() . 'admin/response/quantityOrderType'?>">Quantity Order Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url() . 'admin/response/grafik'?>">Quantity Pie</a>
+                                        </li>
+                                    </ul>
                             </li>
                         </ul>
                  

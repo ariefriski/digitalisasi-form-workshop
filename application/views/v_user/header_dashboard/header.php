@@ -103,7 +103,7 @@
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
-                                <a href="<?= base_url() . 'user/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan</span></a>
+                                <a href="<?= base_url() . 'user/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Daftar Order</span></a>
                             </li>
                             <li>
                                 <a href="<?= base_url() . 'user/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ditolak</span></a>

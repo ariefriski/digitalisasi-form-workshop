@@ -7,6 +7,31 @@
 <h2 class="content-heading" style="text-align: center;">ORDER PEMBUATAN REPAIR MODIFIKASI <br> KOMPONEN MESIN PERALATAN <br> <p style="font-size:small;">SEKSI WORKSHOP</p></h2>
 </div>
 </div>
+<div class="orderStatus">
+  <ul class="row">
+  <?php foreach($tracker as $t){?>
+        <?php if($t['kategori']=='urgent'){ ?>
+    <li class="<?php if($t['approve1']=='new'){echo 'col done';}else{echo 'col done';}?>">Order dibuat</li>
+    <li class="<?php if($t['approve1']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie/kadept user</li>
+    <li class="<?php if($t['approve2']=='ok'){echo 'col done';}else{echo 'col';}?>">Approved PIC Workshop</li>
+    <li class="<?php if($t['approve3']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie_ws </li>
+    <li class="<?php if($t['approve4']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kadept_ws</li>
+    <li class="<?php if($t['tempat_pembuatan']!=NULL){echo 'col done';}else{echo 'col';}?>">Routing Plan</li>
+    <li class="<?php if($t['status_pengerjaan']=='On Working'){echo 'col done';}else{echo 'col';}?>">On Working</li>
+    <li class="<?php if($t['status_pengerjaan']=='Finish'){echo 'col done';}else{echo 'col';}?>">Finish</li>
+        <?php }else if($t['kategori']=='biasa'){ ?>
+    <li class="<?php if($t['approve1']=='new'){echo 'col done';}else{echo 'col done';}?>">Order dibuat</li>
+    <li class="<?php if($t['approve1']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie/kadept user</li>
+    <li class="<?php if($t['approve2']=='ok'){echo 'col done';}else{echo 'col';}?>">Approved PIC Workshop</li>
+    <li class="<?php if($t['approve3']=='ok'){echo 'col done';}else{echo 'col';}?>">Approve kasie_ws </li>
+    <li class="<?php if($t['tempat_pembuatan']!=NULL){echo 'col done';}else{echo 'col';}?>">Routing Plan</li>
+    <li class="<?php if($t['status_pengerjaan']=='On Working'){echo 'col done';}else{echo 'col';}?>">On Working</li>
+    <li class="<?php if($t['status_pengerjaan']=='Finish'){echo 'col done';}else{echo 'col';}?>">Finish</li>
+            <?php }?> 
+    <?php }?>
+        
+  </ul>
+</div>
 <div class="col-md-6">
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>

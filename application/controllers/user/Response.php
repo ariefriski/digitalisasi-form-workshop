@@ -32,16 +32,28 @@ class Response extends CI_Controller {
 		$this->load->view('v_user/footer');
 	}
 
+	public function viewAcceptOrder_r()
+	{
+		$id = $this->input->get('id');
+		$data['accept'] = $this->m_order->getResponseOrder($id);
+		$this->load->view('v_user/header');
+		$this->load->view('v_user/form_acc_r',$data);
+		$this->load->view('v_user/footer');
+	}
+
     public function order_list()
 	{
 		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->status_approval_1=='Ditolak')||($l->status_approval_2=='Ditolak')||($l->status_approval=='Ditolak')){
+            if(($l->alasan!=NULL)||($l->alasan_2!=NULL)||($l->alasan_3!=NULL)){
 			$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
 							<i class="fa fa-times"></i>
 		  				</a>';
+			$view ='<a type="button" href="'.base_url() . 'user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+					<i class="fa fa-eye"></i>
+					</a>';
 			
 			// }	
 			$no++;
@@ -57,14 +69,14 @@ class Response extends CI_Controller {
 				$row[] = '<span class="badge badge-warning">biasa</span>';
 			}
 			
-			$row[] = $delete;
+			$row[] = $delete.$view;
 			$data[] = $row;
             }
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_filtered(),
-						"recordsFiltered" => $this->m_order->count_all(),
+			"recordsFiltered" => $this->m_order->count_filtered_user_response(),
+			"recordsTotal" => $this->m_order->count_all_user_response(),
 						"data" => $data,
 				);
 		//output to json format
@@ -85,7 +97,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&($l->status_approval=='Disetujui')&&($l->tempat_pembuatan=='inhouse'&&($l->status_pengerjaan=='On Working'))){
+            if($l->status_pengerjaan=='On Working'){
 			$view ='<a type="button" href="'.base_url() . 'user/response/viewAcceptedResponse_rr?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -109,8 +121,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_filtered(),
-						"recordsFiltered" => $this->m_order->count_all(),
+						"recordsTotal" => $this->m_order->count_filtered_user_response_proses(),
+						"recordsFiltered" => $this->m_order->count_all_user_response_proses(),
 						"data" => $data,
 				);
 		//output to json format
@@ -144,8 +156,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_filtered(),
-						"recordsFiltered" => $this->m_order->count_all(),
+						"recordsTotal" => $this->m_order->count_filtered_user_response_finish(),
+						"recordsFiltered" => $this->m_order->count_all_user_response_finish(),
 						"data" => $data,
 				);
 		//output to json format
@@ -157,6 +169,7 @@ class Response extends CI_Controller {
 		$id = $this->input->get('id');
 		$data['accept_response'] = $this->m_order->getResponseOrder($id);
 		$data['get_Routing'] = $this->m_routing->selectRouting();
+		$data['tracker'] = $this->m_order->getDataForTracker($id);
 		$this->load->view('v_user/header');
 		$this->load->view('v_user/form_response_rr',$data);
 		$this->load->view('v_user/footer');

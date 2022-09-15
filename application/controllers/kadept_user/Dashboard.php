@@ -30,11 +30,11 @@ class Dashboard extends CI_Controller {
 	
 	public function order_list()
 	{
-		$list = $this->m_order->get_datatables_kadept_user();
+		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-		if($l->status_approval_1==NULL){
+		if(($l->approve1=='new')&&($l->status_approval_1==NULL)){
 			$view ='<a type="button" href="'.base_url() . 'kadept_user/dashboard/viewAcceptOrder?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -59,8 +59,8 @@ class Dashboard extends CI_Controller {
 		
 		$output = array(
 						//"draw" => $_POST['draw'],
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered_kadept(),
+						"recordsFiltered" => $this->m_order->count_filtered_kadept_user_dashboard(),
+						"recordsTotal" => $this->m_order->count_all_kadept_user_dashboard(),
 						"data" => $data,
 				);
 		//output to json format
@@ -83,21 +83,23 @@ class Dashboard extends CI_Controller {
 		$alasan = $this->input->post('alasan');
 		$id_user = $this->session->userdata('id_user');
 		$tanggal = "%Y-%M-%d %H:%i";
+		
 		$jenis_approval = $this->session->userdata('level');
 		if ($approve == 'accept'){
 			$status_approval = 'Disetujui';
+			$approve1 = 'ok';
 		}else if ($approve == 'reject'){
 			$status_approval = 'Ditolak';
+			$approve1 = 'no';
 		}
 		$data =array(
-			'id_order'=>$id_order,
-			'id_user'=>$id_user,
 			'status_approval_1'=>$status_approval,
 			'alasan' =>$alasan,
 			'tanggal'=>mdate($tanggal),
-			'jenis_approval'=>$jenis_approval
+			'jenis_approval'=>$jenis_approval,
+			'approve1'=>$approve1
 		);
-		$this->m_approval->addApproval($data);
+		$this->m_approval->updateApproval($id_order,$data);
 		redirect(site_url('kadept_user/dashboard/'));
 	}
 }

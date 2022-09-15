@@ -35,7 +35,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->status_approval_2=='Disetujui')&&($l->approve2=='Done')&&(($l->kategori=='urgent'))){
+            if(($l->status_approval_2=='Disetujui')&&($l->approve4=='ok')&&(($l->kategori=='urgent'))){
 			$view ='<a type="button" href="'.base_url() . 'kadept_ws/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -59,8 +59,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kadept_ws_response(),
+						"recordsFiltered" => $this->m_order->count_filtered_kadept_ws_response(),
 						"data" => $data,
 				);
 		//output to json format
@@ -73,8 +73,8 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->status_approval=='Ditolak')&&($l->jenis_approval_2=='kadept_ws')){
-				$view ='<a type="button" href="'.base_url() . 'kasie_user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+            if(($l->alasan_3!=NULL)&&($l->jenis_approval_2=='Decline')){
+				$view ='<a type="button" href="'.base_url() . 'kadept_ws/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
 				$no++;
@@ -96,8 +96,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kadept_ws_response_reject(),
+						"recordsFiltered" => $this->m_order->count_filtered_kadept_ws_response_reject(),
 						"data" => $data,
 				);
 		//output to json format

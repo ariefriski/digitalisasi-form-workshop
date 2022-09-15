@@ -34,7 +34,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
-            if(($l->status_approval_2=='Disetujui')&&($l->approve2=='Done')){
+            if(($l->approve3 =='ok')){
 			$view ='<a type="button" href="'.base_url() . 'kasie_ws/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 						<i class="fa fa-eye"></i>
 					</a>'; 
@@ -58,8 +58,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kasie_ws_response(),
+						"recordsFiltered" => $this->m_order->count_filtered_kasie_ws_response(),
 						"data" => $data,
 				);
 		//output to json format
@@ -73,7 +73,7 @@ class Response extends CI_Controller {
 		$no = $_POST['start'];
 		foreach ($list as $l) {
             if($l->status_approval=='Ditolak'){
-				$view ='<a type="button" href="'.base_url() . 'kasie_user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
+				$view ='<a type="button" href="'.base_url() . 'kasie_ws/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
 				$no++;
@@ -95,8 +95,8 @@ class Response extends CI_Controller {
 		}
 		
 		$output = array(
-						"recordsTotal" => $this->m_order->count_all(),
-						"recordsFiltered" => $this->m_order->count_filtered(),
+						"recordsTotal" => $this->m_order->count_all_kasie_ws_reject(),
+						"recordsFiltered" => $this->m_order->count_filtered_kasie_ws_reject(),
 						"data" => $data,
 				);
 		//output to json format

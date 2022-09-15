@@ -15,7 +15,7 @@
                         <th  style="width: 10%;">#</th>
                         <th style="width: 10%;">Nama Part</th>
                         <th style="width: 10%;">Tanggal</th>
-                        <th style="width: 10%;">Jam</th>
+                        <th style="width: 10%;">Rencana(Hari)</th>
                         <th  style="width: 10%;">Kategori</th>
                         <th  style="width: 10%;">Departement</th>
                         <th style="width: 10%;">Status Pengerjaan</th>
