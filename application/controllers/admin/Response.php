@@ -199,7 +199,7 @@ class Response extends CI_Controller {
 						</a>';	
 			
 			$report = 	'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaperPlan?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response" >
-							<i class="fa fa-save"></i>
+							<i class="fa fa-sticky-note-o"></i>
 						</a>';
 			
 			$schedulling = '<a type="button" href="#modal-jadwal" class="btn btn-sm btn-secondary id-jadwal" data-toggle="modal" data-id="'.$l->id_order.'">
@@ -253,11 +253,11 @@ class Response extends CI_Controller {
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			
 			$report = 	'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaperPlan?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Report Plan" >
-							<i class="fa fa-save"></i>
+							<i class="fa fa-sticky-note-o"></i>
 						</a>';
 			
 			$report2 = 	'<a type="button" href="'.base_url() . 'admin/dashboard/viewReportPaperActual?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Report Actual" >
-							<i class="fa fa-save"></i>
+							<i class="fa fa-sticky-note"></i>
 						</a>';
 				
 			$no++;

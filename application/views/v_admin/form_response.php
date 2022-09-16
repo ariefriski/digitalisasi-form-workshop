@@ -154,7 +154,7 @@
  </div>
  <div class="col-md-6"> 
  <div class="block-header block-header-default">
-<h3 class="block-title" style="text-align: center;">2. Response PIC Workshop</h3> 
+<h3 class="block-title" style="text-align: center;">2. Approval</h3> 
 </div>
         <div class="block">
         <div class="block-content">
@@ -165,7 +165,7 @@
             <form action="<?php echo base_url()?>admin/dashboard/acceptPIC" method="post" enctype="multipart/form-data" >
             <input type="hidden" name="id_order" value="<?php echo $ar['id_order']; ?>" >
             <div class="form-group row" >
-                    <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
+                    <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department <?php echo $ar['department_name']; ?></label>
                     <div class="col-6">
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
                         <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($ar['status_approval_1']=='Disetujui') echo 'checked'?> disabled>
@@ -184,12 +184,12 @@
                 <div class="col-6">
                     
                         <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="pic_response" id="accept" value="accept" >
+                        <input type="radio" class="css-control-input" name="pic_response" id="accept" value="accept" required type="radio">
                         <span class="css-control-indicator"></span> Accept
                     </label>
                     
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="pic_response" id="reject" value="reject">
+                        <input type="radio" class="css-control-input" name="pic_response" id="reject" value="reject" required type="radio">
                         <span class="css-control-indicator"></span> Reject
                     </label>
                     <?php }?>

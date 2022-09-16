@@ -181,6 +181,7 @@ class M_order extends CI_model
         $this->db->where('order.status_pengerjaan','WAITING');
         $this->db->where('approval.alasan',NULL);
         $this->db->where('approval_pic_workshop.alasan_2',NULL);
+        $this->db->where('approval_final.alasan_3',NULL);
         $this->db->where('approval.approve1 !=','no');
         // $this->db->where('approval_pic_workshop.alasan_2',NULL);
 		$query = $this->db->get();
@@ -198,6 +199,7 @@ class M_order extends CI_model
         $this->db->where('order.status_pengerjaan','WAITING');
         $this->db->where('approval.alasan',NULL);
         $this->db->where('approval_pic_workshop.alasan_2',NULL);
+        $this->db->where('approval_final.alasan_3',NULL);
         $this->db->where('approval.approve1 !=','no');
         // $this->db->where('approval_pic_workshop.alasan_2',NULL);
         return $this->db->count_all_results();
@@ -703,6 +705,9 @@ class M_order extends CI_model
     public function count_filtered_admin_ws_finish()
     {
         $this->_get_datatables_query_1();
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval','Disetujui');
         $this->db->where('order.status_pengerjaan','Finish');
 		$query = $this->db->get();
 		return $query->num_rows();
@@ -721,6 +726,9 @@ class M_order extends CI_model
         $this->db->join('scheduling','order.id_order=scheduling.id_order','left');
         $this->db->join('approval','order.id_order=approval.id_order','left');   
         $this->db->join('working_order','order.id_order=working_order.id_order','left');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval','Disetujui');
         $this->db->where('order.status_pengerjaan','Finish');
        return $this->db->count_all_results();
     }
@@ -945,6 +953,9 @@ class M_order extends CI_model
     public function count_filtered_user_ws_finish()
     {
         $this->_get_datatables_query_1();
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval','Disetujui');
         $this->db->where('order.status_pengerjaan','Finish');
 		$query = $this->db->get();
 		return $query->num_rows();
@@ -963,6 +974,9 @@ class M_order extends CI_model
         $this->db->join('scheduling','order.id_order=scheduling.id_order','left');
         $this->db->join('approval','order.id_order=approval.id_order','left');   
         $this->db->join('working_order','order.id_order=working_order.id_order','left');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval','Disetujui');
         $this->db->where('order.status_pengerjaan','Finish');
        return $this->db->count_all_results();
     }
@@ -1085,13 +1099,7 @@ class M_order extends CI_model
 		return $this->db->count_all_results();
     }
 
-    public function count_all_user_finish()
-    {
-        $this->db->select('order.status_pengerjaan');
-        $this->db->from('order');
-        $this->db->where('order.status_pengerjaan','Finish');
-		return $this->db->count_all_results();
-    }
+   
 
     public function count_filtered()
     {

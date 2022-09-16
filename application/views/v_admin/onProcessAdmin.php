@@ -1,7 +1,7 @@
 <body>
 <div class="content">
                     <!-- Default Table Style -->
-    <h2 class="content-heading">Dashboard Admin</h2>
+    <h2 class="content-heading">Dashboard Admin Workshop</h2>
 
     <!-- Table -->
     <div class="block">
@@ -13,7 +13,7 @@
             <table id="table-onprocess" class="table table-vcenter">
                 <thead>
                     <tr>
-                        <th class="text-center" style="width: 50px;">#</th>
+                        <th class="text-center" style="width: 20px;">#</th>
                         <th>Nama Part</th>
                         <th>Tanggal</th>
                         <th>Jam</th>

@@ -1,6 +1,6 @@
 <div class="content">
                     <!-- Default Table Style -->
-    <h2 class="content-heading">Dashboard Kadept</h2>
+    <h2 class="content-heading">Dashboard Kepada Department</h2>
 
     <!-- Table -->
     <div class="block">

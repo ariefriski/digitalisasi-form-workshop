@@ -106,10 +106,10 @@
                                 <a href="<?= base_url() . 'kasie_ws/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Menunggu Persetujuan</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'kasie_ws/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Sudah Disetujui</span></a>
+                                <a href="<?= base_url() . 'kasie_ws/response'?>"><i class="fa fa-check"></i><span class="sidebar-mini-hide">Sudah Disetujui</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'kasie_ws/response/reject'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ditolak</span></a>
+                                <a href="<?= base_url() . 'kasie_ws/response/reject'?>"><i class="fa fa-times"></i><span class="sidebar-mini-hide">Ditolak</span></a>
                             </li>
                         </ul>
                     </div>

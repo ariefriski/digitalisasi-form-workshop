@@ -103,16 +103,16 @@
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
                             <li>
-                                <a href="<?= base_url() . 'user/dashboard'?>"><i class="si si-cup"></i><span class="sidebar-mini-hide">Daftar Order</span></a>
+                                <a href="<?= base_url() . 'user/dashboard'?>"><i class="fa fa-list-ul"></i><span class="sidebar-mini-hide">Daftar Order</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'user/response'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Ditolak</span></a>
+                                <a href="<?= base_url() . 'user/response'?>"><i class="fa fa-times"></i><span class="sidebar-mini-hide">Ditolak</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'user/response/onProcess'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Dalam Proses Pengerjaan</span></a>
+                                <a href="<?= base_url() . 'user/response/onProcess'?>"><i class="fa fa-clock-o"></i><span class="sidebar-mini-hide">Dalam Proses Pengerjaan</span></a>
                             </li>
                             <li>
-                                <a href="<?= base_url() . 'user/response/finish'?>"><i class="fa fa-newspaper-o"></i><span class="sidebar-mini-hide">Finish</span></a>
+                                <a href="<?= base_url() . 'user/response/finish'?>"><i class="fa fa-check"></i><span class="sidebar-mini-hide">Finish</span></a>
                             </li>
                         </ul>
                     </div>

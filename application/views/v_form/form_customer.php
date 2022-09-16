@@ -12,8 +12,7 @@
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Nomor Order" disabled>
-        <div class="form-text text-muted">di isi oleh admin PE</div>                      
+        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Nomor Order" disabled>                    
     </div>
 </div>
 </div>

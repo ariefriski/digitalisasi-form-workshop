@@ -1,6 +1,6 @@
 <div class="content">
                     <!-- Default Table Style -->
-    <h2 class="content-heading">Dashboard Admin</h2>
+    <h2 class="content-heading">Dashboard Admin Workshop</h2>
 
     <!-- Table -->
     <div class="block">

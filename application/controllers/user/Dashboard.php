@@ -92,7 +92,7 @@ class Dashboard extends CI_Controller {
 			$volume = $panjang*$lebar*$diameter;
 		}
 		$material_detail = $this->m_material->getMaterialById($material);
-		$berat = $volume * $material_detail[0]['massa_jenis'];
+		$berat = ($volume/1000) * ($material_detail[0]['massa_jenis']/1000);
 		
 		//Rumus Material Cost
 		$total_cost_material = ($material_detail[0]['price_kg']*$berat*$jumlah)*1.1;

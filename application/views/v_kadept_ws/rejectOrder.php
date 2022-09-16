@@ -1,11 +1,11 @@
 <div class="content">
                     <!-- Default Table Style -->
-    <h2 class="content-heading">Dashboard User.</h2>
+                    <h2 class="content-heading">Dashboard Kepala Department Workshop</h2>
 
     <!-- Table -->
     <div class="block">
         <div class="block-header block-header-default">
-            <h3 class="block-title">List Form Order</h3>
+            <h3 class="block-title">List Ditolak</h3>
             <div class="block-options">
                 <div class="block-options-item">
 

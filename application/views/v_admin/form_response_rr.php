@@ -154,7 +154,7 @@
  </div>
  <div class="col-md-6"> 
  <div class="block-header block-header-default">
-<h3 class="block-title" style="text-align: center;">2. Response PIC Workshop</h3> 
+<h3 class="block-title" style="text-align: center;">2. Approval</h3> 
 </div>
         <div class="block">
         <div class="block-content">

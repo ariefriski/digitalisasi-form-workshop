@@ -146,7 +146,7 @@
  </div>
  <div class="col-md-6"> 
  <div class="block-header block-header-default">
-<h3 class="block-title" style="text-align: center;">2. Response PIC Workshop</h3> 
+<h3 class="block-title" style="text-align: center;">2. Approval</h3> 
 </div>
         <div class="block">
         <div class="block-content">
@@ -195,9 +195,7 @@
                         <input type="radio" class="css-control-input" name="r_kasie" id="reject" value="reject" <?php if($a['status_approval']=='Ditolak') echo 'checked'?> disabled>
                         <span class="css-control-indicator"></span> Reject
                     </label>
-                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <span class="css-control-indicator"></span> Signed By <?php echo $a['jenis_approval_1'] ?>
-                    </label>
+                    
                     <?php }else{?>
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
                         <input type="radio" class="css-control-input" name="r_kasie" id="accept" value="accept" >

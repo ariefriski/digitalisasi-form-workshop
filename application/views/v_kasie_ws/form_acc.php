@@ -190,11 +190,11 @@
                     <div class="col-6">
                     
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_kasie" id="accept" value="accept" >
+                        <input type="radio" class="css-control-input" name="r_kasie" id="accept" value="accept" required type="radio" >
                         <span class="css-control-indicator"></span> Accept
                     </label>
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_kasie" id="reject" value="reject" >
+                        <input type="radio" class="css-control-input" name="r_kasie" id="reject" value="reject" required type="radio">
                         <span class="css-control-indicator"></span> Reject
                     </label>
                     

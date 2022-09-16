@@ -11,8 +11,9 @@
     <div class="form-group row">
         <label class="col-8" for="example-text-input">Nomor Order</label>
     <div class="col-md-6">
-        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="Nomor Order" disabled>
-        <div class="form-text text-muted">di isi oleh admin PE</div>                      
+        <?php foreach($accept as $a) {?> 
+        <input type="text" class="form-control" id="example-text-input" name="example-text-input" placeholder="<?php echo $a['id_order'];?>" disabled>                 
+        <?php }?> 
     </div>
 </div>
 </div>
@@ -146,7 +147,7 @@
  </div>
  <div class="col-md-6"> 
  <div class="block-header block-header-default">
-<h3 class="block-title" style="text-align: center;">2. Response PIC Workshop</h3> 
+<h3 class="block-title" style="text-align: center;">2. Approval</h3> 
 </div>
         <div class="block">
         <div class="block-content">
@@ -155,15 +156,15 @@
             <form action="<?php echo base_url()?>kasie_user/dashboard/acceptOrder?id=<?php echo $a['id_order']; ?>" method="post">
             
             <div class="form-group row" >
-                    <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department X</label>
+                    <label class="col-8" for="example-text-input">Kasie/Kadept Approval Department <?php echo $a['department_name']; ?></label>
                     <div class="col-6">
                     
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($a['status_approval']=='Disetujui') echo 'checked'?>>
+                        <input type="radio" class="css-control-input" name="r_order_response" id="accept" value="accept" <?php if($a['status_approval']=='Disetujui') echo 'checked'?> required type="radio">
                         <span class="css-control-indicator"></span> Accept
                     </label>
                     <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
-                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($a['status_approval']=='Ditolak') echo 'checked'?>>
+                        <input type="radio" class="css-control-input" name="r_order_response" id="reject" value="reject" <?php if($a['status_approval']=='Ditolak') echo 'checked'?> required type="radio">
                         <span class="css-control-indicator"></span> Reject
                     </label>
                     <?php if($a['status_approval']!= NULL) { ?>
