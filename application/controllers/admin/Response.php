@@ -10,6 +10,7 @@ class Response extends CI_Controller {
 		$this->load->model('m_routing');
 		$this->load->model('m_routing_actual');
 		$this->load->model('m_proses');
+		$this->load->model('m_user');
 		$this->load->model('m_approval');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
@@ -61,6 +62,25 @@ class Response extends CI_Controller {
 		$this->load->view('v_admin/header_dashboard/header');
 		$this->load->view('v_admin/routeAdmin');
 		$this->load->view('v_admin/footer');
+	}
+
+	public function getSection()
+	{
+		$id_department = $this->input->post('id_department');
+		$section = $this->m_user->getNameSection($id_department);
+
+		echo '
+			<br>
+			<label for="id_section">Section</label>
+			<select class="form-control" id="id_section" name="id_section">
+				<option value="" selected disabled>Please select</option>';
+					foreach ($section as $sect) {
+						echo '
+							<option value="'.$sect['id_section'].'">'.$sect['section_name'].'</option>
+						';
+					}
+		echo '</select>';
+
 	}
 
 	

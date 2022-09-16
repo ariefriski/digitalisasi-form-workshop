@@ -165,7 +165,7 @@
                                             <a href="<?= base_url() . 'admin/user'?>">User</a>
                                         </li>
                                         <li>
-                                            <a href="<?= base_url() . 'admin/department'?>">Department</a>
+                                        <a href="<?= base_url() . 'admin/department'?>">Department</a>
                                         </li>
                                         <li>
                                             <a href="<?= base_url() . 'admin/response/chartTotalRunningCost'?>">Section</a>
