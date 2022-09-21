@@ -248,6 +248,10 @@ $(document).ready(function() {
         "language": {
             "infoFiltered": ""
         },
+        dom: 'Bfrtip',
+            buttons: [
+                'excel'
+             ],  
 
         // Load data for the table's content from an Ajax source
         "ajax": {
@@ -281,6 +285,10 @@ $(document).ready(function() {
         "language": {
             "infoFiltered": ""
         },
+        dom: 'Bfrtip',
+            buttons: [
+                'excel'
+             ],  
 
         // Load data for the table's content from an Ajax source
         "ajax": {
@@ -507,17 +515,61 @@ $(document).ready(function() {
 
 
 $(function() {
-  $('input[name="daterange"]').daterangepicker({
-    opens: 'left',
-    isInvalidDate: function(date) {
-    if (date.day()>=1 && date.day()<=5 )
-      return false;
-    return true;
-  }
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
+    $('input[name="daterange"]').daterangepicker({
+                    opens: 'left',
+                    isInvalidDate: function(date) {
+                    if (date.day()>=1 && date.day()<=5 )
+                    return false;
+                    return true;
+                }
+                }, function(start, end, label) {
+                    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                });
+    $('input[type="checkbox"]').click(function(){
+            if($(this).is(":checked")){
+                $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+                }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                });
+            }
+            else if($(this).is(":not(:checked)")){
+                $('input[name="daterange"]').daterangepicker({
+                    opens: 'left',
+                    isInvalidDate: function(date) {
+                    if (date.day()>=1 && date.day()<=5 )
+                    return false;
+                    return true;
+                }
+                }, function(start, end, label) {
+                    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                });
+            }
+        });
+
 });
+
+// $(function() {
+  
+// });
+
+// $('#weekend').click(function(){
+//         $("#jadwal2").removeAttr('hidden');
+//         $("#jadwal").attr("hidden",true);
+//   });
+
+// $(document).ready(function(){
+//         $('input[type="checkbox"]').click(function(){
+//             if($(this).is(":checked")){
+//                 $("#jadwal2").removeAttr('hidden');
+//                 $("#jadwal").attr("hidden",true);
+//             }
+//             else if($(this).is(":not(:checked)")){
+//                 $("#jadwal2").attr('hidden',true);
+//                 $("#jadwal").removeAttr('hidden');
+//             }
+//         });
+//     });
 
 var table13;
 

@@ -94,12 +94,12 @@ class Edit extends CI_Controller {
 			$row[] = $no;
 			//Urgent
 			$row[] = $l->nama_proses;
-			$row[] = $l->harga_mesin;
-			$row[] = $l->harga_perjam_manusia;
-			$row[] = $l->consumable;
-			$row[] = $l->listrik;
-			$row[] = $l->harga_perjam;
-			$row[] = $l->total_cost;
+			$row[] = 'Rp '.number_format($l->harga_mesin, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->harga_perjam_manusia, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->consumable, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->listrik, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->harga_perjam, 0, ',', '.');
+			$row[] = 'Rp '.number_format($l->total_cost, 0, ',', '.');
 			$row[] = $delete.$edit;
 			
 			$data[] = $row;
@@ -137,7 +137,7 @@ class Edit extends CI_Controller {
 			$row[] = $no;
 			//Urgent
 			$row[] = $l->nama_material;
-			$row[] = $l->price_kg;
+			$row[] = 'Rp '.number_format($l->price_kg, 0, ',', '.');
 			$row[] = $l->type;
 			$row[] = $l->massa_jenis;
 

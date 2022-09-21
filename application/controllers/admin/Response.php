@@ -14,6 +14,7 @@ class Response extends CI_Controller {
 		$this->load->model('m_approval');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
+		$this->load->library ('Mcarbon'); 
 		$this->load->database();  
 		if($this->session->userdata('admin_ws_is_logged_in')=='') {
 			$this->session->set_flashdata('msg','Please Login to Continue');
@@ -91,7 +92,7 @@ class Response extends CI_Controller {
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) { //&&($l->status_approval!='Ditolak')
-			if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&((($l->kategori=='urgent')&&(($l->approve4==NULL)))||(($l->kategori=='biasa')&&(($l->approve3==NULL))))&&($l->status_pengerjaan=='WAITING')){
+			if(($l->status_approval_1=='Disetujui')&&($l->status_approval_2=='Disetujui')&&($l->status_pengerjaan=='WAITING')&&($l->status_approval!='Ditolak')&&((($l->kategori=='urgent')&&(($l->approve4==NULL)))||(($l->kategori=='biasa')&&(($l->approve3==NULL))))){
 			$departmentName = $this->m_order->getDepartmentName($l->id_department);
 			$view = '<a type="button" href="'.base_url() . 'admin/response/viewAcceptedResponse_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-hand-o-up"></i>
@@ -436,12 +437,20 @@ class Response extends CI_Controller {
 		$end= mdate($dates[1]);
 		$start_date = new DateTime($start);
 		$end_date = new DateTime($end);
+		$from = Mcarbon::parse($start_date);
+		$to = Mcarbon::parse($end_date);
 		$update_status_pengerjaan = 'On Scheduling';
+		$weekend = $this->input->post('weekend');
+	    if ($weekend != NULL){
+			$total_day = $start_date->diff($end_date)->format("%d");
+		}else{
+			$total_day = $to->diffInWeekdays($from);
+		}
 		$data = array(
 			'id_order'=>$id_order,
 			'start_date'=>$start,
 			'end_date'=>$end,
-			'total_day'=>$start_date->diff($end_date)->format("%d")
+			'total_day'=>$total_day
 		);		
 
 		
@@ -453,38 +462,56 @@ class Response extends CI_Controller {
 	}
 
 
-	function chartRunningHourMachine()
+	function chartRunningHourMachine($tahun='a')
 	{
-		$data['running_hour'] = $this->m_routing_actual->tableRunningHour();
-
+		if($tahun=='a'){
+			$tahun = date('Y');
+		}	
+		$data['tahun'] = $tahun;
+		$data['running_hour'] = $this->m_routing_actual->tableRunningHour($tahun);
 		$this->load->view('v_admin/chart/HighChart', $data); 
 
 	}
 
-	function chartRunningCost()
+	function chartRunningCost($tahun='a')
 	{
-		$data['running_cost'] = $this->m_routing_actual->tableRunningCost();
-
-		$this->load->view('v_admin/chart/runningCost', $data); 
+		if($tahun=='a'){
+			$tahun = date('Y');
+		}	
+		$data['tahun'] = $tahun;
+		$data['running_cost'] = $this->m_routing_actual->tableRunningCost($tahun);
+		$this->load->view('v_admin/chart/runningCost',$data); 
 	}
 
-	function chartTotalRunningCost()
+	function chartTotalRunningCost($tahun='a')
 	{
-		$data['running_total_cost'] = $this->m_routing_actual->tableTotalRunningCost();
+		if($tahun=='a'){
+			$tahun = date('Y');
+		}	
+		$data['tahun'] = $tahun;
+		$data['running_total_cost'] = $this->m_routing_actual->tableTotalRunningCost($tahun);
 
 		$this->load->view('v_admin/chart/runningCostTotal', $data); 
 	}
 
-	function quantityJobOrder()
+	function quantityJobOrder($tahun='a')
 	{
-		$data['quantity_job_order'] = $this->m_routing_actual->quantityJobOrder();
+		if($tahun=='a'){
+			$tahun = date('Y');
+		}	
+		$data['tahun'] = $tahun;
+		$data['quantity_job_order'] = $this->m_routing_actual->quantityJobOrder($tahun);
 
 		$this->load->view('v_admin/chart/quantityJob', $data); 
 	}
 
-	function quantityOrderType()
+	function quantityOrderType($tahun='a')
 	{
-		$data['quantity_order_type'] = $this->m_routing_actual->jobOrder();
+		if($tahun=='a'){
+			$tahun = date('Y');
+		}	
+		$data['tahun'] = $tahun;
+		$data['quantity_order_type'] = $this->m_routing_actual->jobOrder($tahun);
 
 		$this->load->view('v_admin/chart/orderType', $data); 
 	}

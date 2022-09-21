@@ -292,7 +292,6 @@ class Dashboard extends CI_Controller {
 						"recordsFiltered" => $this->m_proses->count_filtered_plan(),
 						"data" => $data,
 				);
-		//output to json format
 		echo json_encode($output);
 	}
 

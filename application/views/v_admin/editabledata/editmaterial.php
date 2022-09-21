@@ -5,7 +5,7 @@
         <!-- Table -->
         <div class="block">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Database Proses</h3>
+                <h3 class="block-title">Database Material</h3>
             <div class="block-options">
                 <div class="block-options-item">
                     <button type="button" class="btn btn-primary min-width-125" data-toggle="modal" data-target="#modal-normal">

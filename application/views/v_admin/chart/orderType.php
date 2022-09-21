@@ -53,12 +53,17 @@
         <script src="https://code.highcharts.com/modules/data.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
 <body>
 <figure class="highcharts-figure">
     <div id="container"></div>
     <table id="datatable">
         <thead>
+        <select id="tahun" class="form-control" onchange="rubah('tahun')">
+           <option value="2022">2022</option>
+           <option value="2023">2023</option>
+        </select>
             <tr>
             <th>Bulan</th>
                 <th>Jumlah</th>
@@ -79,6 +84,7 @@
 </figure>
 </body>
 <script>
+      $('#tahun').val(<?=$tahun?>);
     Highcharts.chart('container', {
     data: {
         table: 'datatable'
@@ -87,7 +93,7 @@
         type: 'column'
     },
     title: {
-        text: 'Running Hour Mesin'
+        text: 'Order Type'
     },
     subtitle: {
         text:
@@ -99,7 +105,7 @@
     yAxis: {
         allowDecimals: false,
         title: {
-            text: 'Jam'
+            text: 'Jumlah'
         }
     },
     // tooltip: {
@@ -109,6 +115,13 @@
     //     }
     // }
 });
+function rubah(tahun = 'a'){
+            
+            var tahun = $('#tahun').val();
+           
+            window.location.href = window.location.protocol+'//'+window.location.hostname+'/digitalisasi-form-workshop/admin/response/quantityOrderType/'+tahun;
+            
+}
 
 </script>
 </html>

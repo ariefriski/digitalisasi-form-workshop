@@ -533,7 +533,7 @@ class M_order extends CI_model
         $this->db->select('order.*,approval_pic_workshop.status_approval_2,approval_pic_workshop.alasan_2,approval.status_approval_1,approval.approve1,approval.approve2,approval.approve3,approval.approve4,approval_final.jenis_approval_2,
         approval_final.status_approval,detail_estimate_routing.tempat_pembuatan,scheduling.total_day,
         scheduling.start_date,scheduling.end_date,working_order.start_working,working_order.end_working,
-        approval_final.jenis_approval_1,approval_final.jenis_approval_2');
+        approval_final.jenis_approval_1,approval_final.jenis_approval_2,approval_final.alasan_3');
         $this->db->from('order');
         $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
         $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
@@ -552,6 +552,7 @@ class M_order extends CI_model
         $this->_get_datatables_query_1();
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval !=','Ditolak');
         $this->db->where('order.kategori','urgent');
         $this->db->where('approval.approve4',NULL);
         $this->db->or_where('order.kategori','biasa');
@@ -576,6 +577,7 @@ class M_order extends CI_model
         $this->db->join('working_order','order.id_order=working_order.id_order','left');
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval !=','Ditolak');
         $this->db->where('order.kategori','urgent');
         $this->db->where('approval.approve4',NULL);
         $this->db->or_where('order.kategori','biasa');

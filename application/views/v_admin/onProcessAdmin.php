@@ -46,7 +46,15 @@
                 </div>
                 <div class="block-content">
                     <div class="form-group" >
-                    <input type="text" id="jadwal" name="daterange" value="" />
+                    <input type="text" id="jadwal" name="daterange" value="">
+                    </div>
+                </div>
+                <div class="block-content">
+                    <div class="form-group" >
+                    <label class="css-control css-control-lg css-control-primary css-checkbox css-checkbox-rounded">
+                        <input type="checkbox" class="css-control-input" name="weekend" id="weekend" value="weekend" >
+                        <span class="css-control-indicator"></span> Include Sabtu dan Minggu
+                    </label>
                     </div>
                 </div>
             </div>

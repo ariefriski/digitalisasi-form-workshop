@@ -157,8 +157,8 @@
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" align="center" valign=middle sdnum="1033;0;0.000"><font face="Verdana" ><span><?php echo $r['berat']; ?> </span> </font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana">kg</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle><font face="Verdana" ><div id="jumlah"><span><?php echo $r['jumlah']; ?></span></div></font></td>
-		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana" ><br><div id="price_kg">	Rp.<span> 	<?php echo $r['price_kg']; ?></span></div></font></td>
-		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana" > Rp.<span><?php echo $r['total_cost_material']; ?></span>   </font></td>
+		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana" ><br><div id="price_kg">	Rp.<span> 	<?php echo number_format($r['price_kg'], 0, ',', '.'); ?></span></div></font></td>
+		<td style="border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana" > Rp.<span><?php echo number_format($r['total_cost_material'], 0, ',', '.'); ?></span>   </font></td>
 	</tr>
 	<?php } ?>
 	<tr>
@@ -329,7 +329,7 @@
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=9 align="left" valign=middle bgcolor="#D9D9D9"><font face="Verdana">A. TOTAL MATERIAL COST</font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#D9D9D9" sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana"><span>Rp.<span><?php echo $r['total_cost_material']; ?></span></span>  </font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle bgcolor="#D9D9D9" sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><font face="Verdana"><span>Rp.<span><?php echo number_format($r['total_cost_material'], 0, ',', '.');  ?></span></span>  </font></td>
 	</tr>
 	<tr>
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
@@ -381,9 +381,9 @@
 		<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="1" sdnum="1033;"><font face="Verdana"><?php echo $no++; ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo number_format($p['total_cost'], 0, ',', '.') ?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['actual_cost_process'] ?></span> </font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo number_format($p['actual_cost_process'], 0, ',', '.')?></span> </font></b></td>
 	</tr>
 	<?php }?>
 	<?php }?>
@@ -428,9 +428,9 @@
 	<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="1" sdnum="1033;"><font face="Verdana"><?php echo $no++; ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo number_format($p['total_cost'], 0, ',', '.') ?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana"> <div id="mchn" style="font-size: 13px;">Rp.<span><?php echo $p['actual_cost_process'] ?></span></div> </font></b></td> 
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana"> <div id="mchn" style="font-size: 13px;">Rp.<span><?php echo number_format($p['actual_cost_process'], 0, ',', '.') ?></span></div> </font></b></td> 
 	</tr>
 	<?php }?>
 	<?php }?>
@@ -474,9 +474,9 @@
 	<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="1" sdnum="1033;"><font face="Verdana"><?php echo $no++; ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo number_format($p['total_cost'], 0, ',', '.')?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['actual_cost_process'] ?></span></font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo number_format($p['actual_cost_process'] , 0, ',', '.')?></span></font></b></td>
 	</tr>
 	<?php }?>
 	<?php }?>
@@ -514,9 +514,9 @@
 	<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="1" sdnum="1033;"><font face="Verdana"><?php echo $no++; ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo number_format($p['total_cost'] , 0, ',', '.') ?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['actual_cost_process'] ?></span></font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo number_format($p['actual_cost_process'] , 0, ',', '.') ?></span></font></b></td>
 	</tr>
 	<?php }?>
 	<?php }?>
@@ -556,9 +556,9 @@
 	<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="1" sdnum="1033;"><font face="Verdana"><?php echo $no++; ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo number_format($p['total_cost'] , 0, ',', '.') ?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['actual_cost_process'] ?></span></font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo number_format($p['actual_cost_process'] , 0, ',', '.') ?></span></font></b></td>
 	</tr>
 	<?php }?>
 	<?php }?>
@@ -598,9 +598,9 @@
 	<td style="border-left: 1px solid #000000" height="19" align="left" valign=middle><font face="&#65325;&#65331; &#65328;&#12468;&#12471;&#12483;&#12463;"><br></font></td>
 		<td style="border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="center" valign=middle sdval="1" sdnum="1033;"><font face="Verdana"><?php echo $no++; ?></font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" colspan=3 align="left" valign=middle bgcolor="#FFFF00"><font face="Verdana"><br><?php echo $p['nama_proses'] ?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo $p['total_cost'] ?></</font></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=2 align="center" valign=middle sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><font face="Verdana"><br>Rp. <?php echo number_format($p['total_cost'] , 0, ',', '.') ?></</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=middle bgcolor="#FFFF00" sdval="0" sdnum="1033;0;0.00"><font face="Verdana"><?php echo $p['hour'];?></font></td>
-		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $p['actual_cost_process'] ?></span></font></b></td>
+		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign=middle sdval="0" sdnum="1033;0;_-&quot;Rp&quot;* #,##0_-;&quot;-Rp&quot;* #,##0_-;_-&quot;Rp&quot;* -_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo number_format($p['actual_cost_process'] , 0, ',', '.') ?></span></font></b></td>
 	</tr>
 	<?php }?>
 	<?php }?>
@@ -665,7 +665,7 @@
 		<td style="border-top: 2px double #000000; border-bottom: 2px double #000000" align="left" valign=middle bgcolor="#FFFF99"><b><font face="Verdana"><br></font></b></td>
 		<td style="border-top: 2px double #000000; border-bottom: 2px double #000000" align="left" valign=middle bgcolor="#FFFF99"><b><font face="Verdana"><br></font></b></td>
 		<?php foreach($total as $t){ ?>
-		<td style="border-top: 2px double #000000; border-bottom: 2px double #000000; border-right: 2px double #000000" align="right" valign=middle bgcolor="#FFFF99" sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo $t['total_all']; ?></span> </font></b></td>
+		<td style="border-top: 2px double #000000; border-bottom: 2px double #000000; border-right: 2px double #000000" align="right" valign=middle bgcolor="#FFFF99" sdval="0" sdnum="1033;0;_-[$Rp-3809]* #,##0_-;-[$Rp-3809]* #,##0_-;_-[$Rp-3809]* -??_-;_-@_-"><b><font face="Verdana">Rp.<span><?php echo number_format($t['total_all'] , 0, ',', '.'); ?></span> </font></b></td>
 		<?php }?>
 	</tr>
 	<tr>
