@@ -10,6 +10,7 @@ class Response extends CI_Controller {
 		$this->load->model('m_routing');
 		$this->load->model('m_proses');
 		$this->load->model('m_material');
+		$this->load->model('m_approval');
 		$this->load->helper('url', 'form');
 		$this->load->library('upload');
 		if($this->session->userdata('user_is_logged_in')=='') {
@@ -41,16 +42,16 @@ class Response extends CI_Controller {
 		$this->load->view('v_user/footer');
 	}
 
-    public function order_list()
+    public function order_list()//reject
 	{
 		$list = $this->m_order->get_datatables_user();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $l) {
             if(($l->alasan!=NULL)||($l->alasan_2!=NULL)||($l->alasan_3!=NULL)){
-			$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
-							<i class="fa fa-times"></i>
-		  				</a>';
+			// $delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			// 				<i class="fa fa-times"></i>
+		  	// 			</a>';
 			$view ='<a type="button" href="'.base_url() . 'user/response/viewAcceptOrder_r?id='.$l->id_order.'"  class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 					<i class="fa fa-eye"></i>
 					</a>';
@@ -69,7 +70,7 @@ class Response extends CI_Controller {
 				$row[] = '<span class="badge badge-warning">biasa</span>';
 			}
 			
-			$row[] = $delete.$view;
+			$row[] = $view;
 			$data[] = $row;
             }
 		}
@@ -77,7 +78,7 @@ class Response extends CI_Controller {
 		$output = array(
 			"recordsFiltered" => $this->m_order->count_filtered_user_response(),
 			"recordsTotal" => $this->m_order->count_all_user_response(),
-						"data" => $data,
+			"data" => $data,
 				);
 		//output to json format
 		echo json_encode($output);

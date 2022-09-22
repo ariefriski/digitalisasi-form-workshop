@@ -120,8 +120,7 @@ class M_order extends CI_model
         $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
         $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order','left');
         if ($this->session->userdata('level') == 'user'){
-			$this->db->where('order.id_department',$this->session->id_department);
-            $this->db->where('order.id_section',$this->session->id_section);
+			$this->db->where('order.id_user',$this->session->id_user);
 		} else if($this->session->userdata('level') == 'kasie_user'){
         $this->db->where('order.id_department',$this->session->id_department);
         $this->db->where('order.id_section',$this->session->id_section);
@@ -208,38 +207,30 @@ class M_order extends CI_model
     public function count_filtered_user_response()
     {
         $this->_get_datatables_user();
-        // $this->db->where('approval.approve1','no');
-        // $this->db->or_where('approval_pic_workshop.status_approval_2','Ditolak');
-        $this->db->where('approval.alasan !=',NULL);
-        $this->db->or_where('approval_pic_workshop.alasan_2 !=',NULL);
-        $this->db->or_where('approval_final.alasan_3 !=',NULL);
+        $this->db->where("(approval.alasan IS NOT NULL OR approval_pic_workshop.alasan_2 IS NOT NULL OR approval_final.alasan_3 IS NOT NULL)");
+        // $this->db->or_where('(approval.alasan IS NOT NULL');
+        // $this->db->or_where('approval_pic_workshop.alasan_2 IS NOT NULL');
+        // $this->db->or_where('approval_final.alasan_3 IS NOT NULL)'); 
 		$query = $this->db->get();
 		return $query->num_rows();
     }
 
     public function count_all_user_response()
     { 
-        $this->db->select('order.*,approval.status_approval_1,approval_pic_workshop.status_approval_2,approval_final.status_approval,approval.approve1,approval.approve2,approval.approve3,
-        approval_pic_workshop.alasan_2');
-        $this->db->from('order');
-        $this->db->join('approval','order.id_order=approval.id_order','left');
-        $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
-        $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
-        $this->db->where('order.id_section',$this->session->id_section);
-        $this->db->where('order.id_department',$this->session->id_department);
-        // $this->db->where('approval.approve1','no');
-        // $this->db->or_where('approval_pic_workshop.status_approval_2','Ditolak');
-        $this->db->where('approval.alasan !=',NULL);
-        $this->db->or_where('approval_pic_workshop.alasan_2 !=',NULL);
-        $this->db->or_where('approval_final.alasan_3 !=',NULL);
+        $sql = 'SELECT [dbo].[order].*,approval_pic_workshop.status_approval_2,approval_pic_workshop.alasan_2,approval.alasan,approval_final.alasan_3 FROM [dbo].[order]
+		LEFT JOIN  approval_pic_workshop ON [dbo].[order].id_order=approval_pic_workshop.id_order
+		LEFT JOIN  approval ON [dbo].[order].id_order=approval.id_order
+		LEFT JOIN approval_final ON [dbo].[order].id_order=approval_final.id_order
+		WHERE [dbo].[order].id_user = '.$this->session->id_user.'
+        AND (approval.alasan IS NOT NULL OR approval_pic_workshop.alasan_2 IS NOT NULL OR approval_final.alasan_3 IS NOT NULL)';
+        $this->db->query($sql);
         return $this->db->count_all_results();
     }
 
     public function count_filtered_user_response_proses()
     {
         $this->_get_datatables_user();
-        $this->db->where('order.id_section',$this->session->id_section);
-        $this->db->where('order.id_department',$this->session->id_department);
+        
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
         $this->db->where('approval_final.status_approval','Disetujui');
@@ -255,8 +246,7 @@ class M_order extends CI_model
         $this->db->join('approval','order.id_order=approval.id_order','left');
         $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
         $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
-        $this->db->where('order.id_section',$this->session->id_section);
-        $this->db->where('order.id_department',$this->session->id_department);
+        $this->db->where('order.id_user',$this->session->id_user);
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
         $this->db->where('approval_final.status_approval','Disetujui');
@@ -267,8 +257,6 @@ class M_order extends CI_model
     public function count_filtered_user_response_finish()
     {
         $this->_get_datatables_user();
-        $this->db->where('order.id_section',$this->session->id_section);
-        $this->db->where('order.id_department',$this->session->id_department);
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
         $this->db->where('approval_final.status_approval','Disetujui');
@@ -284,8 +272,7 @@ class M_order extends CI_model
         $this->db->join('approval','order.id_order=approval.id_order','left');
         $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
         $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
-        $this->db->where('order.id_section',$this->session->id_section);
-        $this->db->where('order.id_department',$this->session->id_department);
+        $this->db->where('order.id_user',$this->session->id_user);
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
         $this->db->where('approval_final.status_approval','Disetujui');
@@ -553,11 +540,11 @@ class M_order extends CI_model
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
         $this->db->where('approval_final.status_approval !=','Ditolak');
+        $this->db->where('order.status_pengerjaan','WAITING');   
         $this->db->where('order.kategori','urgent');
         $this->db->where('approval.approve4',NULL);
         $this->db->or_where('order.kategori','biasa');
         $this->db->where('approval.approve3',NULL);
-        $this->db->where('order.status_pengerjaan','WAITING');    
 		$query = $this->db->get();
 		return $query->num_rows();
     }
@@ -578,12 +565,12 @@ class M_order extends CI_model
         $this->db->where('approval.status_approval_1','Disetujui');
         $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
         $this->db->where('approval_final.status_approval !=','Ditolak');
+        $this->db->where('order.status_pengerjaan','WAITING');  
         $this->db->where('order.kategori','urgent');
         $this->db->where('approval.approve4',NULL);
         $this->db->or_where('order.kategori','biasa');
         $this->db->where('approval.approve3',NULL);
-        $this->db->where('order.status_pengerjaan','WAITING');        
-       return $this->db->count_all_results();
+        return $this->db->count_all_results();
     }
 
     public function count_filtered_admin_ws_input()
@@ -1187,7 +1174,29 @@ class M_order extends CI_model
    
 
    
-
+    public function testing()
+    {
+        $this->db->select('order.*,approval_pic_workshop.status_approval_2,approval_pic_workshop.alasan_2,approval.status_approval_1,approval.approve1,approval.approve2,approval.approve3,approval.approve4,approval_final.jenis_approval_2,
+        approval_final.status_approval,detail_estimate_routing.tempat_pembuatan,scheduling.total_day,
+        scheduling.start_date,scheduling.end_date,working_order.start_working,working_order.end_working,
+        approval_final.jenis_approval_1,approval_final.jenis_approval_2');
+        $this->db->from('order');
+        $this->db->join('approval_pic_workshop','order.id_order=approval_pic_workshop.id_order','left');
+        $this->db->join('approval_final','order.id_order=approval_final.id_order','left');
+        $this->db->join('detail_estimate_routing','order.id_order=detail_estimate_routing.id_order','left');
+        $this->db->join('scheduling','order.id_order=scheduling.id_order','left');
+        $this->db->join('approval','order.id_order=approval.id_order','left');   
+        $this->db->join('working_order','order.id_order=working_order.id_order','left');
+        $this->db->where('approval.status_approval_1','Disetujui');
+        $this->db->where('approval_pic_workshop.status_approval_2','Disetujui');
+        $this->db->where('approval_final.status_approval !=','Ditolak');
+        $this->db->where('order.status_pengerjaan','WAITING');  
+        $this->db->where('order.kategori','urgent');
+        $this->db->where('approval.approve4',NULL);
+        $this->db->or_where('order.kategori','biasa');
+        $this->db->where('approval.approve3',NULL);
+        return $this->db->get()->result_array();
+    }
 
  
     

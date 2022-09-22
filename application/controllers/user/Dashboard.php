@@ -25,6 +25,12 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_user/dashboardUser');
 		$this->load->view('v_user/footer');
 	}
+	public function rejectOrder()
+	{
+		$this->load->view('v_user/header_dashboard/header');
+		$this->load->view('v_user/responseUser');
+		$this->load->view('v_user/footer');
+	}
 
 	public function generateIdOrder()
 	{
@@ -218,16 +224,22 @@ class Dashboard extends CI_Controller {
 		$no = $_POST['start'];
 		foreach ($list as $l) {
 			
-			if($l->status_pengerjaan=='WAITING' && $l->alasan==NULL && $l->alasan_2==NULL && $l->alasan_3==NULL && ((($l->approve1=='new')||($l->approve1=='ok'))||(($l->approve2=='ok')&&($l->approve3=='ok'))) ){
+			if((($l->status_pengerjaan=='WAITING')||($l->status_pengerjaan=='On Scheduling')) && $l->alasan==NULL && $l->alasan_2==NULL && $l->alasan_3==NULL  && ((($l->approve1=='new')||($l->approve1=='ok'))||(($l->approve2=='ok')&&($l->approve3=='ok'))) ){
 			$view = '<a type="button" style="width:20%;" href="'.base_url() . 'user/dashboard/viewResponseOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Response">
 							<i class="fa fa-eye"></i>
 						</a>';	
 		
 			
-			
-			$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+			if($l->status_approval_2=='Disetujui'){
+				$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="#" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
 							  <i class="fa fa-times"></i>
 						</a>';
+			}else{
+				$delete = '	<a id="id-delete" name="delete" style="width:20%;" href="'.base_url() . 'user/dashboard/deleteOrder?id='.$l->id_order.'" style="width:13%;" class="btn btn-sm btn-secondary item_delete" data-toggle="tooltip" title="Delete">
+							  <i class="fa fa-times"></i>
+						</a>';
+			}
+			
 						
 		
 			$no++;
@@ -259,6 +271,7 @@ class Dashboard extends CI_Controller {
 		echo json_encode($output);
 	}
 
+
 	public function deleteOrder()
 	{
 		$id = $this->input->get('id');
@@ -277,6 +290,11 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_user/footer');
 	}
 
+	public function testing()
+	{
+		// var_dump();
+		echo json_encode($this->m_order->count_filtered_user_response());
+	}
 	
 }
 

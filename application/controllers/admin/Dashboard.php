@@ -45,6 +45,16 @@ class Dashboard extends CI_Controller {
 		$this->load->view('v_admin/input_order',$data);
 		$this->load->view('v_admin/footer');
 	}
+
+	public function testing()
+	{
+		//
+		$data['test'] = $this->m_order->testing();
+	
+		$this->load->view('v_form/testing',$data);
+
+	}
+	
 	
 	public function IOActual()
 	{

@@ -136,7 +136,7 @@
                                 </ul>
                             </li>
                             <li>
-                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">Grafik</a>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">Reporting</a>
                                     <ul>
                                         <li>
                                             <a href="<?= base_url() . 'admin/response/chartRunningCost'?>">Running Cost</a>
@@ -168,7 +168,7 @@
                                         <a href="<?= base_url() . 'admin/department'?>">Department</a>
                                         </li>
                                         <li>
-                                            <a href="<?= base_url() . 'admin/response/chartTotalRunningCost'?>">Section</a>
+                                            <a href="<?= base_url() . 'admin/section'?>">Section</a>
                                         </li>
                                     </ul>
                             </li>

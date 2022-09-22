@@ -239,11 +239,7 @@
                 <div id="plan1">
                     
                 </div>
-                <div class="form-group row">
-                <button class="btn btn-success" id="submit_btn">
-                    <i class="si si-check"></i>&nbsp;Kirim
-                </button>
-                </div>
+
         </form>
         </div>
     </div>
